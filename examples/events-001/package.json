@@ -7,8 +7,8 @@
     "test": "echo \"No tests here yet, it's fine\" && exit 0",
     "lint": "tslint src/**/*.ts",
     "lint-fix": "tslint --fix src/**/*.ts",
-    "tsc": "tsc --project tsconfig.json",
-    "doc": "tsc --project tsconfig.json && typedoc --options typedoc.ts; yarn run docco src/index.ts --output docs/docco"
+    "build": "tsc",
+    "doc": "tsc && typedoc --options typedoc.ts; yarn run docco src/index.ts --output docs/docco"
   },
   "keywords": [
     "typedoc",

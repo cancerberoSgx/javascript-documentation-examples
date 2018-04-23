@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>index.ts</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="../docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>index.ts</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">import</span> { on } <span class="hljs-keyword">from</span> <span class="hljs-string">'cluster'</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <h2 id="what-s-this-">What’s this?</h2>
+<p>The objective of this document is see if we can document events that don’t extend from EventEmitter, in other words, is there something special about the on() method and its first parameter from where the event name seems to be taken magically by typedoc??</p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>And indeed it seems there is something special with the on() method name when it matters to events. <a href="../interfaces/igenericdeviceeventsource.html">Take a look at the output</a> </p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>There are three events there, more or less well described, but their name is <code>addDeviceListner</code>  . That didnt happened with on()</p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>In this case events are treated like methods but I think is acceptable. </p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+
+<span class="hljs-comment">/**
+ * Minim sint reprehenderit laboris dolor officia non in officia nisi. Irure excepteur ea enim excepteur sunt cupidatat esse laborum dolore. Veniam irure ex in ad magna amet proident velit velit nostrud. 
+ * 
+ * Nostrud officia labore non pariatur exercitation irure consectetur ut reprehenderit dolor.
+ */</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> IMouseEventSource <span class="hljs-keyword">extends</span> IDeviceEventSource{
+  <span class="hljs-comment">/**
+   * Qui cillum aliqua id ex consequat dolore ut commodo proident veniam. Dolor tempor anim id cupidatat minim non dolore esse in fugiat aute. Labore dolore ad fugiat qui duis est. Fugiat adipisicing id ullamco incididunt labore dolor proident veniam ea sunt.
+   * @param l Incididunt amet consequat aute et proident voluptate sit duis.
+   */</span>
+  addMouseListener(l:IMouseEventListener):<span class="hljs-built_in">void</span>;
+}
+<span class="hljs-comment">/**
+ * Lorem voluptate laboris aliquip cillum elit.
+ */</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> IDeviceEventSource{
+  <span class="hljs-comment">/**
+   * Occaecat esse eiusmod veniam aliquip qui consectetur.
+   */</span>
+  name:<span class="hljs-built_in">string</span>;
+  <span class="hljs-comment">/**
+   * Commodo labore exercitation exercitation laborum consectetur aliqua nulla pariatur consectetur commodo ut magna proident.
+   */</span>
+  ip:<span class="hljs-built_in">number</span>;
+
+  <span class="hljs-comment">/**
+   * a generic event source that will trigger named events
+   * @event
+   * @param deviceName 
+   * @param listener 
+   */</span>
+  addDeviceListener(deviceName:<span class="hljs-built_in">string</span>, listener:IDeviceEventListener):<span class="hljs-built_in">void</span>;
+}
+
+<span class="hljs-comment">/**
+ * Ipsum commodo ut fugiat proident.
+ */</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> IGenericDeviceEventSource <span class="hljs-keyword">extends</span> IDeviceEventSource{
+
+  <span class="hljs-comment">/**
+   * a generic event source that will trigger named events
+   * @event
+   * @param deviceName  
+   * @param listener 
+   */</span>
+  addDeviceListener(deviceName:<span class="hljs-string">'mouse'</span>, listener:IMouseEventListener):<span class="hljs-built_in">void</span>;
+
+  addDeviceListener(deviceName:<span class="hljs-string">'keyboard'</span>, listener:IKeyboardEventListener):<span class="hljs-built_in">void</span>;
+
+  addDeviceListener(deviceName:<span class="hljs-string">'mic'</span>, listener:IMicEventListener):<span class="hljs-built_in">void</span>;
+}
+<span class="hljs-comment">/**
+ * Mollit elit sunt anim minim dolore occaecat.
+ */</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> IMouseEventListener <span class="hljs-keyword">extends</span> IDeviceEventListener{
+  <span class="hljs-comment">/**
+   * Reprehenderit sunt ad consectetur deserunt exercitation veniam et 
+   * @param event 
+   */</span>
+  click(event: IMouseClickEvent):<span class="hljs-built_in">void</span>;
+}
+<span class="hljs-comment">/**
+ * Mollit elit sunt anim minim dolore occaecat.
+ */</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> IKeyboardEventListener <span class="hljs-keyword">extends</span> IDeviceEventListener{
+  <span class="hljs-comment">/**
+   * Reprehenderit sunt ad consectetur deserunt exercitation veniam et 
+   * @param event 
+   */</span>
+  click(event: IKeypressedEvent):<span class="hljs-built_in">void</span>;
+}
+<span class="hljs-comment">/**
+ * Mollit elit sunt anim minim dolore occaecat.
+ */</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> IMicEventListener <span class="hljs-keyword">extends</span> IDeviceEventListener{
+  <span class="hljs-comment">/**
+   * Reprehenderit sunt ad consectetur deserunt exercitation veniam et 
+   * @param event 
+   */</span>
+  keypressed(event:IMicEvent):<span class="hljs-built_in">void</span>;
+}
+
+
+<span class="hljs-comment">/**
+ * Tempor velit eu proident cupidatat do exercitation adipisicing esse fugiat velit et ad quis.
+ */</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> IDeviceEventListener {
+  <span class="hljs-comment">/**
+   * Consequat duis eu ad exercitation nostrud irure exercitation dolor.
+   */</span>
+  priority: <span class="hljs-built_in">number</span>;
+}
+<span class="hljs-comment">/**
+ * Laboris proident magna sint ex sit officia dolore do veniam incididunt irure. Ut sit Lorem ut occaecat irure nostrud. Amet sit esse sint elit tempor commodo non incididunt commodo sint est nulla enim exercitation. 
+ * 
+ * Tempor qui elit ut in eiusmod voluptate nisi esse esse. Ullamco et irure id voluptate consequat reprehenderit cupidatat amet labore enim ut. Fugiat minim reprehenderit non ea duis adipisicing. Laboris nulla ea magna minim culpa mollit id.
+ */</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> IMouseClickEvent <span class="hljs-keyword">extends</span> IDeviceEvent{
+  <span class="hljs-comment">/**
+   * Quis incididunt magna qui tempor magna occaecat.
+   */</span>
+  x: <span class="hljs-built_in">number</span>;
+  <span class="hljs-comment">/**
+   * Veniam non do aliqua id.
+   */</span>
+  y:<span class="hljs-built_in">number</span>;
+  <span class="hljs-comment">/**
+   * Amet consectetur ad sit cupidatat.
+   */</span>
+  button: <span class="hljs-string">'left'</span>|<span class="hljs-string">'right'</span>|<span class="hljs-string">'middle'</span>;
+
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> IKeypressedEvent <span class="hljs-keyword">extends</span> IDeviceEvent{
+  key:<span class="hljs-built_in">number</span>;
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> IMicEvent <span class="hljs-keyword">extends</span> IDeviceEvent{
+  sound:<span class="hljs-built_in">string</span>;
+}
+
+
+<span class="hljs-comment">/**
+ * Proident sit cillum ea et tempor minim ut consequat incididunt velit officia cillum cillum.
+ */</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> IDeviceEvent{
+  ts:<span class="hljs-built_in">Date</span>;
+}
+
+<span class="hljs-keyword">class</span> MouseEventSource <span class="hljs-keyword">implements</span> IMouseEventSource{
+  <span class="hljs-comment">/**
+   * a generic event source that will trigger named events
+   * @event
+   * @param deviceName
+   * @param listener
+   */</span>
+  addDeviceListener(deviceName: <span class="hljs-built_in">string</span>, listener: IDeviceEventListener): <span class="hljs-built_in">void</span> {
+    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'Method not implemented.'</span>);
+  }
+  name: <span class="hljs-built_in">string</span>;
+  ip: <span class="hljs-built_in">number</span>;
+  addMouseListener(l:IMouseEventListener):<span class="hljs-built_in">void</span> {}
+}</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>

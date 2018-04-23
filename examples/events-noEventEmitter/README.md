@@ -2,7 +2,20 @@
 
  * Can we document events that don't use node.js `EventEmitter`?, in other words, is there something special about the on() method and its first parameter from where the event name seems to be taken magically by typedoc??
 
- * see also [the first research events-001](../events-001/docs/index.html)
+
+### [Take a look at the output](interfaces/igenericdeviceeventsource.html) 
+
+### [descriptions along the code](docco/src/index.html)
+
+And indeed it seems there is something special with the on() method name when it matters to events. [Take a look at the output](../interfaces/igenericdeviceeventsource.html) 
+
+There are three events there, more or less well described, but their name is `addDeviceListner`  . That didnt happened with on()
+
+In this case events are treated like methods but I think is acceptable. 
+
+
+ * see also [the first research events-001](../../events-001/docs/index.html)
+
 
 
 <!-- ### [final typedoc output](interfaces/idownloadeventemitter.html#on)
