@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>index.ts</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="../docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>index.ts</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">import</span> { EventEmitter } <span class="hljs-keyword">from</span> <span class="hljs-string">'events'</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <h2 id="objective">Objective</h2>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>In this example we try to describe a class that extends NodeJS.js [[EventEmitter]] and triggers a couple of events <code>progress</code>, <code>finish</code>, and <code>error</code>.</p>
+<p>Our objective is that this descriptions be clear in typedoc output. This is the final result: TODO LINK</p>
+<p>Also that the typescript compiler bind the types so we are sure that our users won’t miss the events names or callback funcions signatures. </p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+
+
+<span class="hljs-comment">/** 
+ * Responsible of notifying relevant events about downloading stuff. Instances can be obtained like this: 
+ * ```
+ *  const downloadEmitter = Factory.getInstance&lt;IDownloadEventEmitter&gt;('IDownloadEventEmitter');
+ * ```
+ */</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> IDownloadEventEmitter{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>We start by declaring an interface which responsibility will be to define the exact method signatures that we will be offering to our users. </p>
+<p>Notice that we are overriding the <code>EventEmitter.on</code>  method with ore specialized signatures - even forcing that the event name to be a concrete string. This way we enforce the API to our users. </p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+  <span class="hljs-comment">/**
+   * Subscribes given listener so it will be called when the progress of the download changes
+   * @event
+   * @param eventName The name of the event to subscribe for.
+   * @param handler A handler that will receive a progress event with the current and expected 
+   * total bytes
+   */</span>
+  on(eventName: <span class="hljs-string">'progress'</span>, listener: <span class="hljs-function">(<span class="hljs-params">event: DownloadProgressEvent</span>) =&gt;</span> <span class="hljs-built_in">void</span>): <span class="hljs-keyword">this</span>;
+
+  <span class="hljs-comment">/**
+   * Subscribes given listener so it will be called when the download finished
+   * @event
+   * @param event The name; of the event to subscribe for.
+   * @param handler A handler that will receive a progress event with the current and expected 
+   * total bytes
+   */</span>
+  on(eventName: <span class="hljs-string">'finish'</span>, listener: <span class="hljs-function">(<span class="hljs-params">event: DownloadFinishEvent</span>) =&gt;</span> <span class="hljs-built_in">void</span>): <span class="hljs-keyword">this</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>Something important is that, we need to respect the original signature that is: </p>
+<pre><code class="lang-ts">on(event: <span class="hljs-built_in">string</span> | symbol, listener: <span class="hljs-function">(<span class="hljs-params">...args: <span class="hljs-built_in">any</span>[]</span>) =&gt;</span> <span class="hljs-built_in">void</span>): <span class="hljs-keyword">this</span>;
+once(event: <span class="hljs-built_in">string</span> | symbol, listener: <span class="hljs-function">(<span class="hljs-params">...args: <span class="hljs-built_in">any</span>[]</span>) =&gt;</span> <span class="hljs-built_in">void</span>): <span class="hljs-keyword">this</span>;
+</code></pre>
+<p>That’s why for example we need to return <code>this</code> and our callback still need to return <code>void</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+
+  <span class="hljs-comment">/**
+   * Subscribes given listener so it will be called when the download finished
+   * @event
+   * @param event The name of the event to subscribe for.
+   * @param handler A handler that will receive a progress event with the current and expected 
+   * total bytes
+   */</span>
+  on(eventName: <span class="hljs-string">'error'</span>, listener: <span class="hljs-function">(<span class="hljs-params">event: <span class="hljs-built_in">Error</span></span>) =&gt;</span> <span class="hljs-built_in">void</span>): <span class="hljs-keyword">this</span>;
+
+
+  <span class="hljs-comment">/**
+   * This method trigger events. Unfortunately I don't know yet how to express that in typedoc
+   * @param config 
+   */</span>
+  startDownloading(config: IDownloadConfig): <span class="hljs-built_in">Promise</span>&lt;<span class="hljs-built_in">any</span>&gt;;
+  
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p>DownloadEventEmitter : This class implements an EventEmitter. It implements previous interface [[IDownloadEventEmitter]] so type binding will work well and to be more descriptive. </p>
+<p>Heads up! we don’t need to override the original on() the super class EventEmitter does</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  
+
+<span class="hljs-comment">/**
+ * Event Emitter concrete class - Private
+ */</span>
+<span class="hljs-keyword">class</span> DownloadEventEmitter <span class="hljs-keyword">extends</span> EventEmitter <span class="hljs-keyword">implements</span> IDownloadEventEmitter {
+
+  
+  <span class="hljs-keyword">public</span> startDownloading(config: DownloadConfig): <span class="hljs-built_in">Promise</span>&lt;<span class="hljs-built_in">any</span>&gt; {
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Promise</span>.resolve();
+  }
+
+}
+
+<span class="hljs-keyword">interface</span> DownloadEvent  {
+  timestamp: <span class="hljs-built_in">Date</span>;
+  id: <span class="hljs-built_in">string</span>;
+}
+
+
+<span class="hljs-comment">/**
+ * data with progress information
+ */</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> DownloadProgressEvent <span class="hljs-keyword">extends</span> DownloadEvent {
+  name: <span class="hljs-built_in">string</span>;
+  value: <span class="hljs-built_in">number</span>;
+  code: <span class="hljs-built_in">number</span>[];
+}
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> DownloadFinishEvent <span class="hljs-keyword">extends</span> DownloadEvent {
+  totalBytes: <span class="hljs-built_in">number</span>;
+  ips: <span class="hljs-built_in">number</span>[][];
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> IDownloadConfig {
+  abortOnError: <span class="hljs-built_in">boolean</span>;
+}
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> DownloadConfig <span class="hljs-keyword">implements</span> IDownloadConfig {
+  abortOnError: <span class="hljs-built_in">boolean</span>;
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <p>and now a main() so we can see if type bindings really worked</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+<span class="hljs-keyword">class</span> Main{
+  <span class="hljs-keyword">static</span> main(...any):<span class="hljs-built_in">number</span> {
+    
+    <span class="hljs-keyword">const</span> clientInterface = Factory.getInstance&lt;IDownloadEventEmitter&gt;(<span class="hljs-string">'IDownloadEventEmitter'</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <p>passing incorrect event name: gives error because we are working with 
+the; interface (commented).</p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <p>clientInterface.on(‘incorrectEventName’, (data) =&gt; {}); </p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <p>but if we work with the class does not, as expected, because the class is an EventEmitter 
+supports any thing: </p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">const</span> clientClass:DownloadEventEmitter = <span class="hljs-keyword">new</span> DownloadEventEmitter();
+    clientClass.on(<span class="hljs-string">'incorrectEventName'</span>, <span class="hljs-function">(<span class="hljs-params">data</span>) =&gt;</span> {});</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-11">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-11">&#182;</a>
+              </div>
+              <p>Now, keep working with the signature, try to cheat it passing eventName from 
+one signature and listener from another. It fails as expected, with error 
+“Argument of type ‘“finish”‘ is not assignable to parameter of type ‘“error”‘. 
+Leave it commented:</p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-12">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-12">&#182;</a>
+              </div>
+              <p>clientInterface.on(‘finish’, (data:DownloadProgressEvent) =&gt; {}); </p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-13">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-13">&#182;</a>
+              </div>
+              <p>now let’s call it right and define callback argument wihtout type to see if 
+type inference work: </p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+
+    clientInterface.on(<span class="hljs-string">'progress'</span>, <span class="hljs-function">(<span class="hljs-params">data</span>) =&gt;</span> {
+      data.timestamp = <span class="hljs-literal">undefined</span>; <span class="hljs-comment">// autocomplete works fine both in data and in the eventName arg </span>
+    }); 
+    
+    
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+  }
+}
+
+<span class="hljs-keyword">class</span> Factory{
+  <span class="hljs-keyword">static</span> getInstance&lt;T&gt;(interfaceName: <span class="hljs-built_in">string</span>):T {
+    <span class="hljs-keyword">if</span> (interfaceName === <span class="hljs-string">'IDownloadEventEmitter'</span>) {
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> DownloadEventEmitter() <span class="hljs-keyword">as</span> <span class="hljs-built_in">any</span>;
+    }
+  }
+}</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>

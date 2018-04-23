@@ -1,10 +1,31 @@
 import { EventEmitter } from 'events';
 
-/**
- * describes only the on() methods with the types that our class accept so is 
- * more descriptive and typechecking is better. 
+
+// ## Objective
+
+// In this example we try to describe a class that extends NodeJS.js [[EventEmitter]] and triggers a couple of events `progress`, `finish`, and `error`.
+// 
+// Our objective is that this descriptions be clear in typedoc output. This is the final result: TODO LINK
+// 
+// Also that the typescript compiler bind the types so we are sure that our users won't miss the events names or callback funcions signatures. 
+
+
+
+/** 
+ * Responsible of notifying relevant events about downloading stuff. Instances can be obtained like this: 
+ * ```
+ *  const downloadEmitter = Factory.getInstance<IDownloadEventEmitter>('IDownloadEventEmitter');
+ * ```
  */
 export interface IDownloadEventEmitter{
+
+
+
+
+// We start by declaring an interface which responsibility will be to define the exact method signatures that we will be offering to our users. 
+// 
+// Notice that we are overriding the `EventEmitter.on`  method with ore specialized signatures - even forcing that the event name to be a concrete string. This way we enforce the API to our users. 
+
   /**
    * Subscribes given listener so it will be called when the progress of the download changes
    * @event
@@ -22,6 +43,16 @@ export interface IDownloadEventEmitter{
    * total bytes
    */
   on(eventName: 'finish', listener: (event: DownloadFinishEvent) => void): this;
+
+// 
+// Something important is that, we need to respect the original signature that is: 
+// 
+// ```ts
+// on(event: string | symbol, listener: (...args: any[]) => void): this;
+// once(event: string | symbol, listener: (...args: any[]) => void): this;
+// ```
+// 
+// That's why for example we need to return `this` and our callback still need to return `void`
 
 
   /**
@@ -43,25 +74,33 @@ export interface IDownloadEventEmitter{
 }
 
 
-/**
- * This class implements an EventEmitter. It just implements [[IDownloadEventEmitter]] 
- * so type binding will work well and to be more descriptive. 
- * Heads up! we don't need to override on() imeplementation - is already implemented 
- * by super class EventEmitter  
- */
-export class DownloadEventEmitter extends EventEmitter implements IDownloadEventEmitter {
+// `DownloadEventEmitter` class is our concrete, private implementation. We let its super class `EventEmitter` to implement the on() methods - and we just implement our concrete feature  `startDownloading`. 
+// 
+// It implements previous interface so users referencing the interface will use the exact method descriptions and type binding will be perfect.  
 
+
+/**
+ * Event Emitter concrete class - Private
+ */
+class DownloadEventEmitter extends EventEmitter implements IDownloadEventEmitter {
+
+  
   public startDownloading(config: DownloadConfig): Promise<any> {
     return Promise.resolve();
   }
 
 }
 
+
+
+
+/**
+ * abstract super interface of all download-related events
+ */
 interface DownloadEvent  {
   timestamp: Date;
   id: string;
 }
-
 
 /**
  * data with progress information
@@ -71,39 +110,58 @@ export interface DownloadProgressEvent extends DownloadEvent {
   value: number;
   code: number[];
 }
+
+/**
+ * event emitted when a download finished
+ */
 export interface DownloadFinishEvent extends DownloadEvent {
   totalBytes: number;
   ips: number[][];
 }
-
+/**
+ * event emitted When something goes wrong
+ */
+export interface DownloadError extends DownloadEvent {
+  status: number;
+  error: Error;
+}
+/**
+ * Configuration for a download, see [[IDownloadEventEmitter.startDownloading]]
+ */
 export interface IDownloadConfig {
   abortOnError: boolean;
 }
-export class DownloadConfig implements IDownloadConfig {
+class DownloadConfig implements IDownloadConfig {
   abortOnError: boolean;
 }
 
 
 
-
-// and now a main() so we can see if type bindings really worked
+// Now that we have everithing ready, I would like to test it a bit, to see if by using the interface our library's users will have a good experience with type binding or call our methods with bad signatures.
+// 
+// For that we build a Main() function , some code is commented because it has compilation errors: 
 
 class Main{
   static main(...any):number {
     
-    const clientInterface:IDownloadEventEmitter = Factory.getInstance<IDownloadEventEmitter>('IDownloadEventEmitter');
-
-    // passing incorrect event name: gives error because we are working with 
-    // the; interface (commented).
-
-    // clientInterface.on('incorrectEventName', (data) => {}); 
+    const clientInterface = Factory.getInstance<IDownloadEventEmitter>('IDownloadEventEmitter');
 
 
 
-    // but if we work with the class does not, as expected, because the class is an EventEmitter 
-    // supports any thing: 
-    const clientClass:DownloadEventEmitter = new DownloadEventEmitter();
-    clientClass.on('incorrectEventName', (data) => {}); 
+// In the following statement we try to pass an incorrect event name. It gives error because we are working with 
+// the interface :)  (code commented).
+//
+// ```ts 
+// clientInterface.on('incorrectEventName', (data) => {}); 
+// ```
+
+
+
+    // In the following statement, w we work with the class directly. As expected, we can use signatures incorrectly here because our class IS A ```EventEmitter``` and its `on`  method has a very flexible signature. 
+    // 
+    // IMPORTANT: A sub class class cannot change signatures defined by the super class - that's a consequence of polymorphism
+    const clientClass = new DownloadEventEmitter();
+    clientClass.on('incorrectEventName', (data) => {}); // SHOULD BE COMPILATION ERROR
 
 
 
