@@ -7,7 +7,7 @@ The following are the examples generated:
 
 # events-001
 
-Best practices for documenting events, particularly subclasses of node.js `EventEmitter`
+Best practices for documenting events, particularly subclasses of node.js `EventEmitter`.
 
 #### [Tutorial, descriptions and code](https://cancerberosgx.github.io/javascript-documentation-examples/examples/events-001/docs/docco/src/index.html)
 
@@ -21,7 +21,7 @@ Best practices for documenting events, particularly subclasses of node.js `Event
 
 #### [Tutorial, descriptions and code](https://cancerberosgx.github.io/javascript-documentation-examples/examples/events-noEventEmitter/docs/docco/src/index.html)
 
-#### [Final Output](https://cancerberosgx.github.io/javascript-documentation-examples/examples/events-noEventEmitter/docs/interfaces/idownloadeventemitter.html#on)
+#### [Final Output](https://cancerberosgx.github.io/javascript-documentation-examples/examples/events-noEventEmitter/docs/interfaces/igenericdeviceeventsource.html#adddevicelistener)
 
 
 

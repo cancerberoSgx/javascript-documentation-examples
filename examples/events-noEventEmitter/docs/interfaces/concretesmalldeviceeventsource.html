@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>IDeviceEventSource | javascript-documentation-examples-events-noEventEmitter</title>
+	<title>ConcreteSmallDeviceEventSource | javascript-documentation-examples-events-noEventEmitter</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,34 +54,24 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="ideviceeventsource.html">IDeviceEventSource</a>
+					<a href="concretesmalldeviceeventsource.html">ConcreteSmallDeviceEventSource</a>
 				</li>
 			</ul>
-			<h1>Interface IDeviceEventSource</h1>
+			<h1>Interface ConcreteSmallDeviceEventSource</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>Lorem voluptate laboris aliquip cillum elit.</p>
-					</div>
-				</div>
-			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">IDeviceEventSource</span>
+						<a href="igenericdeviceeventsource.html" class="tsd-signature-type">IGenericDeviceEventSource</a>
 						<ul class="tsd-hierarchy">
 							<li>
-								<a href="imouseeventsource.html" class="tsd-signature-type">IMouseEventSource</a>
-							</li>
-							<li>
-								<a href="igenericdeviceeventsource.html" class="tsd-signature-type">IGenericDeviceEventSource</a>
+								<span class="target">ConcreteSmallDeviceEventSource</span>
 							</li>
 						</ul>
 					</li>
@@ -91,35 +81,45 @@
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
-						<section class="tsd-index-section ">
+						<section class="tsd-index-section tsd-is-inherited tsd-is-not-exported">
 							<h3>Events</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-event tsd-parent-kind-interface"><a href="ideviceeventsource.html#adddevicelistener" class="tsd-kind-icon">add<wbr>Device<wbr>Listener</a></li>
+								<li class="tsd-kind-event tsd-parent-kind-interface tsd-is-overwrite tsd-is-inherited tsd-is-not-exported"><a href="concretesmalldeviceeventsource.html#adddevicelistener" class="tsd-kind-icon">add<wbr>Device<wbr>Listener</a></li>
 							</ul>
 						</section>
-						<section class="tsd-index-section ">
+						<section class="tsd-index-section tsd-is-inherited tsd-is-not-exported">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="ideviceeventsource.html#ip" class="tsd-kind-icon">ip</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="ideviceeventsource.html#name" class="tsd-kind-icon">name</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported"><a href="concretesmalldeviceeventsource.html#ip" class="tsd-kind-icon">ip</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported"><a href="concretesmalldeviceeventsource.html#name" class="tsd-kind-icon">name</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section tsd-is-not-exported">
+							<h3>Methods</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported"><a href="concretesmalldeviceeventsource.html#poweron" class="tsd-kind-icon">power<wbr>On</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
-			<section class="tsd-panel-group tsd-member-group ">
+			<section class="tsd-panel-group tsd-member-group tsd-is-inherited tsd-is-not-exported">
 				<h2>Events</h2>
-				<section class="tsd-panel tsd-member tsd-kind-event tsd-parent-kind-interface">
+				<section class="tsd-panel tsd-member tsd-kind-event tsd-parent-kind-interface tsd-is-overwrite tsd-is-inherited tsd-is-not-exported">
 					<a name="adddevicelistener" class="tsd-anchor"></a>
 					<h3>add<wbr>Device<wbr>Listener</h3>
-					<ul class="tsd-signatures tsd-kind-event tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">add<wbr>Device<wbr>Listener<span class="tsd-signature-symbol">(</span>deviceName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, listener<span class="tsd-signature-symbol">: </span><a href="ideviceeventlistener.html" class="tsd-signature-type">IDeviceEventListener</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					<ul class="tsd-signatures tsd-kind-event tsd-parent-kind-interface tsd-is-overwrite tsd-is-inherited tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">add<wbr>Device<wbr>Listener<span class="tsd-signature-symbol">(</span>eventName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"mouse"</span>, listener<span class="tsd-signature-symbol">: </span><a href="imouseeventlistener.html" class="tsd-signature-type">IMouseEventListener</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">add<wbr>Device<wbr>Listener<span class="tsd-signature-symbol">(</span>eventName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"keyboard"</span>, listener<span class="tsd-signature-symbol">: </span><a href="ikeyboardeventlistener.html" class="tsd-signature-type">IKeyboardEventListener</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">add<wbr>Device<wbr>Listener<span class="tsd-signature-symbol">(</span>eventName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"mic"</span>, listener<span class="tsd-signature-symbol">: </span><a href="imiceventlistener.html" class="tsd-signature-type">IMicEventListener</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Inherited from <a href="igenericdeviceeventsource.html">IGenericDeviceEventSource</a>.<a href="igenericdeviceeventsource.html#adddevicelistener">addDeviceListener</a></p>
+								<p>Overrides <a href="ideviceeventsource.html">IDeviceEventSource</a>.<a href="ideviceeventsource.html#adddevicelistener">addDeviceListener</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/cancerberoSgx/javascript-documentation-examples/blob/1aed86a/examples/events-noEventEmitter/src/index.ts#L43">index.ts:43</a></li>
+									<li>Defined in <a href="https://github.com/cancerberoSgx/javascript-documentation-examples/blob/1aed86a/examples/events-noEventEmitter/src/index.ts#L62">index.ts:62</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -130,10 +130,67 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>deviceName: <span class="tsd-signature-type">string</span></h5>
+									<h5>eventName: <span class="tsd-signature-type">"mouse"</span></h5>
 								</li>
 								<li>
-									<h5>listener: <a href="ideviceeventlistener.html" class="tsd-signature-type">IDeviceEventListener</a></h5>
+									<h5>listener: <a href="imouseeventlistener.html" class="tsd-signature-type">IMouseEventListener</a></h5>
+									<div class="tsd-comment tsd-typography">
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="igenericdeviceeventsource.html">IGenericDeviceEventSource</a>.<a href="igenericdeviceeventsource.html#adddevicelistener">addDeviceListener</a></p>
+								<p>Overrides <a href="ideviceeventsource.html">IDeviceEventSource</a>.<a href="ideviceeventsource.html#adddevicelistener">addDeviceListener</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/cancerberoSgx/javascript-documentation-examples/blob/1aed86a/examples/events-noEventEmitter/src/index.ts#L70">index.ts:70</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>a generic event source that will trigger named events</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>name</dt>
+									<dd><p>keyboard123</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>eventName: <span class="tsd-signature-type">"keyboard"</span></h5>
+								</li>
+								<li>
+									<h5>listener: <a href="ikeyboardeventlistener.html" class="tsd-signature-type">IKeyboardEventListener</a></h5>
+									<div class="tsd-comment tsd-typography">
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="igenericdeviceeventsource.html">IGenericDeviceEventSource</a>.<a href="igenericdeviceeventsource.html#adddevicelistener">addDeviceListener</a></p>
+								<p>Overrides <a href="ideviceeventsource.html">IDeviceEventSource</a>.<a href="ideviceeventsource.html#adddevicelistener">addDeviceListener</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/cancerberoSgx/javascript-documentation-examples/blob/1aed86a/examples/events-noEventEmitter/src/index.ts#L77">index.ts:77</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>a generic event source that will trigger named events</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>eventName: <span class="tsd-signature-type">"mic"</span></h5>
+								</li>
+								<li>
+									<h5>listener: <a href="imiceventlistener.html" class="tsd-signature-type">IMicEventListener</a></h5>
 									<div class="tsd-comment tsd-typography">
 									</div>
 								</li>
@@ -143,13 +200,14 @@
 					</ul>
 				</section>
 			</section>
-			<section class="tsd-panel-group tsd-member-group ">
+			<section class="tsd-panel-group tsd-member-group tsd-is-inherited tsd-is-not-exported">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported">
 					<a name="ip" class="tsd-anchor"></a>
 					<h3>ip</h3>
 					<div class="tsd-signature tsd-kind-icon">ip<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
+						<p>Inherited from <a href="ideviceeventsource.html">IDeviceEventSource</a>.<a href="ideviceeventsource.html#ip">ip</a></p>
 						<ul>
 							<li>Defined in <a href="https://github.com/cancerberoSgx/javascript-documentation-examples/blob/1aed86a/examples/events-noEventEmitter/src/index.ts#L35">index.ts:35</a></li>
 						</ul>
@@ -160,11 +218,12 @@
 						</div>
 					</div>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported">
 					<a name="name" class="tsd-anchor"></a>
 					<h3>name</h3>
 					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
+						<p>Inherited from <a href="ideviceeventsource.html">IDeviceEventSource</a>.<a href="ideviceeventsource.html#name">name</a></p>
 						<ul>
 							<li>Defined in <a href="https://github.com/cancerberoSgx/javascript-documentation-examples/blob/1aed86a/examples/events-noEventEmitter/src/index.ts#L31">index.ts:31</a></li>
 						</ul>
@@ -174,6 +233,31 @@
 							<p>Occaecat esse eiusmod veniam aliquip qui consectetur.</p>
 						</div>
 					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
+				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
+					<a name="poweron" class="tsd-anchor"></a>
+					<h3>power<wbr>On</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">power<wbr>On<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/cancerberoSgx/javascript-documentation-examples/blob/1aed86a/examples/events-noEventEmitter/src/index.ts#L90">index.ts:90</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Starts the machinery. It will trigger <a href="concretesmalldeviceeventsource.html#adddevicelistener">addDeviceListener</a>. Maybe better, we could say It will trigger <a href="concretesmalldeviceeventsource.html#adddevicelistener">addDeviceListener</a></p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
 				</section>
 			</section>
 		</div>
@@ -190,33 +274,36 @@
 					<li class=" tsd-kind-class tsd-is-not-exported">
 						<a href="../classes/mouseeventsource.html" class="tsd-kind-icon">Mouse<wbr>Event<wbr>Source</a>
 					</li>
-					<li class=" tsd-kind-interface tsd-is-not-exported">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-interface tsd-is-not-exported">
 						<a href="concretesmalldeviceeventsource.html" class="tsd-kind-icon">Concrete<wbr>Small<wbr>Device<wbr>Event<wbr>Source</a>
+						<ul>
+							<li class=" tsd-kind-event tsd-parent-kind-interface tsd-is-overwrite tsd-is-inherited tsd-is-not-exported">
+								<a href="concretesmalldeviceeventsource.html#adddevicelistener" class="tsd-kind-icon">add<wbr>Device<wbr>Listener</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported">
+								<a href="concretesmalldeviceeventsource.html#ip" class="tsd-kind-icon">ip</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported">
+								<a href="concretesmalldeviceeventsource.html#name" class="tsd-kind-icon">name</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
+								<a href="concretesmalldeviceeventsource.html#poweron" class="tsd-kind-icon">power<wbr>On</a>
+							</li>
+						</ul>
 					</li>
+				</ul>
+				<ul class="after-current">
 					<li class=" tsd-kind-interface">
 						<a href="ideviceevent.html" class="tsd-kind-icon">IDevice<wbr>Event</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="ideviceeventlistener.html" class="tsd-kind-icon">IDevice<wbr>Event<wbr>Listener</a>
 					</li>
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-interface">
+					<li class=" tsd-kind-interface">
 						<a href="ideviceeventsource.html" class="tsd-kind-icon">IDevice<wbr>Event<wbr>Source</a>
-						<ul>
-							<li class=" tsd-kind-event tsd-parent-kind-interface">
-								<a href="ideviceeventsource.html#adddevicelistener" class="tsd-kind-icon">add<wbr>Device<wbr>Listener</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="ideviceeventsource.html#ip" class="tsd-kind-icon">ip</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="ideviceeventsource.html#name" class="tsd-kind-icon">name</a>
-							</li>
-						</ul>
 					</li>
-				</ul>
-				<ul class="after-current">
 					<li class=" tsd-kind-interface">
 						<a href="igenericdeviceeventsource.html" class="tsd-kind-icon">IGeneric<wbr>Device<wbr>Event<wbr>Source</a>
 					</li>

@@ -4,9 +4,12 @@ import { on } from 'cluster';
 // 
 // This is an example similar to [events-001](https://cancerberosgx.github.io/javascript-documentation-examples/examples/events-001/docs/docco/src/index.html) but using a rich event - listeners, class inheritance hierarchy that's completely unrelated with `EventEmitter`. 
 // 
-// You can notice in the output that, because the method name is not so short as `on()` , the output that describe these events doesn''t look good. 
 //
-// In my case I really need to name my events arbitrarily. After all events are an artificial concept, they aren't methods, nor objects so I should be able to name them a piaccere. That's why I came up with [typedoc-plugin-respect-name-tag TypeDoc plugin ](https://github.com/cancerberoSgx/typedoc-plugin-respect-name-tag) . Using it, if some entity is annotated with a `@name` tag it will be named by typedoc with that name 
+// [**This is the final output**](https://cancerberosgx.github.io/javascript-documentation-examples/examples/events-noEventEmitter/docs/interfaces/igenericdeviceeventsource.html#adddevicelistener)
+// 
+// You can notice in the output that, because the method name is not so short as `on()` , the output that describe these events doesn't look good. Mostly because all these events are grouped together under the same label `addDeviceListener`
+//
+// In my case I really need to name my events arbitrarily. After all events are an artificial concept, they aren't methods, nor objects so I should be able to name them a 'piaccere'. That's why I came up with [typedoc-plugin-respect-name-tag TypeDoc plugin ](https://github.com/cancerberoSgx/typedoc-plugin-respect-name-tag) . Using it, if some entity is annotated with a `@name` tag it will be named by typedoc with that name 
 // 
 
 /**
@@ -73,6 +76,23 @@ export interface IGenericDeviceEventSource extends IDeviceEventSource{
    */
   addDeviceListener(eventName:'mic', listener:IMicEventListener):void;
 }
+
+
+
+
+
+// Finally, let's try to express the following: A subclass have a method that will trigger an event defined in the super class. Since TypeDoc doesn't support something like jsdoc `@trigger` or `@emit` the only way of expressing this is with a link to the event.  Again, it doesn't look good.
+
+interface ConcreteSmallDeviceEventSource extends IGenericDeviceEventSource{
+  /**
+   * Starts the machinery. It will trigger [[addDeviceListener]]. Maybe better, we could say It will trigger [[addDeviceListener]]
+   */
+  powerOn():void;
+}
+
+
+
+
 /**
  * Mollit elit sunt anim minim dolore occaecat.
  */
@@ -115,7 +135,7 @@ export interface IDeviceEventListener {
   priority: number;
 }
 /**
- * Laboris proident magna sint ex sit officia dolore do veniam incididunt irure. Ut sit Lorem ut occaecat irure nostrud. Amet sit esse sint elit tempor commodo non incididunt commodo sint est nulla enim exercitation. 
+ * Laboris proident magna sint ex sit officia dolore do veniam incididunt irure.
  */
 export interface IMouseClickEvent extends IDeviceEvent{
   /**
@@ -150,12 +170,6 @@ export interface IDeviceEvent{
 }
 
 class MouseEventSource implements IMouseEventSource{
-  /**
-   * a generic event source that will trigger named events
-   * @event
-   * @param deviceName
-   * @param listener
-   */
   addDeviceListener(deviceName: string, listener: IDeviceEventListener): void {
     throw new Error('Method not implemented.');
   }
