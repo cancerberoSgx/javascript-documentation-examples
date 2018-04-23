@@ -2,22 +2,26 @@
 
 JavaScript (and its family) has no standard tool for documentation and there are many tools with different perspective. This is a collection of working node.js projects demonstrating best practices of complex semantics in such tools. 
 
+The following are the examples generated:
 
-# Install
+
+# events-001
+
+Best practices for documenting events, particularly subclasses of node.js `EventEmitter`
+
+#### [Tutorial, descriptions and code](https://cancerberosgx.github.io/javascript-documentation-examples/examples/events-001/docs/docco/src/index.html)
+
+#### [Final Output](https://cancerberosgx.github.io/javascript-documentation-examples/examples/events-001/docs/interfaces/idownloadeventemitter.html#on)
+
+
+
+
+# Install and generate all the docs
 
 ```sh
 yarn 
+yarn run-all doc
 ```
-
-# Generate all the documentation
-
-
-
-# Catalog
-
-## events-001
-
- Shows rich documentation of classes and interfaces that trigger events, compatible / subclassing  node.js EventEmitter implementation
 
 
 
