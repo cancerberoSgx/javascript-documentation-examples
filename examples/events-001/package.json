@@ -8,7 +8,7 @@
     "lint": "tslint src/**/*.ts",
     "lint-fix": "tslint --fix src/**/*.ts",
     "tsc": "rm -rf types docs && tsc --project tsconfig.json",
-    "doc": "rm -rf types docs && tsc --project tsconfig.json && typedoc --options typedoc.ts"
+    "doc": "rm -rf types docs && tsc --project tsconfig.json && typedoc --options typedoc.ts; yarn run docco src/index.ts --output docs/docco"
   },
   "keywords": [
     "typedoc",

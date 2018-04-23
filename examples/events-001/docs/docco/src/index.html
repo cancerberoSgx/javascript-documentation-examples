@@ -150,12 +150,12 @@ once(event: <span class="hljs-built_in">string</span> | symbol, listener: <span 
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-6">&#182;</a>
               </div>
-              <p>DownloadEventEmitter : This class implements an EventEmitter. It implements previous interface [[IDownloadEventEmitter]] so type binding will work well and to be more descriptive. </p>
-<p>Heads up! we don’t need to override the original on() the super class EventEmitter does</p>
+              <p><code>DownloadEventEmitter</code> class is our concrete, private implementation. We let its super class <code>EventEmitter</code> to implement the on() methods - and we just implement our concrete feature  <code>startDownloading</code>. </p>
+<p>It implements previous interface so users referencing the interface will use the exact method descriptions and type binding will be perfect.  </p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  
+            <div class="content"><div class='highlight'><pre>
 
 <span class="hljs-comment">/**
  * Event Emitter concrete class - Private
@@ -169,11 +169,16 @@ once(event: <span class="hljs-built_in">string</span> | symbol, listener: <span 
 
 }
 
+
+
+
+<span class="hljs-comment">/**
+ * abstract super interface of all download-related events
+ */</span>
 <span class="hljs-keyword">interface</span> DownloadEvent  {
   timestamp: <span class="hljs-built_in">Date</span>;
   id: <span class="hljs-built_in">string</span>;
 }
-
 
 <span class="hljs-comment">/**
  * data with progress information
@@ -183,15 +188,28 @@ once(event: <span class="hljs-built_in">string</span> | symbol, listener: <span 
   value: <span class="hljs-built_in">number</span>;
   code: <span class="hljs-built_in">number</span>[];
 }
+
+<span class="hljs-comment">/**
+ * event emitted when a download finished
+ */</span>
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> DownloadFinishEvent <span class="hljs-keyword">extends</span> DownloadEvent {
   totalBytes: <span class="hljs-built_in">number</span>;
   ips: <span class="hljs-built_in">number</span>[][];
 }
-
+<span class="hljs-comment">/**
+ * event emitted When something goes wrong
+ */</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> DownloadError <span class="hljs-keyword">extends</span> DownloadEvent {
+  status: <span class="hljs-built_in">number</span>;
+  error: <span class="hljs-built_in">Error</span>;
+}
+<span class="hljs-comment">/**
+ * Configuration for a download, see [[IDownloadEventEmitter.startDownloading]]
+ */</span>
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> IDownloadConfig {
   abortOnError: <span class="hljs-built_in">boolean</span>;
 }
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> DownloadConfig <span class="hljs-keyword">implements</span> IDownloadConfig {
+<span class="hljs-keyword">class</span> DownloadConfig <span class="hljs-keyword">implements</span> IDownloadConfig {
   abortOnError: <span class="hljs-built_in">boolean</span>;
 }</pre></div></div>
             
@@ -204,7 +222,8 @@ once(event: <span class="hljs-built_in">string</span> | symbol, listener: <span 
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-7">&#182;</a>
               </div>
-              <p>and now a main() so we can see if type bindings really worked</p>
+              <p>Now that we have everithing ready, I would like to test it a bit, to see if by using the interface our library’s users will have a good experience with type binding or call our methods with bad signatures.</p>
+<p>For that we build a Main() function , some code is commented because it has compilation errors: </p>
 
             </div>
             
@@ -223,8 +242,10 @@ once(event: <span class="hljs-built_in">string</span> | symbol, listener: <span 
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-8">&#182;</a>
               </div>
-              <p>passing incorrect event name: gives error because we are working with 
-the; interface (commented).</p>
+              <p>In the following statement we try to pass an incorrect event name. It gives error because we are working with 
+the interface :)  (code commented).</p>
+<pre><code class="lang-ts">clientInterface.on(<span class="hljs-string">'incorrectEventName'</span>, <span class="hljs-function">(<span class="hljs-params">data</span>) =&gt;</span> {}); 
+</code></pre>
 
             </div>
             
@@ -237,9 +258,13 @@ the; interface (commented).</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-9">&#182;</a>
               </div>
-              <p>clientInterface.on(‘incorrectEventName’, (data) =&gt; {}); </p>
+              <p>In the following statement, w we work with the class directly. As expected, we can use signatures incorrectly here because our class IS A <code>EventEmitter</code> and its <code>on</code>  method has a very flexible signature. </p>
+<p>IMPORTANT: A sub class class cannot change signatures defined by the super class - that’s a consequence of polymorphism</p>
 
             </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">const</span> clientClass = <span class="hljs-keyword">new</span> DownloadEventEmitter();
+    clientClass.on(<span class="hljs-string">'incorrectEventName'</span>, <span class="hljs-function">(<span class="hljs-params">data</span>) =&gt;</span> {}); <span class="hljs-comment">// SHOULD BE COMPILATION ERROR</span></pre></div></div>
             
         </li>
         
@@ -249,23 +274,6 @@ the; interface (commented).</p>
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-10">&#182;</a>
-              </div>
-              <p>but if we work with the class does not, as expected, because the class is an EventEmitter 
-supports any thing: </p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">const</span> clientClass:DownloadEventEmitter = <span class="hljs-keyword">new</span> DownloadEventEmitter();
-    clientClass.on(<span class="hljs-string">'incorrectEventName'</span>, <span class="hljs-function">(<span class="hljs-params">data</span>) =&gt;</span> {});</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-11">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-11">&#182;</a>
               </div>
               <p>Now, keep working with the signature, try to cheat it passing eventName from 
 one signature and listener from another. It fails as expected, with error 
@@ -277,11 +285,11 @@ Leave it commented:</p>
         </li>
         
         
-        <li id="section-12">
+        <li id="section-11">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-12">&#182;</a>
+                <a class="pilcrow" href="#section-11">&#182;</a>
               </div>
               <p>clientInterface.on(‘finish’, (data:DownloadProgressEvent) =&gt; {}); </p>
 
@@ -290,11 +298,11 @@ Leave it commented:</p>
         </li>
         
         
-        <li id="section-13">
+        <li id="section-12">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-13">&#182;</a>
+                <a class="pilcrow" href="#section-12">&#182;</a>
               </div>
               <p>now let’s call it right and define callback argument wihtout type to see if 
 type inference work: </p>
