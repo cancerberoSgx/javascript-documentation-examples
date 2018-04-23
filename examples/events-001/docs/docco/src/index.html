@@ -24,16 +24,15 @@
               <h1 id="documenting-events">Documenting Events</h1>
 <p>(Best Practices with TypeScript and typedoc)</p>
 <h2 id="objective">Objective</h2>
-<p>In this example we try to describe a class that extends NodeJS.js <code>EventEmitter</code> and triggers a couple of events <code>progress</code>, <code>finish</code>, and <code>error</code>.</p>
-<p>Our objective is that this descriptions be clear in typedoc output.</p>
-<h3 id="this-is-the-final-typedoc-output-">This is the <a href="../../interfaces/idownloadeventemitter.html#on">final typedoc output</a>):</h3>
-<p>Also that the typescript compiler bind the types so we are sure that our users won’t miss the events names or callback functions signatures. </p>
+<p>In this example we describe a class that extends NodeJS.js <code>EventEmitter</code> and triggers a couple of events <code>progress</code>, <code>finish</code>, and <code>error</code>.</p>
+<p>The main objective was to find/discuss the best practices for documenting events, eventemitters, event listeners using typedocs (wihtout any plugin)</p>
+<p>Also, is important to validate that the typescript compiler bind the types so we are sure that our users won’t miss the events names or callback functions signatures. </p>
+<p>See the <strong><a href="https://cancerberosgx.github.io/javascript-documentation-examples/examples/events-001/docs/interfaces/idownloadeventemitter.html#on">final typedoc output</a>)</strong></p>
+<p>Notice how in that output, TypeDoc treats events as methods, it just group them in the “Events” section because they contain the <code>@event</code> annotation.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-
-
 
 <span class="hljs-keyword">import</span> { EventEmitter } <span class="hljs-keyword">from</span> <span class="hljs-string">'events'</span>;</pre></div></div>
             

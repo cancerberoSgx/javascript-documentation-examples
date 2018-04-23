@@ -14,6 +14,17 @@ Best practices for documenting events, particularly subclasses of node.js `Event
 #### [Final Output](https://cancerberosgx.github.io/javascript-documentation-examples/examples/events-001/docs/interfaces/idownloadeventemitter.html#on)
 
 
+# events-noEventEmitter
+
+Similar example as [events-001](https://cancerberosgx.github.io/javascript-documentation-examples/examples/events-001/docs/docco/src/index.html) Nothing special here. But completly indepdent of EventEmitter and declaring a righ class hierarchy of Listeners, EventSources, etc. 
+Best practices for documenting events, particularly subclasses of node.js `EventEmitter`
+
+#### [Tutorial, descriptions and code](https://cancerberosgx.github.io/javascript-documentation-examples/examples/events-noEventEmitter/docs/docco/src/index.html)
+
+#### [Final Output](https://cancerberosgx.github.io/javascript-documentation-examples/examples/events-noEventEmitter/docs/interfaces/idownloadeventemitter.html#on)
+
+
+
 
 
 # Install and generate all the docs
@@ -22,6 +33,8 @@ Best practices for documenting events, particularly subclasses of node.js `Event
 yarn 
 yarn run-all doc
 ```
+
+Note with `yarn run-all X` you run X command in all yarn workspaces
 
 
 

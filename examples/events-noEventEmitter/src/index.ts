@@ -2,24 +2,19 @@ import { on } from 'cluster';
 
 // ## What's this?
 // 
-// The objective of this document is see if we can document events that don't extend from EventEmitter, in other words, is there something special about the on() method and its first parameter from where the event name seems to be taken magically by typedoc??
-
-// And indeed it seems there is something special with the on() method name when it matters to events. [Take a look at the output](../interfaces/igenericdeviceeventsource.html) 
-
-// There are three events there, more or less well described, but their name is `addDeviceListner`  . That didnt happened with on()
-
-// In this case events are treated like methods but I think is acceptable. 
-
+// This is an example similar to [events-001](https://cancerberosgx.github.io/javascript-documentation-examples/examples/events-001/docs/docco/src/index.html) but using a rich event - listeners, class inheritance hierarchy that's completely unrelated with `EventEmitter`. 
+// 
+// You can notice in the output that, because the method name is not so short as `on()` , the output that describe these events doesn''t look good. 
+//
+// In my case I really need to name my events arbitrarily. After all events are an artificial concept, they aren't methods, nor objects so I should be able to name them a piaccere. That's why I came up with [typedoc-plugin-respect-name-tag TypeDoc plugin ](https://github.com/cancerberoSgx/typedoc-plugin-respect-name-tag) . Using it, if some entity is annotated with a `@name` tag it will be named by typedoc with that name 
+// 
 
 /**
- * Minim sint reprehenderit laboris dolor officia non in officia nisi. Irure excepteur ea enim excepteur sunt cupidatat esse laborum dolore. Veniam irure ex in ad magna amet proident velit velit nostrud. 
- * 
  * Nostrud officia labore non pariatur exercitation irure consectetur ut reprehenderit dolor.
  */
 export interface IMouseEventSource extends IDeviceEventSource{
   /**
-   * Qui cillum aliqua id ex consequat dolore ut commodo proident veniam. Dolor tempor anim id cupidatat minim non dolore esse in fugiat aute. Labore dolore ad fugiat qui duis est. Fugiat adipisicing id ullamco incididunt labore dolor proident veniam ea sunt.
-   * @param l Incididunt amet consequat aute et proident voluptate sit duis.
+   * Qui cillum aliqua id ex consequat dolore ut commodo proident veniam. 
    */
   addMouseListener(l:IMouseEventListener):void;
 }
@@ -50,17 +45,33 @@ export interface IDeviceEventSource{
  */
 export interface IGenericDeviceEventSource extends IDeviceEventSource{
 
+
+
+
+// These three events there,  have the same format as EventEmmiter.on as shown [here](https://cancerberosgx.github.io/javascript-documentation-examples/examples/events-001/docs/docco/src/index.html) 
+//
   /**
    * a generic event source that will trigger named events
    * @event
    * @param deviceName  
    * @param listener 
    */
-  addDeviceListener(deviceName:'mouse', listener:IMouseEventListener):void;
-
-  addDeviceListener(deviceName:'keyboard', listener:IKeyboardEventListener):void;
-
-  addDeviceListener(deviceName:'mic', listener:IMicEventListener):void;
+  addDeviceListener(eventName:'mouse', listener:IMouseEventListener):void;
+ /**
+   * a generic event source that will trigger named events
+   * @event keyboard1232123
+   * @name keyboard123
+   * @param deviceName  
+   * @param listener 
+   */
+  addDeviceListener(eventName:'keyboard', listener:IKeyboardEventListener):void;
+ /**
+   * a generic event source that will trigger named events
+   * @event
+   * @param deviceName  
+   * @param listener 
+   */
+  addDeviceListener(eventName:'mic', listener:IMicEventListener):void;
 }
 /**
  * Mollit elit sunt anim minim dolore occaecat.
@@ -105,8 +116,6 @@ export interface IDeviceEventListener {
 }
 /**
  * Laboris proident magna sint ex sit officia dolore do veniam incididunt irure. Ut sit Lorem ut occaecat irure nostrud. Amet sit esse sint elit tempor commodo non incididunt commodo sint est nulla enim exercitation. 
- * 
- * Tempor qui elit ut in eiusmod voluptate nisi esse esse. Ullamco et irure id voluptate consequat reprehenderit cupidatat amet labore enim ut. Fugiat minim reprehenderit non ea duis adipisicing. Laboris nulla ea magna minim culpa mollit id.
  */
 export interface IMouseClickEvent extends IDeviceEvent{
   /**

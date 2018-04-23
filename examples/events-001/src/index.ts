@@ -4,15 +4,15 @@
 // 
 // ## Objective
 // 
-// In this example we try to describe a class that extends NodeJS.js `EventEmitter` and triggers a couple of events `progress`, `finish`, and `error`.
-// 
-// Our objective is that this descriptions be clear in typedoc output.
+// In this example we describe a class that extends NodeJS.js `EventEmitter` and triggers a couple of events `progress`, `finish`, and `error`.
 //  
-// ### This is the [final typedoc output](../../interfaces/idownloadeventemitter.html#on)):
+// The main objective was to find/discuss the best practices for documenting events, eventemitters, event listeners using typedocs (wihtout any plugin)
 // 
-// Also that the typescript compiler bind the types so we are sure that our users won't miss the events names or callback functions signatures. 
-
-
+// Also, is important to validate that the typescript compiler bind the types so we are sure that our users won't miss the events names or callback functions signatures. 
+//
+// See the **[final typedoc output](https://cancerberosgx.github.io/javascript-documentation-examples/examples/events-001/docs/interfaces/idownloadeventemitter.html#on))**
+// 
+// Notice how in that output, TypeDoc treats events as methods, it just group them in the "Events" section because they contain the `@event` annotation.
 
 
 import { EventEmitter } from 'events';

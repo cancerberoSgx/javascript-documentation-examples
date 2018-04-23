@@ -110,16 +110,16 @@
 					<a name="adddevicelistener" class="tsd-anchor"></a>
 					<h3>add<wbr>Device<wbr>Listener</h3>
 					<ul class="tsd-signatures tsd-kind-event tsd-parent-kind-interface tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">add<wbr>Device<wbr>Listener<span class="tsd-signature-symbol">(</span>deviceName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"mouse"</span>, listener<span class="tsd-signature-symbol">: </span><a href="imouseeventlistener.html" class="tsd-signature-type">IMouseEventListener</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-						<li class="tsd-signature tsd-kind-icon">add<wbr>Device<wbr>Listener<span class="tsd-signature-symbol">(</span>deviceName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"keyboard"</span>, listener<span class="tsd-signature-symbol">: </span><a href="ikeyboardeventlistener.html" class="tsd-signature-type">IKeyboardEventListener</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-						<li class="tsd-signature tsd-kind-icon">add<wbr>Device<wbr>Listener<span class="tsd-signature-symbol">(</span>deviceName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"mic"</span>, listener<span class="tsd-signature-symbol">: </span><a href="imiceventlistener.html" class="tsd-signature-type">IMicEventListener</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">add<wbr>Device<wbr>Listener<span class="tsd-signature-symbol">(</span>eventName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"mouse"</span>, listener<span class="tsd-signature-symbol">: </span><a href="imouseeventlistener.html" class="tsd-signature-type">IMouseEventListener</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">add<wbr>Device<wbr>Listener<span class="tsd-signature-symbol">(</span>eventName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"keyboard"</span>, listener<span class="tsd-signature-symbol">: </span><a href="ikeyboardeventlistener.html" class="tsd-signature-type">IKeyboardEventListener</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">add<wbr>Device<wbr>Listener<span class="tsd-signature-symbol">(</span>eventName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"mic"</span>, listener<span class="tsd-signature-symbol">: </span><a href="imiceventlistener.html" class="tsd-signature-type">IMicEventListener</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Overrides <a href="ideviceeventsource.html">IDeviceEventSource</a>.<a href="ideviceeventsource.html#adddevicelistener">addDeviceListener</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/cancerberoSgx/javascript-documentation-examples/blob/94433ae/examples/events-noEventEmitter/src/index.ts#L59">index.ts:59</a></li>
+									<li>Defined in <a href="https://github.com/cancerberoSgx/javascript-documentation-examples/blob/214559d/examples/events-noEventEmitter/src/index.ts#L59">index.ts:59</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -130,7 +130,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>deviceName: <span class="tsd-signature-type">"mouse"</span></h5>
+									<h5>eventName: <span class="tsd-signature-type">"mouse"</span></h5>
 								</li>
 								<li>
 									<h5>listener: <a href="imouseeventlistener.html" class="tsd-signature-type">IMouseEventListener</a></h5>
@@ -144,16 +144,28 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="ideviceeventsource.html">IDeviceEventSource</a>.<a href="ideviceeventsource.html#adddevicelistener">addDeviceListener</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/cancerberoSgx/javascript-documentation-examples/blob/94433ae/examples/events-noEventEmitter/src/index.ts#L61">index.ts:61</a></li>
+									<li>Defined in <a href="https://github.com/cancerberoSgx/javascript-documentation-examples/blob/214559d/examples/events-noEventEmitter/src/index.ts#L67">index.ts:67</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>a generic event source that will trigger named events</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>name</dt>
+									<dd><p>keyboard123</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>deviceName: <span class="tsd-signature-type">"keyboard"</span></h5>
+									<h5>eventName: <span class="tsd-signature-type">"keyboard"</span></h5>
 								</li>
 								<li>
 									<h5>listener: <a href="ikeyboardeventlistener.html" class="tsd-signature-type">IKeyboardEventListener</a></h5>
+									<div class="tsd-comment tsd-typography">
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -162,16 +174,23 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="ideviceeventsource.html">IDeviceEventSource</a>.<a href="ideviceeventsource.html#adddevicelistener">addDeviceListener</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/cancerberoSgx/javascript-documentation-examples/blob/94433ae/examples/events-noEventEmitter/src/index.ts#L63">index.ts:63</a></li>
+									<li>Defined in <a href="https://github.com/cancerberoSgx/javascript-documentation-examples/blob/214559d/examples/events-noEventEmitter/src/index.ts#L74">index.ts:74</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>a generic event source that will trigger named events</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>deviceName: <span class="tsd-signature-type">"mic"</span></h5>
+									<h5>eventName: <span class="tsd-signature-type">"mic"</span></h5>
 								</li>
 								<li>
 									<h5>listener: <a href="imiceventlistener.html" class="tsd-signature-type">IMicEventListener</a></h5>
+									<div class="tsd-comment tsd-typography">
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -188,7 +207,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="ideviceeventsource.html">IDeviceEventSource</a>.<a href="ideviceeventsource.html#ip">ip</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/cancerberoSgx/javascript-documentation-examples/blob/94433ae/examples/events-noEventEmitter/src/index.ts#L37">index.ts:37</a></li>
+							<li>Defined in <a href="https://github.com/cancerberoSgx/javascript-documentation-examples/blob/214559d/examples/events-noEventEmitter/src/index.ts#L32">index.ts:32</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -204,7 +223,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="ideviceeventsource.html">IDeviceEventSource</a>.<a href="ideviceeventsource.html#name">name</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/cancerberoSgx/javascript-documentation-examples/blob/94433ae/examples/events-noEventEmitter/src/index.ts#L33">index.ts:33</a></li>
+							<li>Defined in <a href="https://github.com/cancerberoSgx/javascript-documentation-examples/blob/214559d/examples/events-noEventEmitter/src/index.ts#L28">index.ts:28</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">

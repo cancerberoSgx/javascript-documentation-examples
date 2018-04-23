@@ -42,60 +42,19 @@
                 <a class="pilcrow" href="#section-2">&#182;</a>
               </div>
               <h2 id="what-s-this-">What’s this?</h2>
-<p>The objective of this document is see if we can document events that don’t extend from EventEmitter, in other words, is there something special about the on() method and its first parameter from where the event name seems to be taken magically by typedoc??</p>
-
-            </div>
-            
-        </li>
-        
-        
-        <li id="section-3">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-3">&#182;</a>
-              </div>
-              <p>And indeed it seems there is something special with the on() method name when it matters to events. <a href="../interfaces/igenericdeviceeventsource.html">Take a look at the output</a> </p>
-
-            </div>
-            
-        </li>
-        
-        
-        <li id="section-4">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-4">&#182;</a>
-              </div>
-              <p>There are three events there, more or less well described, but their name is <code>addDeviceListner</code>  . That didnt happened with on()</p>
-
-            </div>
-            
-        </li>
-        
-        
-        <li id="section-5">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-5">&#182;</a>
-              </div>
-              <p>In this case events are treated like methods but I think is acceptable. </p>
+<p>This is an example similar to <a href="https://cancerberosgx.github.io/javascript-documentation-examples/examples/events-001/docs/docco/src/index.html">events-001</a> but using a rich event - listeners, class inheritance hierarchy that’s completely unrelated with <code>EventEmitter</code>. </p>
+<p>You can notice in the output that, because the method name is not so short as <code>on()</code> , the output that describe these events doesn’’t look good. </p>
+<p>In my case I really need to name my events arbitrarily. After all events are an artificial concept, they aren’t methods, nor objects so I should be able to name them a piaccere. That’s why I came up with <a href="https://github.com/cancerberoSgx/typedoc-plugin-respect-name-tag">typedoc-plugin-respect-name-tag TypeDoc plugin </a> . Using it, if some entity is annotated with a <code>@name</code> tag it will be named by typedoc with that name </p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-
 <span class="hljs-comment">/**
- * Minim sint reprehenderit laboris dolor officia non in officia nisi. Irure excepteur ea enim excepteur sunt cupidatat esse laborum dolore. Veniam irure ex in ad magna amet proident velit velit nostrud. 
- * 
  * Nostrud officia labore non pariatur exercitation irure consectetur ut reprehenderit dolor.
  */</span>
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> IMouseEventSource <span class="hljs-keyword">extends</span> IDeviceEventSource{
   <span class="hljs-comment">/**
-   * Qui cillum aliqua id ex consequat dolore ut commodo proident veniam. Dolor tempor anim id cupidatat minim non dolore esse in fugiat aute. Labore dolore ad fugiat qui duis est. Fugiat adipisicing id ullamco incididunt labore dolor proident veniam ea sunt.
-   * @param l Incididunt amet consequat aute et proident voluptate sit duis.
+   * Qui cillum aliqua id ex consequat dolore ut commodo proident veniam. 
    */</span>
   addMouseListener(l:IMouseEventListener):<span class="hljs-built_in">void</span>;
 }
@@ -124,19 +83,43 @@
 <span class="hljs-comment">/**
  * Ipsum commodo ut fugiat proident.
  */</span>
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> IGenericDeviceEventSource <span class="hljs-keyword">extends</span> IDeviceEventSource{
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> IGenericDeviceEventSource <span class="hljs-keyword">extends</span> IDeviceEventSource{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>These three events there,  have the same format as EventEmmiter.on as shown <a href="https://cancerberosgx.github.io/javascript-documentation-examples/examples/events-001/docs/docco/src/index.html">here</a> </p>
 
-  <span class="hljs-comment">/**
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-comment">/**
    * a generic event source that will trigger named events
    * @event
    * @param deviceName  
    * @param listener 
    */</span>
-  addDeviceListener(deviceName:<span class="hljs-string">'mouse'</span>, listener:IMouseEventListener):<span class="hljs-built_in">void</span>;
-
-  addDeviceListener(deviceName:<span class="hljs-string">'keyboard'</span>, listener:IKeyboardEventListener):<span class="hljs-built_in">void</span>;
-
-  addDeviceListener(deviceName:<span class="hljs-string">'mic'</span>, listener:IMicEventListener):<span class="hljs-built_in">void</span>;
+  addDeviceListener(eventName:<span class="hljs-string">'mouse'</span>, listener:IMouseEventListener):<span class="hljs-built_in">void</span>;
+ <span class="hljs-comment">/**
+   * a generic event source that will trigger named events
+   * @event keyboard1232123
+   * @name keyboard123
+   * @param deviceName  
+   * @param listener 
+   */</span>
+  addDeviceListener(eventName:<span class="hljs-string">'keyboard'</span>, listener:IKeyboardEventListener):<span class="hljs-built_in">void</span>;
+ <span class="hljs-comment">/**
+   * a generic event source that will trigger named events
+   * @event
+   * @param deviceName  
+   * @param listener 
+   */</span>
+  addDeviceListener(eventName:<span class="hljs-string">'mic'</span>, listener:IMicEventListener):<span class="hljs-built_in">void</span>;
 }
 <span class="hljs-comment">/**
  * Mollit elit sunt anim minim dolore occaecat.
@@ -181,8 +164,6 @@
 }
 <span class="hljs-comment">/**
  * Laboris proident magna sint ex sit officia dolore do veniam incididunt irure. Ut sit Lorem ut occaecat irure nostrud. Amet sit esse sint elit tempor commodo non incididunt commodo sint est nulla enim exercitation. 
- * 
- * Tempor qui elit ut in eiusmod voluptate nisi esse esse. Ullamco et irure id voluptate consequat reprehenderit cupidatat amet labore enim ut. Fugiat minim reprehenderit non ea duis adipisicing. Laboris nulla ea magna minim culpa mollit id.
  */</span>
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> IMouseClickEvent <span class="hljs-keyword">extends</span> IDeviceEvent{
   <span class="hljs-comment">/**

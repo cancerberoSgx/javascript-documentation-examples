@@ -8,7 +8,9 @@
     "lint": "tslint src/**/*.ts",
     "lint-fix": "tslint --fix src/**/*.ts",
     "build": "tsc",
-    "doc": "tsc && typedoc --options typedoc.ts; yarn run docco src/index.ts --output docs/docco"
+    "doc": "tsc && typedoc --options typedoc.ts; yarn run docco src/index.ts --output docs/docco",
+    "doc-json": "tsc && typedoc --options typedoc.ts; yarn run docco src/index.ts --output docs/docco",
+    "clean": "rm -rf node_modules build docs"
   },
   "keywords": [
     "typedoc",
@@ -26,6 +28,10 @@
     "tsconfig-paths": "^3.3.1",
     "tslint": "^5.9.1",
     "tslint-config-airbnb": "^5.8.0",
+    "typedoc": "^0.11.1",
+    "typescript": "^2.8.3"
+  },
+  "dependencies": {
     "typedoc": "^0.11.1",
     "typescript": "^2.8.3"
   }
