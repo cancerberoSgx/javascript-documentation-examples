@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "typedoc-examples",
+  "name": "javascript-documentation-examples",
   "version": "1.0.0",
   "description": "examples of typedoc / typescript documentation that were hard to get because, ironically, lack of typedoc documentation ",
   "main": "index.js",
