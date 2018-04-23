@@ -1,6 +1,6 @@
 # Tutorial
 
- * how to describe events that a subclass of EventEmitter triggers. 
+ * Best practices and details on how to describe events that a subclass of EventEmitter triggers with tutorial using typescript and typedoc
  * The events and the event listeners have kind of a complex inheritance hierarchy
 
 ### [final typedoc output](interfaces/idownloadeventemitter.html#on)
