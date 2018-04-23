@@ -1,13 +1,8 @@
 node_modules
 package-lock.json
 dist
-
-
-# testing
-/coverage
-
-# production
-/build
+build
+types
 
 # misc
 .DS_Store
@@ -19,11 +14,3 @@ dist
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
-# types/src/*
-# !types/src/state
-# !types/src/reducers
-# !types/src/util
-
-types
-docs

@@ -4,6 +4,7 @@
   ],
   "rules": {
     "object-shorthand-properties-first": false,
-    "no-else-after-return": false
+    "no-else-after-return": false,
+    "max-line-length": false
   }
 }

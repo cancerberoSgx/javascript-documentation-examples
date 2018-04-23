@@ -3,16 +3,24 @@
   "name": "javascript-documentation-examples",
   "version": "1.0.0",
   "description": "examples of typedoc / typescript documentation that were hard to get because, ironically, lack of typedoc documentation ",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "run-all": "yarn run wsrun",
+    "test": "echo \"No tests here yet, it's fine\" && exit 0"
   },
-  "keywords": ["typedoc", "typescript", "documentation", "jsdoc", "JavaScript"],
+  "keywords": [
+    "typedoc",
+    "typescript",
+    "documentation",
+    "jsdoc",
+    "JavaScript"
+  ],
   "author": "Sebastián Gurin",
   "workspaces": [
     "examples/*"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "docco": "^0.8.0",
+    "wsrun": "^3.0.0"
+  }
 }
-
-

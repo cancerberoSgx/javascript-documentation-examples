@@ -3,13 +3,13 @@ module.exports = {
     './src/',
   ],
   mode: 'file',
-  'includeDeclarations': true,
-  'tsconfig': 'tsconfig_for_typedoc.json',
-  'out': './docs',
-  'excludePrivate': true,
-  'excludeProtected': true,
-  'excludeExternals': true,
-  'readme': 'README.md',
-  'name': 'perplexed-wars',
-  ignoreCompilerErrors: true
-}
+  includeDeclarations: true,
+  tsconfig: 'tsconfig.json',
+  out: './docs',
+  excludePrivate: true,
+  excludeProtected: true,
+  excludeExternals: true,
+  readme: 'README.md',
+  name: 'javascript-documentation-examples-events-001',
+  ignoreCompilerErrors: true,
+};

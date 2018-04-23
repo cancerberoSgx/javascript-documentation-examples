@@ -1,0 +1,246 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>javascript-documentation-examples-events-001</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.js" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">javascript-documentation-examples-events-001</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="globals.html">Globals</a>
+				</li>
+			</ul>
+			<h1> javascript-documentation-examples-events-001</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<h1 id="tutorial">Tutorial</h1>
+				<ul>
+					<li>how to describe events that a subclass of EventEmitter triggers. The events and the event listeners have kind of a complex inheritance hierarchy</li>
+				</ul>
+				<h1 id="background-tl-dr-">Background (TL;DR)</h1>
+				<p>this example tries to discuss best practices to document event related information with the typedoc.
+					Is an excellent tool that does a lot of work automatically, ut unfortunately has poor documentation.
+				There is almost no manual (this is the only &quot;reference&quot; I&#39;ve found <a href="http://typedoc.org/guides/doccomments/)">http://typedoc.org/guides/doccomments/)</a>. </p>
+				<p>Annotation based comments in the code are a relative complex language. Poor documentation would be acceptable
+					if typedoc language is based on some well defined standard like jsdoc, closure annotations, javadoc, etc,
+					but in this case typedoc seems to had created its own dialect taking advantage of typescript one can write
+				almost no types in the comments prettyy similar to javadoc. </p>
+				<p>In the particular case of event sources and event listeners java/javadoc treats the problem differently.
+					Event Listeners and events are described with well defined classes . In javascript on the contrary, is
+				pretty common to see the event semantic spread in several callback arguments, and listeners as functions, and event types referenced with string constants (EventEmitter.on(&#39;click&#39;) instead of addMouseClickListener ala Java) . </p>
+				<p> In particular, listneres as functions make veyr hard (or impossible) to express complex listener hierarchies MouseClickEvent extends MouseEvent extends  UIEvent extends Event... So this example looks for a good practice designing and documenting such system. </p>
+				<p> // old: </p>
+				<p>/*</p>
+				<ul>
+					<li>This example method is the only way I&#39;ve found with typedoc to express events that instance of classes trigger (like <ul>
+							<li>node.js&#39;s EventEmitter subclasses, for example). In this case this will generate an event named &#39;progress&#39; </li>
+							<li>associated with this class. According to typedoc documentation,  <code>\event tag</code> </li>
+							<li></li>
+							<li>&quot; the <code>event</code> tag documents events triggered by the subsequent method&quot;. </li>
+							<li></li>
+							<li></li>
+							<li>I think in this case this is wrong. In general, the <code>on</code> method of &quot;event emitters never trigger events, and is used </li>
+							<li>just to register a listener. Nevertheless I assume that&#39;s what the documenter wanted to say</li>
+							<li></li>
+							<li>My problem is that I cannot say &quot;the method startDownload trigger the events <code>progress</code> and <code>finish</code> with typedoc.
+							*</li>
+							<li></li>
+							<li></li>
+							<li>where events/ callbacks are particularly important</li>
+							<li>listners are often defined with functions (where even with typescript functoin hierarchi is hard or </li>
+							<li>impossible  to define) and often </li>
+							<li>there is only one method for registering an event referencing it by name. Also event objects, not always,</li>
+							<li>could be spread in several arguments n(not encapsulated in a single object)</li>
+							<li></li>
+							<li>and documented at the register() method. For example: </li>
+							<li></li>
+							<li>Java: </li>
+							<li>interface MouseClickEvent extends MouseEvent{}</li>
+							<li>interface MouseClickListener extends MouseListener {</li>
+							<li>boolean clicked(event: MouseClickEvent)...</li>
+							<li>}</li>
+							<li>...</li>
+							<li>interface MouseClickEventEmitter extends MouseEventEmitter {</li>
+							<li>boolean addMouseListener(MouseListener l)...</li>
+							<li>}</li>
+							<li>...</li>
+							<li>MouseListener l = new MouseListenerImpl()</li>
+							<li>aComponent.addMouseListener(mouseListener)</li>
+							<li></li>
+							<li></li>
+							<li>JavaScript: </li>
+							<li></li>
+							<li>interface MouseClickEvent extends MouseEvent</li>
+							<li>function MouseClickListener(e: MouseClickEvent): boolean</li>
+							<li>interface MouseClickEventEmitter extends MouseEventEmitter{</li>
+							<li>on(eventName: string, l: MouseClickEventListener):boolean</li>
+							<li>}</li>
+							<li></li>
+							<li>class </li>
+							<li></li>
+							<li></li>
+							<li>But JavaScript has. or But poor documentationThe only technology mention
+							*/</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="globals.html"><em>Globals</em></a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+					<li class=" tsd-kind-class">
+						<a href="classes/downloadconfig.html" class="tsd-kind-icon">Download<wbr>Config</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/downloadeventemitter.html" class="tsd-kind-icon">Download<wbr>Event<wbr>Emitter</a>
+					</li>
+					<li class=" tsd-kind-class tsd-is-not-exported">
+						<a href="classes/factory.html" class="tsd-kind-icon">Factory</a>
+					</li>
+					<li class=" tsd-kind-class tsd-is-not-exported">
+						<a href="classes/main.html" class="tsd-kind-icon">Main</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-is-not-exported">
+						<a href="interfaces/downloadevent.html" class="tsd-kind-icon">Download<wbr>Event</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/downloadfinishevent.html" class="tsd-kind-icon">Download<wbr>Finish<wbr>Event</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/downloadprogressevent.html" class="tsd-kind-icon">Download<wbr>Progress<wbr>Event</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/idownloadconfig.html" class="tsd-kind-icon">IDownload<wbr>Config</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/idownloadeventemitter.html" class="tsd-kind-icon">IDownload<wbr>Event<wbr>Emitter</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
+				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="http://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="assets/js/search.js"><' + '/script>');</script>
+</body>
+</html>
