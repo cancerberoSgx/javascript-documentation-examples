@@ -1,0 +1,25 @@
+{
+  "name": "events-001",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "tslint src/**/*.ts",
+    "lint-fix": "tslint --fix src/**/*.ts",
+    "tsc": "rm -rf types docs && tsc --project tsconfig.json",
+    "doc": "rm -rf types docs && tsc --project tsconfig.json && typedoc --options typedoc.ts",
+  },
+  "keywords": ["typedoc", "typescript", "documentation", "jsdoc", "JavaScript"],
+  "author": "Sebastián Gurin",
+  "license": "MIT",
+  "devDependencies": {
+    "ts-node": "^6.0.0",
+    "typedoc": "^0.11.1",
+    "typescript": "^2.8.3",
+    "@types/node": "^9.6.5",
+    "tsconfig-paths": "^3.3.1",
+    "tslint": "^5.9.1",
+    "tslint-config-airbnb": "^5.8.0"
+  }
+}
