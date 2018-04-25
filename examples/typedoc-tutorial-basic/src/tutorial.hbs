@@ -9,41 +9,77 @@ source comments and generate a well organized and pretty HTML documentation.
 It is required that you know the basics of TypeScript, but besides that, this tutorial will start from scratch. 
 
 
+
+{{/text}}{{#text}}
 ## Table of Contents
 
 <div id="generated-toc"></div>
 
+
+
+{{/text}}{{#text}}
 ## TypeDoc Introduction
 
 TypeDoc is an API documentation generator for TypeScript projects, similar 
 to [jsdoc](http://usejsdoc.org/) or [javadoc](https://en.wikipedia.org/wiki/Javadoc).
 
-Basically, you add documentation comments directly to your source code, right alongside the code 
-itself. The TypeDoc tool will scan your source code and generate an HTML documentation website for you.
-  
-Although configurable, TypeDoc will generate documentation of everything in your source, 
-even things that are not documented. 
+Basically, you add documentation comments directly to your source code, right alongside the code itself. The TypeDoc tool will scan your source code and generate an HTML documentation website for you.
 
-For adding descriptions of some entity in the code you must use special comments that must be placed 
-immediately *before* the code being documented. Each comment must start with a `/**` sequence in order 
-to be recognized by TypeDoc. Comments beginning with `//`, `/*`, `/***`, or more than 3 stars will be ignored. 
+In general you will be documenting entities like classes, interfaces, methods, functions, etc. 
 
-The simplest documentation is just a description:
+Although configurable, TypeDoc will generate documentation of everything in your source, even things that are not documented like their names, types and relationships. 
 
+Unlike JsDoc, with TypeDoc you only take care of descriptions and you never document types, names or member modifiers: that information is already in the TypeScript code!
+
+
+
+
+
+{{/text}}{{#text}}
+## Descriptions
+
+For adding a description to some entity in the code you must use special comments that must be placed immediately *before* the code being documented. 
+
+Each comment must start with a `/**` sequence in order to be recognized by TypeDoc. Comments beginning with `//`, `/*`, `/***`, or more than 3 stars will be ignored. Example: 
 
 {{/text}}{{#code link="classes/fruit"}}
-/** This is a description of the class Fruit */
+/** The sweet and fleshy product of a tree or other plant that contains seed and can be eaten as food. */
 class Fruit {
 
 }
 {{/code}}{{#text}}
 
-## Classes and Interfaces
+TypeDoc will format descriptions with markdown, in concrete it uses the [Marked](https://github.com/chjj/marked) markdown parser and [HighlightJS](https://github.com/isagalaev/highlight.js) to highlight code blocks within markdown sections. In the following example, notice how we use markdown to write multiple paragraphs, bold text and an example code snippet:
 
-### Classes vs. interfaces
+{{/text}}{{#code link="globals.html#minify"}}
+/**
+ * Responsible of minify given string containing JavaScript code. By default it uses the foo-bar minimization algorithm. 
+ * 
+ * **Warning: if you don't specify an output in the configuration your input file will be overridden !**
+ * 
+ * Basic usage example: 
+ * 
+ * ```ts
+ * import {minify} from 'foobar-minify';
+ * const config = {
+ *   input: readFileSync('dist/awesome-app.js'), 
+ *   output: createWriteStream('dist/awesome-app.min.js')
+ * }
+ *   minify(config);
+ * ```
+ */
+function minify(){}
+{{/code}}{{#text}}
+
+
+
+
+{{/text}}{{#text}}
+## Classes and Interfaces
 
 First of all, if you are working with interfaces and you intention is that your users work with them and hide the implementation details, then you **should only document** interfaces and never worry about documenting classes. Document classes only to give details about the implementation, if that's what you want, but make sure don't repeat information that's already in the interface.
 
+In the following example we focus only on classes and interfaces, later we will see [properties](#properties) and [methods](#methods-and-functions) documentation in detail. It declares an interface which is [generic](https://www.typescriptlang.org/docs/handbook/generics.html) and a class implementing it.
 
 {{/text}}{{#code}}
 /**
@@ -68,16 +104,15 @@ class MyCustomRectangle implements Shape<Centimeter> {
 
 This is the output of the interface: {{link url="interfaces/shape"}} and this is the output of the class: {{link url="classes/mycustomrectangle"}}
 
-### Generic types
+Let's take two notes here: 
+ 
+ * We used the double star comment (`/**`) just before the interface declaration
+ * The first line of the comment is the interface description
+ * We documented the interface's generic type `U` using the expression `@param U` followed by its description. 
 
-TODO: you can se in the previous example
 
 
 
-TypeDoc will document the classes for you
- * say that if you are working with interfaces, then you want to document interfaces instead of classes
-
-TODO
 
 
 
@@ -104,18 +139,73 @@ constructors can be documented just like any other method
 
 
 
+{{/text}}{{#text}}
+## Modules
+
+TODO
+
+
+
+
+
+{{/text}}{{#text}}
+## Events
+
+TODO
+
+
+
+
 
 
 
 {{/text}}{{#text}}
 ## Referencing
 
-When we are describing an entity sometimes we want to reference another entity. For example, I'm describing the method `Wind.blow()` and in its description I want to talk about the class `Ocean`. I want that a link to that class appear in that descriptions so readers can jump there with just a click and not having to search for `Ocean` manually. That's what we call referencing. 
+When we are describing an entity sometimes we want to reference another entity. For example, when describing the method `Wind.blow()` I want to write a link that points to the class `Ocean` so users can quickly navigate while reading its description. That's what we call referencing. 
 
-With TypeDoc is very easy to archieve That TODO
+With TypeDoc is very easy to achieve this, you just put the name of the referenced entity between double squared brackets. In the previous example would be [[Ocean]].
+
+### Absolute vs. relative references
+
+You can reference any entity that has a comment like classes, interfaces, methods, functions, properties, etc. You cannot reference a method parameter because it doesn't contain its own comment: the parameter description is inside a method or function comment. 
+
+Also take in account that a name can be repeated, for example, two classes can contain methods with the same name, or two modules contain classes with the same name. In those cases, the closest entity will takes precedence if we need to reference the external reference we need to use absolute names. Example:
+
+{{/text}}{{#code}}
+interface Car {
+  /** 
+   * Once started the engine will turn off only when the 
+   * car travel all the [[Route.size]]
+   */
+  engine:Engine
+  size: number
+  /** 
+   * Put in march this cart by turning on its [[engine]] 
+   */
+  start()
+}
+interface Route {
+  size:number[][]
+}
+interface Engine{}
+{{/code}}{{#text}}
+
+Notes:
+ 
+ * In `start` method's description, we just used `[[engine]]` since that property is in the same class: {{link url="interfaces/car.html#start"}}
+ * But in `engine` property description, for referencing the `Route`'s `size` property, we needed to use its absolute name `Route.size` since `Car` already has a property with that name: {{link url="interfaces/car.html#engine"}}
 
 
- TODO : relative - vs - absolteuse absolute names - careful with repeated names. 
+### Check for broken references
+
+if you use a lot of references, you can run the command line tool with the `--listInvalidSymbolLinks` argument: 
+
+```
+ --listInvalidSymbolLinks  Emits a list of broken symbol [[navigation]] links after documentation generation
+```
+
+
 
 
 
@@ -159,6 +249,7 @@ export class ClassTotallyIgnored {
 {{/code}}{{#text}}
 
 
+
 ### Filter non public or non exported entities globally
 
 You can also configure TypeDoc tool to ignore all entities that are not public or all entities that are not exported. For that you must use the configuration options: 
@@ -171,25 +262,6 @@ You can also configure TypeDoc tool to ignore all entities that are not public o
 ```
 More details [in the configuration section](#configuring-typedoc-tool)
 
-
-
-
-
-
-
-{{/text}}{{#text}}
-## Modules
-
-TODO
-
-
-
-
-
-{{/text}}{{#text}}
-## Events
-
-TODO
 
 
 

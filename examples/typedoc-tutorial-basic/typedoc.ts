@@ -13,4 +13,5 @@ module.exports = {
   name: 'javascript-documentation-examples-events-001',
   ignoreCompilerErrors: true,
   plugin: 'typedoc-plugin-respect-name-tag',
+  listInvalidSymbolLinks: true,
 };

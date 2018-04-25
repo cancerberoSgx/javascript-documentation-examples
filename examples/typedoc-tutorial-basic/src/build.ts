@@ -19,7 +19,8 @@ registerHelper('text', (options) => {
 
 
 const linkHelperImplementation = (link:string, label?:string) => {
-  return `[${label || link}](../../${link}.html)`;
+  const url = link.includes('.html') ? link : link + '.html';
+  return `[${label || link}](../../${url})`;
 };
 registerHelper ('link', (options) => {
   return linkHelperImplementation(options.hash.url, options.hash.label);
