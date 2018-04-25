@@ -31,7 +31,7 @@ to be recognized by TypeDoc. Comments beginning with `//`, `/*`, `/***`, or more
 The simplest documentation is just a description:
 
 
-{{/text}}{{#code link="classes/fruit.html"}}
+{{/text}}{{#code link="classes/fruit"}}
 /** This is a description of the class Fruit */
 class Fruit {
 
@@ -40,20 +40,91 @@ class Fruit {
 
 ## Classes and Interfaces
 
+### Classes vs. interfaces
+
+First of all, if you are working with interfaces and you intention is that your users work with them and hide the implementation details, then you **should only document** interfaces and never worry about documenting classes. Document classes only to give details about the implementation, if that's what you want, but make sure don't repeat information that's already in the interface.
+
+
+{{/text}}{{#code}}
+/**
+ * A shape is the form of an object or its external boundary, outline
+ * @param U The unit used to measure the properties of this type of shape
+ */
+interface Shape<U extends Unit > {
+  area():number;
+}
+interface Unit {}
+interface Centimeter extends Unit {} 
+/**
+ * The Shape implementation used in Foo component to represent Bar
+ */
+class MyCustomRectangle implements Shape<Centimeter> {
+  private side:number;
+  public area():number {
+    return this.side*this.side;
+  }
+}
+{{/code}}{{#text}}
+
+This is the output of the interface: {{link url="interfaces/shape"}} and this is the output of the class: {{link url="classes/mycustomrectangle"}}
+
+### Generic types
+
+TODO: you can se in the previous example
+
+
+
+TypeDoc will document the classes for you
  * say that if you are working with interfaces, then you want to document interfaces instead of classes
 
 TODO
 
-{{/text}}
 
-{{#text}}
+
+{{/text}}{{#text}}
+## Properties
+
+
+
+
+
+
+{{/text}}{{#text}}
 ## Methods and Functions
 
 TODO
-{{/text}}
+ * overrides and how they look
+ * generic types
 
-{{#text}}
+### Constructors
+
+constructors can be documented just like any other method
+
+
+
+
+
+
+
+
+{{/text}}{{#text}}
+## Referencing
+
+When we are describing an entity sometimes we want to reference another entity. For example, I'm describing the method `Wind.blow()` and in its description I want to talk about the class `Ocean`. I want that a link to that class appear in that descriptions so readers can jump there with just a click and not having to search for `Ocean` manually. That's what we call referencing. 
+
+With TypeDoc is very easy to archieve That TODO
+
+
+ TODO : relative - vs - absolteuse absolute names - careful with repeated names. 
+
+
+
+
+
+
+{{/text}}{{#text}}
 ## Ignoring things
+
 
 If we don't want some class method or other entity to appear at all in TypeDoc output we use the `@hidden` tag. 
 
@@ -63,7 +134,7 @@ You can ignore any entity that can be documented with its own comment, for examp
 
 In the following example, the output will only contain `method2()` but not `method1()``: 
 
-{{/text}}{{#code link="interfaces/somethingsareignored.html"}}
+{{/text}}{{#code link="interfaces/somethingsareignored"}}
 interface SomeThingsAreIgnored {
   /**
    * @hidden
@@ -80,34 +151,66 @@ interface SomeThingsAreIgnored {
 
 The following example makes TypeDoc to ignore the whole class: 
 
-{{/text}}{{#code link="classes/classtotallyignored.html"}}
+{{/text}}{{#code link="classes/classtotallyignored"}}
 /** @hidden */
 export class ClassTotallyIgnored {
   color:string;
 }
 {{/code}}{{#text}}
 
-{{/text}}
+
+### Filter non public or non exported entities globally
+
+You can also configure TypeDoc tool to ignore all entities that are not public or all entities that are not exported. For that you must use the configuration options: 
+```
+ --exclude                 Define patterns for excluded files when specifying paths.
+ --excludeExternals        Prevent externally resolved TypeScript files from being documented.
+ --excludeNotExported      Prevent symbols that are not exported from being documented.
+ --excludePrivate          Ignores private variables and methods
+ --excludeProtected
+```
+More details [in the configuration section](#configuring-typedoc-tool)
 
 
-{{#text}}
+
+
+
+
+
+{{/text}}{{#text}}
 ## Modules
 
 TODO
-{{/text}}
 
 
-{{#text}}
+
+
+
+{{/text}}{{#text}}
 ## Events
 
 TODO
 
 
-{{/text}}
 
 
 
-{{#text}}
+
+{{/text}}{{#text}}
+## Configuring TypeDoc tool
+
+ * all options should be http://typedoc.org/guides/usage/
+
+
+
+
+
+
+
+
+
+
+{{/text}}{{#text}}
 <script src="https://cancerberosgx.github.io/raphaeljs-tutorial/generated_toc.js"></script>
 <style>
 h1, h2, h3, h4, h5, h6{
