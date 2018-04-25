@@ -42,6 +42,7 @@
                 <a class="pilcrow" href="#section-2">&#182;</a>
               </div>
               <h2 id="what-s-this-">What’s this?</h2>
+<p>(Part of <a href="https://github.com/cancerberoSgx/javascript-documentation-examples">Sebastian’s javascript-documentation-examples project</a>)</p>
 <p>This is an example similar to <a href="https://cancerberosgx.github.io/javascript-documentation-examples/examples/events-001/docs/docco/src/index.html">events-001</a> but using a rich event - listeners, class inheritance hierarchy that’s completely unrelated with <code>EventEmitter</code>. </p>
 <p>Also it tries to define events as members so they don’t appear all grouped under the method name which is ugly .</p>
 <p><a href="https://cancerberosgx.github.io/javascript-documentation-examples/examples/events-noEventEmitter/docs/interfaces/igenericdeviceeventsource.html#adddevicelistener"><strong>This is the final output</strong></a></p>
@@ -187,7 +188,8 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-6">&#182;</a>
               </div>
-              <p><a href="https://cancerberosgx.github.io/javascript-documentation-examples/examples/events-noEventEmitter/docs/interfaces/idownloadeventemitter2.html#error">Thw output looks good now</a> (events non stacked) but  <strong>there is something very wrong</strong>: We are defining new synthetic members that now subclasses must implement. These definitions are not needed ni the real world. <strong>We dont want to sacrifice simplicity because of documentation tool limits</strong></p>
+              <p><a href="https://cancerberosgx.github.io/javascript-documentation-examples/examples/events-noEventEmitter/docs/interfaces/idownloadeventemitter2.html#error">The output looks good now</a> (events non stacked) but  <strong>there is something very wrong</strong>: We are defining new synthetic members that now subclasses must implement. These definitions are not needed ni the real world. <strong>We dont want to sacrifice simplicity because of documentation tool limits</strong></p>
+<p>The solution for this (I promise the final one) is using a plugin and defining event as separate function declarations as fully explained <a href="https://cancerberosgx.github.io/javascript-documentation-examples/examples/events-002/docs/docco/src/index.html">here</a></p>
 
             </div>
             

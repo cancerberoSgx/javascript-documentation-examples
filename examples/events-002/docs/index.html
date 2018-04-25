@@ -62,33 +62,12 @@
 	<div class="row">
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
-				<h1 id="tutorial">Tutorial</h1>
-				<ul>
-					<li>Best practices and details on how to describe events that a subclass of EventEmitter triggers with tutorial using typescript and typedoc</li>
-					<li>The events and the event listeners have kind of a complex inheritance hierarchy</li>
-				</ul>
-				<h3 id="final-typedoc-output"><a href="interfaces/idownloadeventemitter.html#on">final typedoc output</a></h3>
-				<h3 id="tutorial-along-in-the-code"><a href="docco/src/index.html">tutorial along in the code</a></h3>
-				<p>explaining my thoughts and experiments while I was implementing this. Hope can be useful to JavaScripters entering the world of typescript&amp;typedoc like me</p>
-				<h1 id="conclusion">Conclusion</h1>
-				<p>typedoc seems to be very adapted to typescript and typescript interfaces. In the past I tried to document my classes not interfaces, and there I was not able of, for example overload the on() method. Seems that if you use interfaces and method overloading to exactly describe your APIs it behaves very well. </p>
-				<h1 id="todo">TODO</h1>
-				<ul>
-					<li>I&#39;m still not able to document something like &quot;this method triggers the events A, B, C of this or other class</li>
-					<li>I Still dont understand if there is something special with the <code>on()</code> method or if the same typedoc behavior will happen with other methods. </li>
-				</ul>
-				<h1 id="background-tl-dr-">Background (TL;DR)</h1>
-				<p>this example tries to discuss best practices to document event related information with the typedoc.
-					Is an excellent tool that does a lot of work automatically, ut unfortunately has poor documentation.
-				There is almost no manual (this is the only &quot;reference&quot; I&#39;ve found <a href="http://typedoc.org/guides/doccomments/)">http://typedoc.org/guides/doccomments/)</a>. </p>
-				<p>Annotation based comments in the code are a relative complex language. Poor documentation would be acceptable
-					if typedoc language is based on some well defined standard like jsdoc, closure annotations, javadoc, etc,
-					but in this case typedoc seems to had created its own dialect taking advantage of typescript one can write
-				almost no types in the comments prettyy similar to javadoc. </p>
-				<p>In the particular case of event sources and event listeners java/javadoc treats the problem differently.
-					Event Listeners and events are described with well defined classes . In javascript on the contrary, is
-				pretty common to see the event semantic spread in several callback arguments, and listeners as functions, and event types referenced with string constants (EventEmitter.on(&#39;click&#39;) instead of addMouseClickListener ala Java) . </p>
-				<p>In particular, listeners as functions make very hard (or impossible) to express complex listener hierarchies MouseClickEvent extends MouseEvent extends  UIEvent extends Event... So this example looks for a good practice designing and documenting such system. </p>
+				<h1 id="documenting-events">Documenting events</h1>
+				<p>(Part of <a href="https://github.com/cancerberoSgx/javascript-documentation-examples">Sebastian&#39;s javascript-documentation-examples project</a>)</p>
+				<p>This is the best way I found to describe events using typescript and typedoc</p>
+				<h3 id="final-typedoc-output"><a href="https://cancerberosgx.github.io/javascript-documentation-examples/examples/events-002/docs/interfaces/vehicle.html">final typedoc output</a></h3>
+				<h3 id="tutorial-along-in-the-code"><a href="https://cancerberosgx.github.io/javascript-documentation-examples/examples/events-002/docs/docco/src/index.html">tutorial along in the code</a></h3>
+				<p>This is part of <a href="https://github.com/cancerberoSgx/javascript-documentation-examples">Sebastian&#39;s javascript-documentation-examples project</a></p>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">

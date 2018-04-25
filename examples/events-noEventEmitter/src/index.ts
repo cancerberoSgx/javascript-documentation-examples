@@ -2,7 +2,11 @@ import { on } from 'cluster';
 
 // ## What's this?
 // 
+// (Part of [Sebastian's javascript-documentation-examples project](https://github.com/cancerberoSgx/javascript-documentation-examples))
+// 
 // This is an example similar to [events-001](https://cancerberosgx.github.io/javascript-documentation-examples/examples/events-001/docs/docco/src/index.html) but using a rich event - listeners, class inheritance hierarchy that's completely unrelated with `EventEmitter`. 
+// 
+// 
 // 
 // Also it tries to define events as members so they don't appear all grouped under the method name which is ugly .
 //
