@@ -8,8 +8,11 @@
     "lint": "tslint src/**/*.ts",
     "lint-fix": "tslint --fix src/**/*.ts",
     "build": "tsc",
-    "doc": "tsc && typedoc --options typedoc.ts --plugin typedoc-plugin-respect-name-tag; yarn run doc-docco",
-    "doc-docco": "yarn run docco src/index.ts --output docs/docco",
+    "doc": "yarn run doc-tut ;tsc && typedoc --options typedoc.ts;  yarn run doc-docco",
+    "doc-docco": "docco src/index.ts --output docs/docco --layout linear",
+    "doc-tut": "ts-node src/build.ts",
+    "doc-tut-all": "ts-node src/build.ts ; docco src/index.ts --output docs/docco --layout linear",
+    "doc-tut-watch": "CMD=\"yarn run doc-tut-all\"; eval $CMD ; while true ; do  watch -g -d \"cat src/tutorial.hbs\" && eval $CMD ; done",
     "clean": "rm -rf node_modules build docs"
   },
   "keywords": [
@@ -25,12 +28,12 @@
   "devDependencies": {
     "@types/node": "^9.6.5",
     "docco": "^0.8.0",
+    "handlebars": "^4.0.11",
     "ts-node": "^6.0.0",
     "tsconfig-paths": "^3.3.1",
     "tslint": "^5.9.1",
     "tslint-config-airbnb": "^5.8.0",
     "typedoc": "^0.11.1",
-    "typedoc-plugin-respect-name-tag": "^1.0.0",
     "typescript": "^2.8.3"
   },
   "dependencies": {
