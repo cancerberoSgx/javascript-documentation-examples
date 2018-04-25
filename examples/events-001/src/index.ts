@@ -1,6 +1,9 @@
 // # Documenting Events
 // 
-// (Best Practices with TypeScript and typedoc)
+// (Part of [this project](https://github.com/cancerberoSgx/javascript-documentation-examples))
+// 
+// All of this was a failure since I couldn't make what I wanted, but teach me a lot about the tools limitations. If you want to go to the successful experiment where I now now to to do it properly go to [this example](https://cancerberosgx.github.io/javascript-documentation-examples/examples/events-002/docs/docco/src/index.html) 
+// 
 // 
 // ## Objective
 // 

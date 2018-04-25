@@ -1,6 +1,6 @@
 // ## Documenting Events
 // 
-// (art of [Sebastian's javascript-documentation-examples project](https://github.com/cancerberoSgx/javascript-documentation-examples)
+// (Part of [this project](https://github.com/cancerberoSgx/javascript-documentation-examples))
 
 // IMO, this is the best way of documenting events with typedoc. See the [typedoc output result](https://cancerberosgx.github.io/javascript-documentation-examples/examples/events-002/docs/interfaces/vehicle.html)
 // 
