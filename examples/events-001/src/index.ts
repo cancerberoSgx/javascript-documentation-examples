@@ -114,7 +114,7 @@ class DownloadEventEmitter extends EventEmitter implements IDownloadEventEmitter
 
 // ## Does it really work?
 // 
-// Now that we have everithing ready, I would like to test it a bit, to see if by using the interface our library's users will have a good experience with type binding or call our methods with bad signatures.
+// Now that we have everything ready, I would like to test it a bit, to see if by using the interface our library's users will have a good experience with type binding or call our methods with bad signatures.
 // 
 // For that we build a Main() function , some code is commented because it has compilation errors: 
 class Main{
@@ -179,6 +179,8 @@ class Main{
     return 0;
   }
 }
+
+
 
 
 

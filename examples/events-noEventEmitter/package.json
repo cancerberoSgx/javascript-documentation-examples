@@ -12,6 +12,7 @@
     "doc-json": "tsc && typedoc --options typedoc.ts; yarn run docco src/index.ts --output docs/docco",
     "clean": "rm -rf node_modules build docs"
   },
+  "private": true,
   "keywords": [
     "typedoc",
     "typescript",

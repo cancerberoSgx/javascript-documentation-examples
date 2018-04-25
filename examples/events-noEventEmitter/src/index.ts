@@ -4,6 +4,7 @@ import { on } from 'cluster';
 // 
 // This is an example similar to [events-001](https://cancerberosgx.github.io/javascript-documentation-examples/examples/events-001/docs/docco/src/index.html) but using a rich event - listeners, class inheritance hierarchy that's completely unrelated with `EventEmitter`. 
 // 
+// Also it tries to define events as members so they don't appear all grouped under the method name which is ugly .
 //
 // [**This is the final output**](https://cancerberosgx.github.io/javascript-documentation-examples/examples/events-noEventEmitter/docs/interfaces/igenericdeviceeventsource.html#adddevicelistener)
 // 
@@ -51,7 +52,6 @@ export interface IGenericDeviceEventSource extends IDeviceEventSource{
 
 
 
-// These three events there,  have the same format as EventEmmiter.on as shown [here](https://cancerberosgx.github.io/javascript-documentation-examples/examples/events-001/docs/docco/src/index.html) 
 //
   /**
    * a generic event source that will trigger named events
@@ -75,20 +75,53 @@ export interface IGenericDeviceEventSource extends IDeviceEventSource{
    * @param listener 
    */
   addDeviceListener(eventName:'mic', listener:IMicEventListener):void;
+
+// 
+// You can see in [the output](https://cancerberosgx.github.io/javascript-documentation-examples/examples/events-noEventEmitter/docs/interfaces/igenericdeviceeventsource.html#adddevicelistener) that all evens appear grouped under the same method name `addDeviceListener` which is ugly and confusing. 
+// 
+
 }
 
 
 
+// 
+// We could think a way of solving this is with another approach, this time defining our events as individual members so they doesn't appear all grouped:
+// 
 
+export interface IDownloadEventEmitter2{
 
-// Finally, let's try to express the following: A subclass have a method that will trigger an event defined in the super class. Since TypeDoc doesn't support something like jsdoc `@trigger` or `@emit` the only way of expressing this is with a link to the event.  Again, it doesn't look good.
-
-interface ConcreteSmallDeviceEventSource extends IGenericDeviceEventSource{
   /**
-   * Starts the machinery. It will trigger [[addDeviceListener]]. Maybe better, we could say It will trigger [[addDeviceListener]]
+   * This method trigger events. Unfortunately I don't know yet how to express that in typedoc. 
+   * This method might trigger [[error]] event in case something goes wrong or if it rains. Also susceptible of triggering [[progress]] event ro indicate how is going and [[finish]] when is done ni which case resolve returned
+   * @param config 
    */
-  powerOn():void;
+  startDownloading2(config: {data:number[], ts:Date, url: string}): Promise<any>;
+  /**
+   * triggered by [[startDownloading2]] when there is an error. Use [[on]] to subscribe for this event.
+   * @event
+   */
+  error: (event: Error) => void;
+  /**
+   * triggered by [[startDownloading]] when there is an download ends. Use [[on]] to subscribe for this event.
+   * @event
+   */
+  finish: (event: {when: Date, bytes: Buffer, url: String, codec: number[]}) => void;
+  /**
+   * triggered by [[startDownloading]]  on progress. Use [[on]] to subscribe for this event.
+   * @event
+   */
+  progress: (event: {when: Date, bytes: Buffer, url: String, codec: number[], progress: number}) => void;
+
 }
+  
+
+
+//
+// [Thw output looks good now](https://cancerberosgx.github.io/javascript-documentation-examples/examples/events-noEventEmitter/docs/interfaces/idownloadeventemitter2.html#error) (events non stacked) but  **there is something very wrong**: We are defining new synthetic members that now subclasses must implement. These definitions are not needed ni the real world. **We dont want to sacrifice simplicity because of documentation tool limits**
+// 
+
+
+
 
 
 

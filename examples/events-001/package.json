@@ -1,4 +1,5 @@
 {
+  "private": true,
   "name": "events-001",
   "version": "1.0.0",
   "description": "Best practices and details on how to describe events that a subclass of EventEmitter triggers with tutorial using typescript and typedoc",

@@ -1,0 +1,37 @@
+{
+  "private": true,
+  "name": "events-002",
+  "version": "1.0.0",
+  "description": "Best practices and details on how to describe events that a subclass of EventEmitter triggers with tutorial using typescript and typedoc",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"No tests here yet, it's fine\" && exit 0",
+    "lint": "tslint src/**/*.ts",
+    "lint-fix": "tslint --fix src/**/*.ts",
+    "build": "tsc",
+    "doc": "tsc && yarn run typedoc --options typedoc.ts  --plugin typedoc-plugin-as-member-of  ; yarn run docco src/index.ts --output docs/docco",
+    "clean": "rm -rf node_modules build docs"
+  },
+  "keywords": [
+    "typedoc",
+    "typescript",
+    "documentation",
+    "jsdoc",
+    "JavaScript"
+  ],
+  "author": "Sebastián Gurin",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^9.6.5",
+    "docco": "^0.8.0",
+    "ts-node": "^6.0.0",
+    "tsconfig-paths": "^3.3.1",
+    "tslint": "^5.9.1",
+    "tslint-config-airbnb": "^5.8.0",
+    "typedoc": "^0.11.1",
+    "typescript": "^2.8.3"
+  },
+  "dependencies": {
+    "typedoc-plugin-as-member-of": "^1.0.1"
+  }
+}

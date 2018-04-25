@@ -43,6 +43,7 @@
               </div>
               <h2 id="what-s-this-">What’s this?</h2>
 <p>This is an example similar to <a href="https://cancerberosgx.github.io/javascript-documentation-examples/examples/events-001/docs/docco/src/index.html">events-001</a> but using a rich event - listeners, class inheritance hierarchy that’s completely unrelated with <code>EventEmitter</code>. </p>
+<p>Also it tries to define events as members so they don’t appear all grouped under the method name which is ugly .</p>
 <p><a href="https://cancerberosgx.github.io/javascript-documentation-examples/examples/events-noEventEmitter/docs/interfaces/igenericdeviceeventsource.html#adddevicelistener"><strong>This is the final output</strong></a></p>
 <p>You can notice in the output that, because the method name is not so short as <code>on()</code> , the output that describe these events doesn’t look good. Mostly because all these events are grouped together under the same label <code>addDeviceListener</code></p>
 <p>In my case I really need to name my events arbitrarily. After all events are an artificial concept, they aren’t methods, nor objects so I should be able to name them a ‘piaccere’. That’s why I came up with <a href="https://github.com/cancerberoSgx/typedoc-plugin-respect-name-tag">typedoc-plugin-respect-name-tag TypeDoc plugin </a> . Using it, if some entity is annotated with a <code>@name</code> tag it will be named by typedoc with that name </p>
@@ -95,8 +96,7 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-3">&#182;</a>
               </div>
-              <p>These three events there,  have the same format as EventEmmiter.on as shown <a href="https://cancerberosgx.github.io/javascript-documentation-examples/examples/events-001/docs/docco/src/index.html">here</a> </p>
-
+              
             </div>
             
             <div class="content"><div class='highlight'><pre>  <span class="hljs-comment">/**
@@ -120,8 +120,7 @@
    * @param deviceName  
    * @param listener 
    */</span>
-  addDeviceListener(eventName:<span class="hljs-string">'mic'</span>, listener:IMicEventListener):<span class="hljs-built_in">void</span>;
-}</pre></div></div>
+  addDeviceListener(eventName:<span class="hljs-string">'mic'</span>, listener:IMicEventListener):<span class="hljs-built_in">void</span>;</pre></div></div>
             
         </li>
         
@@ -132,17 +131,69 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-4">&#182;</a>
               </div>
-              <p>Finally, let’s try to express the following: A subclass have a method that will trigger an event defined in the super class. Since TypeDoc doesn’t support something like jsdoc <code>@trigger</code> or <code>@emit</code> the only way of expressing this is with a link to the event.  Again, it doesn’t look good.</p>
+              <p>You can see in <a href="https://cancerberosgx.github.io/javascript-documentation-examples/examples/events-noEventEmitter/docs/interfaces/igenericdeviceeventsource.html#adddevicelistener">the output</a> that all evens appear grouped under the same method name <code>addDeviceListener</code> which is ugly and confusing. </p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-<span class="hljs-keyword">interface</span> ConcreteSmallDeviceEventSource <span class="hljs-keyword">extends</span> IGenericDeviceEventSource{
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>We could think a way of solving this is with another approach, this time defining our events as individual members so they doesn’t appear all grouped:</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> IDownloadEventEmitter2{
+
   <span class="hljs-comment">/**
-   * Starts the machinery. It will trigger [[addDeviceListener]]. Maybe better, we could say It will trigger [[addDeviceListener]]
+   * This method trigger events. Unfortunately I don't know yet how to express that in typedoc. 
+   * This method might trigger [[error]] event in case something goes wrong or if it rains. Also susceptible of triggering [[progress]] event ro indicate how is going and [[finish]] when is done ni which case resolve returned
+   * @param config 
    */</span>
-  powerOn():<span class="hljs-built_in">void</span>;
-}
+  startDownloading2(config: {data:<span class="hljs-built_in">number</span>[], ts:<span class="hljs-built_in">Date</span>, url: <span class="hljs-built_in">string</span>}): <span class="hljs-built_in">Promise</span>&lt;<span class="hljs-built_in">any</span>&gt;;
+  <span class="hljs-comment">/**
+   * triggered by [[startDownloading2]] when there is an error. Use [[on]] to subscribe for this event.
+   * @event
+   */</span>
+  error: <span class="hljs-function">(<span class="hljs-params">event: <span class="hljs-built_in">Error</span></span>) =&gt;</span> <span class="hljs-built_in">void</span>;
+  <span class="hljs-comment">/**
+   * triggered by [[startDownloading]] when there is an download ends. Use [[on]] to subscribe for this event.
+   * @event
+   */</span>
+  finish: <span class="hljs-function">(<span class="hljs-params">event: {when: <span class="hljs-built_in">Date</span>, bytes: Buffer, url: <span class="hljs-built_in">String</span>, codec: <span class="hljs-built_in">number</span>[]}</span>) =&gt;</span> <span class="hljs-built_in">void</span>;
+  <span class="hljs-comment">/**
+   * triggered by [[startDownloading]]  on progress. Use [[on]] to subscribe for this event.
+   * @event
+   */</span>
+  progress: <span class="hljs-function">(<span class="hljs-params">event: {when: <span class="hljs-built_in">Date</span>, bytes: Buffer, url: <span class="hljs-built_in">String</span>, codec: <span class="hljs-built_in">number</span>[], progress: <span class="hljs-built_in">number</span>}</span>) =&gt;</span> <span class="hljs-built_in">void</span>;
+
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p><a href="https://cancerberosgx.github.io/javascript-documentation-examples/examples/events-noEventEmitter/docs/interfaces/idownloadeventemitter2.html#error">Thw output looks good now</a> (events non stacked) but  <strong>there is something very wrong</strong>: We are defining new synthetic members that now subclasses must implement. These definitions are not needed ni the real world. <strong>We dont want to sacrifice simplicity because of documentation tool limits</strong></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+
+
 
 
 

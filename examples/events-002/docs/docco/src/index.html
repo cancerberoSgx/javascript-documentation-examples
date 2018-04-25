@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>Documenting Events</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="../docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+    <ul class="sections">
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              <h1 id="documenting-events">Documenting Events</h1>
+<p> Another attempt and experiments</p>
+<p><a href="https://cancerberosgx.github.io/javascript-documentation-examples/examples/events-002/docs/interfaces/idownloadeventemitter.html#error">Take a look at the final outputoutput</a> </p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+<span class="hljs-keyword">import</span> { EventEmitter } <span class="hljs-keyword">from</span> <span class="hljs-string">'events'</span>;
+<span class="hljs-keyword">import</span> { WSAEPROVIDERFAILEDINIT } <span class="hljs-keyword">from</span> <span class="hljs-string">'constants'</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <h2 id="the-interface">The interface</h2>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+<span class="hljs-comment">/** 
+ * Responsible of notifying relevant events about downloading stuff. Instances can be obtained like this: 
+ * ```
+ *  const downloadEmitter = Factory.getInstance&lt;IDownloadEventEmitter&gt;('IDownloadEventEmitter');
+ * ```
+ */</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> IDownloadEventEmitter{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>as in events-001 we define our signatures very strictly so our users dont make mistakes
+But this time we dont declare those methods with @event</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+  <span class="hljs-comment">/**
+   * Subscribes given listener so it will be called when the progress of the download changes
+   * @param eventName The name of the event to subscribe for.
+   * @param handler A handler that will receive a progress event with the current and expected 
+   * total bytes
+   */</span>
+  on(eventName: <span class="hljs-string">'progress'</span>, listener: <span class="hljs-function">(<span class="hljs-params">event: DownloadProgressEvent</span>) =&gt;</span> <span class="hljs-built_in">void</span>): <span class="hljs-keyword">this</span>;
+  <span class="hljs-comment">/**
+   * Subscribes given listener so it will be called when the download finished
+   * @param event The name; of the event to subscribe for.
+   * @param handler A handler that will receive a progress event with the current and expected 
+   * total bytes
+   */</span>
+  on(eventName: <span class="hljs-string">'finish'</span>, listener: <span class="hljs-function">(<span class="hljs-params">event: DownloadFinishEvent</span>) =&gt;</span> <span class="hljs-built_in">void</span>): <span class="hljs-keyword">this</span>;
+  <span class="hljs-comment">/**
+   * Subscribes given listener so it will be called when the download finished
+   * @param event The name of the event to subscribe for.
+   * @param handler A handler that will receive a progress event with the current and expected 
+   * total bytes
+   */</span>
+  on(eventName: <span class="hljs-string">'error'</span>, listener: <span class="hljs-function">(<span class="hljs-params">event: <span class="hljs-built_in">Error</span></span>) =&gt;</span> <span class="hljs-built_in">void</span>): <span class="hljs-keyword">this</span>;
+
+  <span class="hljs-comment">/**
+   * This method trigger events. Unfortunately I don't know yet how to express that in typedoc. 
+   * This method might trigger [[error]] event in case something goes wrong or if it rains. Also susceptible of triggering [[progress]] event ro indicate how is going and [[finish]] when is done ni which case resolve returned
+   * @param config 
+   */</span>
+  startDownloading(config: IDownloadConfig): <span class="hljs-built_in">Promise</span>&lt;<span class="hljs-built_in">any</span>&gt;;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>Now declare the events as members</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/**
+ * triggered by [[startDownloading]] when there is an error. Use [[on]] to subscribe for this event.
+ * @event
+ */</span>
+  error: <span class="hljs-function">(<span class="hljs-params">event: <span class="hljs-built_in">Error</span></span>) =&gt;</span> <span class="hljs-built_in">void</span>;
+<span class="hljs-comment">/**
+ * triggered by [[startDownloading]] when there is an download ends. Use [[on]] to subscribe for this event.
+ * @event
+ */</span>
+  finish: <span class="hljs-function">(<span class="hljs-params">event: DownloadFinishEvent</span>) =&gt;</span> <span class="hljs-built_in">void</span>;
+  <span class="hljs-comment">/**
+   * triggered by [[startDownloading]]  on progress. Use [[on]] to subscribe for this event.
+   * @event
+   */</span>
+  progress: <span class="hljs-function">(<span class="hljs-params">event: DownloadProgressEvent</span>) =&gt;</span> <span class="hljs-built_in">void</span>;
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>It looks good now: <a href="https://cancerberosgx.github.io/javascript-documentation-examples/examples/events-002/docs/interfaces/idownloadeventemitter.html#error">Take a look at the final output</a> </p>
+<p>This looks better that events-001 but there is something that is very wrong: </p>
+<p><strong><em>we are defining new synthetic members that now subclasses must implement. These definitions are not needed ni the real world we dont want to sacrifice simplicity because of documentation tool limits </em></strong></p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p>And now a lst attempt, using <a href="https://github.com/cancerberoSgx/typedoc-plugins-of-mine/tree/master/plugins/typedoc-plugin-as-member-of">typedoc-plugin-as-member-of</a> typedoc plugin we will declare events as separate funcions and using the annotation @asMemberOf those functioned will be moved as members of the host class <code>Vehicle</code>. Because we annotated the functions with <code>@event</code> the plugin will also mutate de functions to events. </p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>/**
+ * A machine for transportation
+ */
+interface Vehicle{
+  /** I you want to start moving. It's the main cause of events [[beforeStart]] and [[afterStop]] event emissions.  */
+  start();
+}
+/**
+ * @asMemberOf Vehicle
+ * @event
+ * @param x 
+ */
+declare function beforeStart(engineData: {suit: string; card: number; }[]): Promise&lt;boolean&gt;;
+
+/**
+ * @asMemberOf Vehicle
+ * @event
+ * @param x 
+ */
+declare function afterStop(stopReason: 'gas'|'fail', position: {x:number, y:number}): void;
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * abstract super interface of all download-related events
+ */
+export interface DownloadEvent  {
+  timestamp: Date;
+  id: string;
+}
+/**
+ * data with progress information
+ */
+export interface DownloadProgressEvent extends DownloadEvent {
+  name: string;
+  value: number;
+  code: number[];
+}
+/**
+ * event emitted when a download finished
+ */
+export interface DownloadFinishEvent extends DownloadEvent {
+  totalBytes: number;
+  ips: number[][];
+}
+/**
+ * event emitted When something goes wrong
+ */
+export interface DownloadError extends DownloadEvent {
+  status: number;
+  error: Error;
+}
+/**
+ * Configuration for a download, see [[IDownloadEventEmitter.startDownloading]]
+ */
+export interface IDownloadConfig {
+  abortOnError: boolean;
+}</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>
