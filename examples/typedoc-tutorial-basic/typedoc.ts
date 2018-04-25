@@ -1,6 +1,6 @@
 module.exports = {
   src: [
-    './src/',
+    './src/index.ts',
   ],
   mode: 'file',
   includeDeclarations: true,

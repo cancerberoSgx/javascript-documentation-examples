@@ -16,6 +16,8 @@
           
           
           
+            <div class='highlight'><pre><span class="hljs-keyword">import</span> { Stream } <span class="hljs-keyword">from</span> <span class="hljs-string">'stream'</span>;</pre></div>
+          
         
 
         
@@ -96,7 +98,7 @@ to <a href="http://usejsdoc.org/">jsdoc</a> or <a href="https://en.wikipedia.org
         
           <div class='highlight'><pre>
 
-<span class="hljs-comment">/** The sweet and fleshy product of a tree or other plant that contains seed and can be eaten as food. */</span>
+<span class="hljs-comment">/** The sweet and fleshy product of a tree or other plant. */</span>
 <span class="hljs-keyword">class</span> Fruit {
 
 }</pre></div>
@@ -203,21 +205,88 @@ to <a href="http://usejsdoc.org/">jsdoc</a> or <a href="https://en.wikipedia.org
         
       
         
-        <p>TODO</p>
-<ul>
-<li>overrides and how they look</li>
-<li>generic types</li>
+        <p>Methods and Functions could be the most complex parts of document, because thy imply parameters and return values. For these, you will be using two annotations: <code>@param</code> and <code>@return</code> or <code>@returns</code> respectively. </p>
+
+        
+      
+        
+        <p>Because documenting methods and functions is the same thing, here we will say just “methods” but everything applies to both. </p>
+
+        
+      
+        
+        <p>The syntax of a method or function TypeDoc comment is as follows: first the method description and then the rest. The order of parameters is not important.</p>
+
+        
+      
+        
+        <p><strong>Tip</strong>: As everything in TypeDoc, parameters and return value descriptions are optional - for example if you dont document one parameter its documentation will be still generated with its name and type. This is very useful specially when you use types and give meaningful names so their meaning so obvious than a description is not necessary. </p>
+
+        
+      
+        
+        <p>Let’s go straight to an example that shows a lot of combinations regarding this:</p>
+
+        
+          <div class='highlight'><pre>
+
+<span class="hljs-keyword">class</span> File {
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">constructor</span>(<span class="hljs-params">fs:<span class="hljs-built_in">number</span></span>) {} <span class="hljs-comment">// constructor, no docs</span>
+  <span class="hljs-comment">/**
+   * Creates a new file in given path and given content
+   * @param path absolute path of the file to create
+   * @param content content of the new file or empty file if nothing given
+   * @param T Exercitation enim qui id dolore eiusmod consectetur ex dolore.
+   * @return Velit labore nostrud qui sint pariatur aute deserunt laboris tempor ex amet.
+   */</span>
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> create&lt;T&gt;(path: <span class="hljs-built_in">string</span>, content?: <span class="hljs-built_in">string</span>|Stream, 
+    permissions: <span class="hljs-built_in">string</span> = <span class="hljs-string">'666'</span>): T {
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
+  }
+  <span class="hljs-comment">/**
+   * Internal method used by foobar
+   * @param interval how often file is read in the polling
+   * @param predicate polling will end when true
+   */</span>
+  <span class="hljs-keyword">private</span> poll(interval:<span class="hljs-built_in">number</span>, predicate: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">boolean</span>):<span class="hljs-built_in">void</span> {}
+}
+
+<span class="hljs-comment">/**
+ * List children of given folder
+ * @param options.force force read operation  even if files are busy
+ * @param options.recursive list all files recursively
+ * @return if given path points to a folder returns a list of direct children Files,. Returns null otherwise
+ */</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">listFiles</span>(<span class="hljs-params">path: <span class="hljs-built_in">String</span>, 
+  options?: {force:<span class="hljs-built_in">boolean</span>, recursive:<span class="hljs-built_in">boolean</span>}</span>):<span class="hljs-title">File</span>[] </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
+}</pre></div>
+        
+      
+        
+        <p>Notes: </p>
+
+        
+      
+        
+        <ul>
+<li>The class <code>File</code> defines a constructor which is not documented but the output still is generated: <a href="../../classes/file.html#constructor">classes/file.html#constructor</a></li>
+<li>The static method <code>create</code> that is generic and has a parameter <code>permissions</code> with a default value. Notice how we document the generic type <code>T</code> using <code>@param</code> : <a href="../../classes/file.html#create">classes/file.html#create</a></li>
+<li>And last but not least, the function <code>listFiles</code> which shows how to document the complex parameter object <code>options</code>: <a href="../../globals.html#listfiles">globals.html#listfiles</a></li>
 </ul>
 
         
       
         
-        <h3 id="constructors">Constructors</h3>
+        <p><strong>Important</strong> As you can see, we have static and private methods and also mandatory, optional and default parameters. We don’t document any of this information since is already defined in TypeScript and TypeDoc will automatically generate it.</p>
 
         
       
         
-        <p>constructors can be documented just like any other method</p>
+        <p>TODO</p>
+<ul>
+<li>overrides</li>
+</ul>
 
         
       
@@ -273,10 +342,15 @@ to <a href="http://usejsdoc.org/">jsdoc</a> or <a href="https://en.wikipedia.org
           <div class='highlight'><pre>
 
 <span class="hljs-keyword">interface</span> Car {
-  <span class="hljs-comment">/** Once started the engine will turn off only when the car travel all the [[Route.size]]*/</span>
+  <span class="hljs-comment">/** 
+   * Once started the engine will turn off only when the 
+   * car travel all the [[Route.size]]
+   */</span>
   engine:Engine
   size: <span class="hljs-built_in">number</span>
-  <span class="hljs-comment">/** Put in march this cart by turning on its [[engine]] */</span>
+  <span class="hljs-comment">/** 
+   * Put in march this cart by turning on its [[engine]] 
+   */</span>
   start()
 }
 <span class="hljs-keyword">interface</span> Route {

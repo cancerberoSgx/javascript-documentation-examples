@@ -1,3 +1,7 @@
+import { Stream } from 'stream';
+
+
+
 
 // # TypeDoc Tutorial
 
@@ -42,7 +46,7 @@
 // Each comment must start with a `/**` sequence in order to be recognized by TypeDoc. Comments beginning with `//`, `/*`, `/***`, or more than 3 stars will be ignored. Example: 
 
 
-/** The sweet and fleshy product of a tree or other plant that contains seed and can be eaten as food. */
+/** The sweet and fleshy product of a tree or other plant. */
 class Fruit {
 
 }
@@ -129,18 +133,62 @@ class MyCustomRectangle implements Shape<Centimeter> {
 
 // ## Methods and Functions
 
+// Methods and Functions could be the most complex parts of document, because thy imply parameters and return values. For these, you will be using two annotations: `@param` and `@return` or `@returns` respectively. 
+
+// Because documenting methods and functions is the same thing, here we will say just "methods" but everything applies to both. 
+
+// The syntax of a method or function TypeDoc comment is as follows: first the method description and then the rest. The order of parameters is not important.
+
+// **Tip**: As everything in TypeDoc, parameters and return value descriptions are optional - for example if you dont document one parameter its documentation will be still generated with its name and type. This is very useful specially when you use types and give meaningful names so their meaning so obvious than a description is not necessary. 
+
+// Let's go straight to an example that shows a lot of combinations regarding this:
+
+
+class File {
+  public constructor(fs:number) {} // constructor, no docs
+  /**
+   * Creates a new file in given path and given content
+   * @param path absolute path of the file to create
+   * @param content content of the new file or empty file if nothing given
+   * @param T Exercitation enim qui id dolore eiusmod consectetur ex dolore.
+   * @return Velit labore nostrud qui sint pariatur aute deserunt laboris tempor ex amet.
+   */
+  public static create<T>(path: string, content?: string|Stream, 
+    permissions: string = '666'): T {
+    return null;
+  }
+  /**
+   * Internal method used by foobar
+   * @param interval how often file is read in the polling
+   * @param predicate polling will end when true
+   */
+  private poll(interval:number, predicate: () => boolean):void {}
+}
+
+/**
+ * List children of given folder
+ * @param options.force force read operation  even if files are busy
+ * @param options.recursive list all files recursively
+ * @return if given path points to a folder returns a list of direct children Files,. Returns null otherwise
+ */
+function listFiles(path: String, 
+  options?: {force:boolean, recursive:boolean}):File[] {
+  return null;
+} 
+
+
+
+// Notes: 
+
+//  * The class `File` defines a constructor which is not documented but the output still is generated: [classes/file.html#constructor](../../classes/file.html#constructor)
+//  * The static method `create` that is generic and has a parameter `permissions` with a default value. Notice how we document the generic type `T` using `@param` : [classes/file.html#create](../../classes/file.html#create)
+//  * And last but not least, the function `listFiles` which shows how to document the complex parameter object `options`: [globals.html#listfiles](../../globals.html#listfiles)
+
+// **Important** As you can see, we have static and private methods and also mandatory, optional and default parameters. We don't document any of this information since is already defined in TypeScript and TypeDoc will automatically generate it.
+
+
 // TODO
-//  * overrides and how they look
-//  * generic types
-
-// ### Constructors
-
-// constructors can be documented just like any other method
-
-
-
-
-
+//  * overrides
 
 // ## Modules
 
@@ -176,10 +224,15 @@ class MyCustomRectangle implements Shape<Centimeter> {
 
 
 interface Car {
-  /** Once started the engine will turn off only when the car travel all the [[Route.size]]*/
+  /** 
+   * Once started the engine will turn off only when the 
+   * car travel all the [[Route.size]]
+   */
   engine:Engine
   size: number
-  /** Put in march this cart by turning on its [[engine]] */
+  /** 
+   * Put in march this cart by turning on its [[engine]] 
+   */
   start()
 }
 interface Route {
