@@ -5,6 +5,7 @@
   "description": "examples of typedoc / typescript documentation that were hard to get because, ironically, lack of typedoc documentation ",
   "scripts": {
     "run-all": "yarn run wsrun",
+    "doc": "yarn run wsrun doc"
     "test": "echo \"No tests here yet, it's fine\" && exit 0",
     "clean": "yarn run-all clean; rm -rf node_modules build docs"
   },

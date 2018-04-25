@@ -2,7 +2,7 @@
 
 <html>
 <head>
-  <title>index.ts</title>
+  <title>Documenting Events</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
   <link rel="stylesheet" media="all" href="../docco.css" />
@@ -13,12 +13,6 @@
     
     <ul class="sections">
         
-          <li id="title">
-              <div class="annotation">
-                  <h1>index.ts</h1>
-              </div>
-          </li>
-        
         
         
         <li id="section-1">
@@ -27,8 +21,7 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-1">&#182;</a>
               </div>
-              <h2 id="documenting-events">Documenting Events</h2>
-<p>(Part of <a href="https://github.com/cancerberoSgx/javascript-documentation-examples">this project</a>)</p>
+              <h1 id="documenting-events">Documenting Events</h1>
 
             </div>
             
@@ -41,26 +34,9 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-2">&#182;</a>
               </div>
-              <p>IMO, this is the best way of documenting events with typedoc. See the <a href="https://cancerberosgx.github.io/javascript-documentation-examples/examples/events-002/docs/interfaces/vehicle.html">typedoc output result</a></p>
-<h3 id="features-">Features:</h3>
-<ul>
-<li>Events optimally represented in typedoc output with separate definitions and unique names so they can be referenced from other entities</li>
-<li>Listener signatures fully defined in one place</li>
-<li>Don’t contaminate the interface or class with artificial definitions</li>
-<li>Strict type checking for listeners</li>
-</ul>
-<h3 id="background">Background</h3>
-<p>In previous experiments <a href="https://cancerberosgx.github.io/javascript-documentation-examples/examples/events-001/docs/docco/src/index.html">1</a> and <a href="https://cancerberosgx.github.io/javascript-documentation-examples/examples/events-noEventEmitter/docs/docco/src/index.html">2</a> we tried to document events with typedoc but facing several difficulties: events appear all stacked under the same method signature, or we needed to contaminate our interfaces with artificial methods. None of these were acceptable. </p>
-<h3 id="solution-summary">Solution summary</h3>
-<p><em>The solution we found</em> is declaring events as separate functions declarations and using the typedoc plugin <a href="https://github.com/cancerberoSgx/typedoc-plugins-of-mine/tree/master/plugins/typedoc-plugin-as-member-of">as-member-of</a>  we annotate these functions with @asMemberOf so they will be moved as members of the host class <code>Vehicle</code>. </p>
-<p>Also we add the annotation <code>@event</code> so the plugin will mutate de functions to events. </p>
-<p>Since functions declarations don’t generate any real js code, this won’t impact the production code generate at all</p>
+              <p>(Part of <a href="https://github.com/cancerberoSgx/javascript-documentation-examples">this project</a>)</p>
 
             </div>
-            
-            <div class="content"><div class='highlight'><pre>
-<span class="hljs-keyword">import</span> { EventEmitter } <span class="hljs-keyword">from</span> <span class="hljs-string">'events'</span>;
-<span class="hljs-keyword">import</span> { WSAEPROVIDERFAILEDINIT, SSL_OP_LEGACY_SERVER_CONNECT } <span class="hljs-keyword">from</span> <span class="hljs-string">'constants'</span>;</pre></div></div>
             
         </li>
         
@@ -71,12 +47,150 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-3">&#182;</a>
               </div>
-              <h3 id="the-interface">The interface</h3>
-<p>We are declaring <code>EventEmitter.on</code> overrides for enforcing our interface users to use the correct signatures as we did in <a href="https://cancerberosgx.github.io/javascript-documentation-examples/examples/events-001/docs/docco/src/index.html">example 1</a>. But we don’t annotate them with <code>@event</code> ! Notice how the listener argument references the event listener function declaration, for example, <code>listener: typeof beforeStart</code></p>
+              <p>IMO, this is the best way of documenting events with typedoc. See the <a href="https://cancerberosgx.github.io/javascript-documentation-examples/examples/events-002/docs/interfaces/vehicle.html">typedoc output result</a></p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/**
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <h3 id="features">Features</h3>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <ul>
+<li>Events optimally represented in typedoc output with separate definitions and unique names so they can be referenced from other entities</li>
+<li>Listener signatures fully defined in one place</li>
+<li>Don’t contaminate the interface or class with artificial definitions</li>
+<li>Strict type checking for listeners</li>
+</ul>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <h3 id="some-background">Some background</h3>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <p>In previous experiments <a href="https://cancerberosgx.github.io/javascript-documentation-examples/examples/events-001/docs/docco/src/index.html">1</a> and <a href="https://cancerberosgx.github.io/javascript-documentation-examples/examples/events-noEventEmitter/docs/docco/src/index.html">2</a> we tried to document events with typedoc but facing several difficulties: events appear all stacked under the same method signature, or we needed to contaminate our interfaces with artificial methods. <strong>None of these were acceptable.</strong> </p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <h3 id="solution-summary">Solution summary</h3>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <p>The <strong>solution</strong> we found is declaring events as separate functions declarations and using the typedoc plugin <a href="https://github.com/cancerberoSgx/typedoc-plugins-of-mine/tree/master/plugins/typedoc-plugin-as-member-of">as-member-of</a>  we annotate these functions with @asMemberOf so they will be moved as members of the host class <code>Vehicle</code>. </p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <p>Also we add the annotation <code>@event</code> so the plugin will mutate de functions to events. </p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-11">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-11">&#182;</a>
+              </div>
+              <p>Since functions declarations don’t generate any real js code, this won’t impact the production code generate at all</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+<span class="hljs-keyword">import</span> { EventEmitter } <span class="hljs-keyword">from</span> <span class="hljs-string">'events'</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-12">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-12">&#182;</a>
+              </div>
+              <h3 id="the-interface">The interface</h3>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-13">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-13">&#182;</a>
+              </div>
+              <p>We are declaring <code>EventEmitter.on</code> overrides for enforcing our interface users to use the correct signatures as we did in <a href="https://cancerberosgx.github.io/javascript-documentation-examples/examples/events-001/docs/docco/src/index.html">example 1</a>. But we don’t annotate them with <code>@event</code> ! Notice how the listener argument references the event listener function declaration, for example, <code>listener: typeof beforeStart</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+<span class="hljs-comment">/**
  * A machine for transportation
  */</span>
 <span class="hljs-keyword">interface</span> Vehicle <span class="hljs-keyword">extends</span> EventEmitter {
@@ -94,18 +208,31 @@
         </li>
         
         
-        <li id="section-4">
+        <li id="section-14">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-4">&#182;</a>
+                <a class="pilcrow" href="#section-14">&#182;</a>
               </div>
               <h3 id="event-function-declarations">Event function declarations</h3>
-<p>We define now the events as separate function declarations. We annotate them with <code>@asMemberOf Vehicle</code> and with <code>@event</code> so the typedoc plugin <a href="https://github.com/cancerberoSgx/typedoc-plugins-of-mine/tree/master/plugins/typedoc-plugin-as-member-of">as-member-of</a> will move these funcions as Vehicle members and also transform them into events. </p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/**
+        </li>
+        
+        
+        <li id="section-15">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-15">&#182;</a>
+              </div>
+              <p>We define now the events as separate function declarations. We annotate them with <code>@asMemberOf Vehicle</code> and with <code>@event</code> so the typedoc plugin <a href="https://github.com/cancerberoSgx/typedoc-plugins-of-mine/tree/master/plugins/typedoc-plugin-as-member-of">as-member-of</a> will move these funcions as Vehicle members and also transform them into events. </p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+<span class="hljs-comment">/**
  * Event triggered by [[Vehicle.start]] just before the engine of the vehicle starts.
  * @asMemberOf Vehicle
  * @event
@@ -115,24 +242,29 @@
         </li>
         
         
-        <li id="section-5">
+        <li id="section-16">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-5">&#182;</a>
+                <a class="pilcrow" href="#section-16">&#182;</a>
               </div>
               <p>This event handler has a complicate signature. Fortunately is fully defined here, in one place. Notice how in the <code>on</code> overrides we are referencing this declaration with <code>listener: typeof beforeStart</code>. </p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
+
 <span class="hljs-comment">/**
  * Event triggered right after the vehicle stop its movement. 
  * <span class="hljs-doctag">TODO:</span> document my arguments better
  * @asMemberOf Vehicle
  * @event
  */</span>
-<span class="hljs-keyword">declare</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">afterStop</span>(<span class="hljs-params">when: <span class="hljs-built_in">Date</span>, engineStatus: {temp: <span class="hljs-built_in">number</span>, cont: <span class="hljs-built_in">number</span>[]}, coolDown: <span class="hljs-built_in">Promise</span>&lt;<span class="hljs-built_in">boolean</span>&gt;</span>): <span class="hljs-title">void</span></span>;
+<span class="hljs-keyword">declare</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">afterStop</span>(<span class="hljs-params">
+  when: <span class="hljs-built_in">Date</span>, 
+  engineStatus: {temp: <span class="hljs-built_in">number</span>, cont: <span class="hljs-built_in">number</span>[]}, 
+  coolDown: <span class="hljs-built_in">Promise</span>&lt;<span class="hljs-built_in">boolean</span>&gt;,
+</span>): <span class="hljs-title">void</span></span>;
 
 
 <span class="hljs-comment">/** The data for [[beforeStart]] event */</span>

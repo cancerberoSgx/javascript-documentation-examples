@@ -1,0 +1,39 @@
+{
+  "name": "typedoc-tutorial-basic",
+  "version": "1.0.0",
+  "description": "demonstrate why is much better to represent events by enforcing the @name tag using the [typedoc-plugin-respect-name-tag plugin",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"No tests here yet, it's fine\" && exit 0",
+    "lint": "tslint src/**/*.ts",
+    "lint-fix": "tslint --fix src/**/*.ts",
+    "build": "tsc",
+    "doc": "tsc && typedoc --options typedoc.ts --plugin typedoc-plugin-respect-name-tag; yarn run doc-docco",
+    "doc-docco": "yarn run docco src/index.ts --output docs/docco",
+    "clean": "rm -rf node_modules build docs"
+  },
+  "keywords": [
+    "typedoc",
+    "typescript",
+    "documentation",
+    "jsdoc",
+    "JavaScript"
+  ],
+  "private": true,
+  "author": "Sebastián Gurin",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^9.6.5",
+    "docco": "^0.8.0",
+    "ts-node": "^6.0.0",
+    "tsconfig-paths": "^3.3.1",
+    "tslint": "^5.9.1",
+    "tslint-config-airbnb": "^5.8.0",
+    "typedoc": "^0.11.1",
+    "typedoc-plugin-respect-name-tag": "^1.0.0",
+    "typescript": "^2.8.3"
+  },
+  "dependencies": {
+    "docco": "^0.8.0"
+  }
+}

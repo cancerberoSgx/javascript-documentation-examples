@@ -1,0 +1,34 @@
+--- node_modules/docco/docco.js	2017-12-19 18:14:11.000000000 -0300
++++ test-files/docco.js	2018-04-25 03:16:29.289165004 -0300
+@@ -155,7 +155,8 @@
+     }
+     for (k = 0, len1 = lines.length; k < len1; k++) {
+       line = lines[k];
+-      if (line.match(lang.commentMatcher) && !line.match(lang.commentFilter)) {
++      var commentMatch = lang.commentMatcher.exec(line)
++      if (commentMatch && commentMatch[1] && !line.match(lang.commentFilter)) {
+         if (hasCode) {
+           save();
+         }
+@@ -164,8 +165,10 @@
+           save();
+         }
+       } else {
+-        hasCode = true;
+-        codeText += line + '\n';
++        if(!commentMatch || commentMatch[1]){
++          hasCode = true;
++          codeText += line + '\n';
++        }  
+       }
+     }
+     save();
+@@ -332,7 +335,7 @@
+     for (ext in languages) {
+       l = languages[ext];
+       // Does the line begin with a comment?
+-      l.commentMatcher = RegExp(`^\\s*${l.symbol}\\s?`);
++      l.commentMatcher = RegExp(`^\\s*${l.symbol}\\s?([^a.*z]?)`);
+       // Ignore [hashbangs](http://en.wikipedia.org/wiki/Shebang_%28Unix%29) and interpolations...
+       l.commentFilter = /(^#![\/]|^\s*#\{)/;
+     }

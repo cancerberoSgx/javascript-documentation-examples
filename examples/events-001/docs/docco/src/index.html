@@ -22,20 +22,8 @@
                 <a class="pilcrow" href="#section-1">&#182;</a>
               </div>
               <h1 id="documenting-events">Documenting Events</h1>
-<p>(Part of <a href="https://github.com/cancerberoSgx/javascript-documentation-examples">this project</a>)</p>
-<p>All of this was a failure since I couldn’t make what I wanted, but teach me a lot about the tools limitations. If you want to go to the successful experiment where I now now to to do it properly go to <a href="https://cancerberosgx.github.io/javascript-documentation-examples/examples/events-002/docs/docco/src/index.html">this example</a> </p>
-<h2 id="objective">Objective</h2>
-<p>In this example we describe a class that extends NodeJS.js <code>EventEmitter</code> and triggers a couple of events <code>progress</code>, <code>finish</code>, and <code>error</code>.</p>
-<p>The main objective was to find/discuss the best practices for documenting events, eventemitters, event listeners using typedocs (wihtout any plugin)</p>
-<p>Also, is important to validate that the typescript compiler bind the types so we are sure that our users won’t miss the events names or callback functions signatures. </p>
-<p>See the <strong><a href="https://cancerberosgx.github.io/javascript-documentation-examples/examples/events-001/docs/interfaces/idownloadeventemitter.html#on">final typedoc output</a>)</strong></p>
-<p>Notice how in that output, TypeDoc treats events as methods, it just group them in the “Events” section because they contain the <code>@event</code> annotation.</p>
 
             </div>
-            
-            <div class="content"><div class='highlight'><pre>
-
-<span class="hljs-keyword">import</span> { EventEmitter } <span class="hljs-keyword">from</span> <span class="hljs-string">'events'</span>;</pre></div></div>
             
         </li>
         
@@ -46,13 +34,122 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-2">&#182;</a>
               </div>
-              <h2 id="the-interface">The interface</h2>
-<p>We start by declaring an interface which responsibility will be to define the exact method signatures that we will be offering to our users. </p>
-<p>Notice that we are overriding the <code>EventEmitter.on</code>  method with ore specialized signatures - even forcing that the event name to be a concrete string. This way we enforce the API to our users. </p>
+              <p>(Part of <a href="https://github.com/cancerberoSgx/javascript-documentation-examples">this project</a>)</p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>All of this was a failure since I couldn’t make what I wanted, but teach me a lot about the tools limitations. If you want to go to the successful experiment where I now now to to do it properly go to <a href="https://cancerberosgx.github.io/javascript-documentation-examples/examples/events-002/docs/docco/src/index.html">this example</a> </p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <h2 id="objective">Objective</h2>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>In this example we describe a class that extends NodeJS.js <code>EventEmitter</code> and triggers a couple of events <code>progress</code>, <code>finish</code>, and <code>error</code>.</p>
+<p>The main objective was to find/discuss the best practices for documenting events, eventemitters, event listeners using typedocs (wihtout any plugin)</p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p>Also, is important to validate that the typescript compiler bind the types so we are sure that our users won’t miss the events names or callback functions signatures. </p>
+<p>See the <strong><a href="https://cancerberosgx.github.io/javascript-documentation-examples/examples/events-001/docs/interfaces/idownloadeventemitter.html#on">final typedoc output</a>)</strong></p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <p>Notice how in that output, TypeDoc treats events as methods, it just group them in the “Events” section because they contain the <code>@event</code> annotation.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
+
+<span class="hljs-keyword">import</span> { EventEmitter } <span class="hljs-keyword">from</span> <span class="hljs-string">'events'</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <h2 id="the-interface">The interface</h2>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <p>We start by declaring an interface which responsibility will be to define the exact method signatures that we will be offering to our users. </p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <p>Notice that we are overriding the <code>EventEmitter.on</code>  method with ore specialized signatures - even forcing that the event name to be a concrete string. This way we enforce the API to our users. </p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+
 <span class="hljs-comment">/** 
  * Responsible of notifying relevant events about downloading stuff. Instances can be obtained like this: 
  * ```
@@ -84,17 +181,41 @@
         </li>
         
         
-        <li id="section-3">
+        <li id="section-11">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-3">&#182;</a>
+                <a class="pilcrow" href="#section-11">&#182;</a>
               </div>
               <p>Something important is that, we need to respect the original signature that is: </p>
-<pre><code class="lang-ts">on(event: <span class="hljs-built_in">string</span> | symbol, listener: <span class="hljs-function">(<span class="hljs-params">...args: <span class="hljs-built_in">any</span>[]</span>) =&gt;</span> <span class="hljs-built_in">void</span>): <span class="hljs-keyword">this</span>;
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-12">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-12">&#182;</a>
+              </div>
+              <pre><code class="lang-ts">on(event: <span class="hljs-built_in">string</span> | symbol, listener: <span class="hljs-function">(<span class="hljs-params">...args: <span class="hljs-built_in">any</span>[]</span>) =&gt;</span> <span class="hljs-built_in">void</span>): <span class="hljs-keyword">this</span>;
 once(event: <span class="hljs-built_in">string</span> | symbol, listener: <span class="hljs-function">(<span class="hljs-params">...args: <span class="hljs-built_in">any</span>[]</span>) =&gt;</span> <span class="hljs-built_in">void</span>): <span class="hljs-keyword">this</span>;
 </code></pre>
-<p>That’s why for example we need to return <code>this</code> and our callback still need to return <code>void</code></p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-13">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-13">&#182;</a>
+              </div>
+              <p>That’s why for example we need to return <code>this</code> and our callback still need to return <code>void</code></p>
 
             </div>
             
@@ -119,15 +240,39 @@ once(event: <span class="hljs-built_in">string</span> | symbol, listener: <span 
         </li>
         
         
-        <li id="section-4">
+        <li id="section-14">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-4">&#182;</a>
+                <a class="pilcrow" href="#section-14">&#182;</a>
               </div>
               <h2 id="the-implementation">The implementation</h2>
-<p><code>DownloadEventEmitter</code> class is our concrete, private implementation. We let its super class <code>EventEmitter</code> to implement the on() methods - and we just implement our concrete feature  <code>startDownloading</code>. </p>
-<p>It implements previous interface so users referencing the interface will use the exact method descriptions and type binding will be perfect.  </p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-15">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-15">&#182;</a>
+              </div>
+              <p><code>DownloadEventEmitter</code> class is our concrete, private implementation. We let its super class <code>EventEmitter</code> to implement the on() methods - and we just implement our concrete feature  <code>startDownloading</code>. </p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-16">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-16">&#182;</a>
+              </div>
+              <p>It implements previous interface so users referencing the interface will use the exact method descriptions and type binding will be perfect.  </p>
 
             </div>
             
@@ -148,15 +293,39 @@ once(event: <span class="hljs-built_in">string</span> | symbol, listener: <span 
         </li>
         
         
-        <li id="section-5">
+        <li id="section-17">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-5">&#182;</a>
+                <a class="pilcrow" href="#section-17">&#182;</a>
               </div>
               <h2 id="does-it-really-work-">Does it really work?</h2>
-<p>Now that we have everything ready, I would like to test it a bit, to see if by using the interface our library’s users will have a good experience with type binding or call our methods with bad signatures.</p>
-<p>For that we build a Main() function , some code is commented because it has compilation errors: </p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-18">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-18">&#182;</a>
+              </div>
+              <p>Now that we have everything ready, I would like to test it a bit, to see if by using the interface our library’s users will have a good experience with type binding or call our methods with bad signatures.</p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-19">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-19">&#182;</a>
+              </div>
+              <p>For that we build a Main() function , some code is commented because it has compilation errors: </p>
 
             </div>
             
@@ -166,11 +335,11 @@ once(event: <span class="hljs-built_in">string</span> | symbol, listener: <span 
         </li>
         
         
-        <li id="section-6">
+        <li id="section-20">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-6">&#182;</a>
+                <a class="pilcrow" href="#section-20">&#182;</a>
               </div>
               <p>In the following statement we try to pass an incorrect event name. It gives error because we are working with 
 the interface and is very strict about that.   (code commented).</p>
@@ -185,11 +354,11 @@ the interface and is very strict about that.   (code commented).</p>
         </li>
         
         
-        <li id="section-7">
+        <li id="section-21">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-7">&#182;</a>
+                <a class="pilcrow" href="#section-21">&#182;</a>
               </div>
               <p>In the following statement, we work with the class directly. As expected, we can use signatures incorrectly here because our class IS A <code>EventEmitter</code> and its <code>on</code>  method has a very flexible signature. Remember, In Strongly typed languages, a sub class cannot change signatures defined by the super class - in other words <em>polymorphism</em> must apply:</p>
 
@@ -201,11 +370,11 @@ the interface and is very strict about that.   (code commented).</p>
         </li>
         
         
-        <li id="section-8">
+        <li id="section-22">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-8">&#182;</a>
+                <a class="pilcrow" href="#section-22">&#182;</a>
               </div>
               <p>Now, keep working with the signature, try to cheat it passing eventName from 
 one signature and listener from another. It fails as expected, with error 
@@ -221,11 +390,11 @@ Leave it commented:</p>
         </li>
         
         
-        <li id="section-9">
+        <li id="section-23">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-9">&#182;</a>
+                <a class="pilcrow" href="#section-23">&#182;</a>
               </div>
               <p>Finally let’s call it right and define callback argument without type to see if 
 type inference work: </p>

@@ -1,20 +1,19 @@
 // # Documenting Events
-// 
+
 // (Part of [this project](https://github.com/cancerberoSgx/javascript-documentation-examples))
-// 
+
 // All of this was a failure since I couldn't make what I wanted, but teach me a lot about the tools limitations. If you want to go to the successful experiment where I now now to to do it properly go to [this example](https://cancerberosgx.github.io/javascript-documentation-examples/examples/events-002/docs/docco/src/index.html) 
-// 
-// 
+
 // ## Objective
-// 
+
 // In this example we describe a class that extends NodeJS.js `EventEmitter` and triggers a couple of events `progress`, `finish`, and `error`.
 //  
 // The main objective was to find/discuss the best practices for documenting events, eventemitters, event listeners using typedocs (wihtout any plugin)
-// 
+
 // Also, is important to validate that the typescript compiler bind the types so we are sure that our users won't miss the events names or callback functions signatures. 
 //
 // See the **[final typedoc output](https://cancerberosgx.github.io/javascript-documentation-examples/examples/events-001/docs/interfaces/idownloadeventemitter.html#on))**
-// 
+
 // Notice how in that output, TypeDoc treats events as methods, it just group them in the "Events" section because they contain the `@event` annotation.
 
 
@@ -25,11 +24,11 @@ import { EventEmitter } from 'events';
 
 
 // ## The interface
-// 
+
 // We start by declaring an interface which responsibility will be to define the exact method signatures that we will be offering to our users. 
-// 
+
 // Notice that we are overriding the `EventEmitter.on`  method with ore specialized signatures - even forcing that the event name to be a concrete string. This way we enforce the API to our users. 
-// 
+
 
 /** 
  * Responsible of notifying relevant events about downloading stuff. Instances can be obtained like this: 
@@ -61,14 +60,14 @@ export interface IDownloadEventEmitter{
 
 
 
-// 
-// Something important is that, we need to respect the original signature that is: 
-// 
+
+  // Something important is that, we need to respect the original signature that is: 
+
 // ```ts
 // on(event: string | symbol, listener: (...args: any[]) => void): this;
 // once(event: string | symbol, listener: (...args: any[]) => void): this;
 // ```
-// 
+
 // That's why for example we need to return `this` and our callback still need to return `void`
   /**
    * Subscribes given listener so it will be called when the download finished
@@ -90,9 +89,9 @@ export interface IDownloadEventEmitter{
 
 
 // ## The implementation
-// 
+
 // `DownloadEventEmitter` class is our concrete, private implementation. We let its super class `EventEmitter` to implement the on() methods - and we just implement our concrete feature  `startDownloading`. 
-// 
+
 // It implements previous interface so users referencing the interface will use the exact method descriptions and type binding will be perfect.  
 
 
@@ -116,9 +115,9 @@ class DownloadEventEmitter extends EventEmitter implements IDownloadEventEmitter
 
 
 // ## Does it really work?
-// 
+
 // Now that we have everything ready, I would like to test it a bit, to see if by using the interface our library's users will have a good experience with type binding or call our methods with bad signatures.
-// 
+
 // For that we build a Main() function , some code is commented because it has compilation errors: 
 class Main{
   static main(...any):number {

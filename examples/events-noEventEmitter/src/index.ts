@@ -1,20 +1,20 @@
 
 // ## What's this?
-// 
+
 // (Part of [Sebastian's javascript-documentation-examples project](https://github.com/cancerberoSgx/javascript-documentation-examples))
-// 
+
 // All of this was a failure since I couldn't make what I wanted, but teach me a lot about the tools limitations. If you want to go to the successful experiment where I now now to to do it properly go to [this example](https://cancerberosgx.github.io/javascript-documentation-examples/examples/events-002/docs/docco/src/index.html) 
-// 
+
 // This is an example similar to [events-001](https://cancerberosgx.github.io/javascript-documentation-examples/examples/events-001/docs/docco/src/index.html) but using a rich event - listeners, class inheritance hierarchy that's completely unrelated with `EventEmitter`. 
-// 
+
 // Also it tries to define events as members so they don't appear all grouped under the method name which is ugly .
 //
 // [**This is the final output**](https://cancerberosgx.github.io/javascript-documentation-examples/examples/events-noEventEmitter/docs/interfaces/igenericdeviceeventsource.html#adddevicelistener)
-// 
+
 // You can notice in the output that, because the method name is not so short as `on()` , the output that describe these events doesn't look good. Mostly because all these events are grouped together under the same label `addDeviceListener`
 //
 // In my case I really need to name my events arbitrarily. After all events are an artificial concept, they aren't methods, nor objects so I should be able to name them a 'piaccere'. That's why I came up with [typedoc-plugin-respect-name-tag TypeDoc plugin ](https://github.com/cancerberoSgx/typedoc-plugin-respect-name-tag) . Using it, if some entity is annotated with a `@name` tag it will be named by typedoc with that name 
-// 
+
 
 /**
  * Nostrud officia labore non pariatur exercitation irure consectetur ut reprehenderit dolor.
@@ -79,17 +79,17 @@ export interface IGenericDeviceEventSource extends IDeviceEventSource{
    */
   addDeviceListener(eventName:'mic', listener:IMicEventListener):void;
 
-// 
-// You can see in [the output](https://cancerberosgx.github.io/javascript-documentation-examples/examples/events-noEventEmitter/docs/interfaces/igenericdeviceeventsource.html#adddevicelistener) that all evens appear grouped under the same method name `addDeviceListener` which is ugly and confusing. 
-// 
+
+  // You can see in [the output](https://cancerberosgx.github.io/javascript-documentation-examples/examples/events-noEventEmitter/docs/interfaces/igenericdeviceeventsource.html#adddevicelistener) that all evens appear grouped under the same method name `addDeviceListener` which is ugly and confusing. 
+
 
 }
 
 
 
-// 
+
 // We could think a way of solving this is with another approach, this time defining our events as individual members so they doesn't appear all grouped:
-// 
+
 
 export interface IDownloadEventEmitter2{
 
@@ -121,7 +121,7 @@ export interface IDownloadEventEmitter2{
 
 //
 // [The output looks good now](https://cancerberosgx.github.io/javascript-documentation-examples/examples/events-noEventEmitter/docs/interfaces/idownloadeventemitter2.html#error) (events non stacked) but  **there is something very wrong**: We are defining new synthetic members that now subclasses must implement. These definitions are not needed ni the real world. **We dont want to sacrifice simplicity because of documentation tool limits**
-// 
+
 // The solution for this (I promise the final one) is using a plugin and defining event as separate function declarations as fully explained [here](https://cancerberosgx.github.io/javascript-documentation-examples/examples/events-002/docs/docco/src/index.html)
 
 
