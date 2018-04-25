@@ -2,19 +2,38 @@
 
 JavaScript (and its family) has no standard tool for documentation and there are many tools with different perspective. This is a collection of working node.js projects demonstrating best practices of complex semantics in such tools. 
 
-The following are the examples generated:
+
+# Success experiments
+
+ A list of expeiments that IMO demonstrate best practices for documentation
+
+## events-002
+
+Demonstrate best practices for documenting events, after some failures, I ended making and using [as-member-of](https://github.com/cancerberoSgx/typedoc-plugins-of-mine/tree/master/plugins/typedoc-plugin-as-member-of) type-doc plugin and declaring events as separate funct
+ions. 
+
+#### [Tutorial, descriptions and code](https://cancerberosgx.github.io/javascript-documentation-examples/examples/events-001/docs/docco/src/index.html)
 
 
-# events-001
+#### [Final Output](https://cancerberosgx.github.io/javascript-documentation-examples/examples/events-002/docs/interfaces/vehicle.html)
 
-Best practices for documenting events, particularly subclasses of node.js `EventEmitter`.
+
+https://cancerberosgx.github.io/javascript-documentation-examples/examples/events-002/docs/interfaces/vehicle.html
+
+# Failed experiments
+
+The following are the examples generated that I consider failures this is , they are non-satisfactory experiments or demonstrate tools limitations. 
+
+## events-001 (failed)
+
+Several (failed) experiments trying to document events with typedoc, particularly subclasses of node.js `EventEmitter`.
 
 #### [Tutorial, descriptions and code](https://cancerberosgx.github.io/javascript-documentation-examples/examples/events-001/docs/docco/src/index.html)
 
 #### [Final Output](https://cancerberosgx.github.io/javascript-documentation-examples/examples/events-001/docs/interfaces/idownloadeventemitter.html#on)
 
 
-# events-noEventEmitter
+## events-noEventEmitter (failed)
 
 Similar example as [events-001](https://cancerberosgx.github.io/javascript-documentation-examples/examples/events-001/docs/docco/src/index.html) Nothing special here. But completly indepdent of EventEmitter and declaring a righ class hierarchy of Listeners, EventSources, etc. 
 Best practices for documenting events, particularly subclasses of node.js `EventEmitter`

@@ -3,9 +3,9 @@
  * Best practices and details on how to describe events that a subclass of EventEmitter triggers with tutorial using typescript and typedoc
  * The events and the event listeners have kind of a complex inheritance hierarchy
 
-### [final typedoc output](interfaces/idownloadeventemitter.html#on)
+### [final typedoc output](https://cancerberosgx.github.io/javascript-documentation-examples/examples/events-002/docs/interfaces/vehicle.html)
 
-### [tutorial along in the code](docco/src/index.html) 
+### [tutorial along in the code](https://cancerberosgx.github.io/javascript-documentation-examples/examples/events-002/docs/docco/src/index.html) 
 
 explaining my thoughts and experiments while I was implementing this. Hope can be useful to JavaScripters entering the world of typescript&typedoc like me
 

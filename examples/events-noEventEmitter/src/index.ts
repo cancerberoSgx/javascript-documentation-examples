@@ -117,8 +117,9 @@ export interface IDownloadEventEmitter2{
 
 
 //
-// [Thw output looks good now](https://cancerberosgx.github.io/javascript-documentation-examples/examples/events-noEventEmitter/docs/interfaces/idownloadeventemitter2.html#error) (events non stacked) but  **there is something very wrong**: We are defining new synthetic members that now subclasses must implement. These definitions are not needed ni the real world. **We dont want to sacrifice simplicity because of documentation tool limits**
+// [The output looks good now](https://cancerberosgx.github.io/javascript-documentation-examples/examples/events-noEventEmitter/docs/interfaces/idownloadeventemitter2.html#error) (events non stacked) but  **there is something very wrong**: We are defining new synthetic members that now subclasses must implement. These definitions are not needed ni the real world. **We dont want to sacrifice simplicity because of documentation tool limits**
 // 
+// The solution for this (I promise the final one) is using a plugin and defining event as separate function declarations as fully explained [here](https://cancerberosgx.github.io/javascript-documentation-examples/examples/events-002/docs/docco/src/index.html)
 
 
 
