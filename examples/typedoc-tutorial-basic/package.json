@@ -13,7 +13,7 @@
     "doc-tut": "ts-node src/build.ts",
     "doc-tut-all": "ts-node src/build.ts ; docco src/index.ts --output docs/docco --layout linear",
     "doc-tut-watch": "CMD=\"yarn run doc-tut-all\"; eval $CMD ; while true ; do  watch -g -d \"cat src/tutorial.hbs\" && eval $CMD ; done",
-    "clean": "rm -rf node_modules build docs"
+    "clean": "rm -rf node_modules build"
   },
   "keywords": [
     "typedoc",

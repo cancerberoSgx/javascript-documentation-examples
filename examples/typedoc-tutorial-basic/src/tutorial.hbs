@@ -8,6 +8,11 @@ source comments and generate a well organized and pretty HTML documentation.
 
 It is required that you know the basics of TypeScript, but besides that, this tutorial will start from scratch. 
 
+
+## Table of Contents
+
+<div id="generated-toc"></div>
+
 ## TypeDoc Introduction
 
 TypeDoc is an API documentation generator for TypeScript projects, similar 
@@ -24,22 +29,88 @@ immediately *before* the code being documented. Each comment must start with a `
 to be recognized by TypeDoc. Comments beginning with `//`, `/*`, `/***`, or more than 3 stars will be ignored. 
 
 The simplest documentation is just a description:
-{{/text}}
 
-{{#code link="classes/fruit.html"}}
+
+{{/text}}{{#code link="classes/fruit.html"}}
 /** This is a description of the class Fruit */
 class Fruit {
 
 }
-{{/code}}
+{{/code}}{{#text}}
 
-{{#text}}
+## Classes and Interfaces
 
-## Classes
+ * say that if you are working with interfaces, then you want to document interfaces instead of classes
 
 TODO
 
+{{/text}}
+
+{{#text}}
 ## Methods and Functions
 
 TODO
+{{/text}}
+
+{{#text}}
+## Ignoring things
+
+If we don't want some class method or other entity to appear at all in TypeDoc output we use the `@hidden` tag. 
+
+**Important**: Put `@hidden` at the very top of the comment related to the entity you want to ignore. 
+
+You can ignore any entity that can be documented with its own comment, for example classes, methods, properties, etc. But you can't ignore parameters or return values because these doesn't have its own comment. 
+
+In the following example, the output will only contain `method2()` but not `method1()``: 
+
+{{/text}}{{#code link="interfaces/somethingsareignored.html"}}
+interface SomeThingsAreIgnored {
+  /**
+   * @hidden
+   * this comment should be ignored
+   * 
+   */
+  method1():Promise<void>;
+  /**
+   * this comment shouldn't be ignored
+   */
+  method2():string;
+}
+{{/code}}{{#text}}
+
+The following example makes TypeDoc to ignore the whole class: 
+
+{{/text}}{{#code link="classes/classtotallyignored.html"}}
+/** @hidden */
+export class ClassTotallyIgnored {
+  color:string;
+}
+{{/code}}{{#text}}
+
+{{/text}}
+
+
+{{#text}}
+## Modules
+
+TODO
+{{/text}}
+
+
+{{#text}}
+## Events
+
+TODO
+
+
+{{/text}}
+
+
+
+{{#text}}
+<script src="https://cancerberosgx.github.io/raphaeljs-tutorial/generated_toc.js"></script>
+<style>
+h1, h2, h3, h4, h5, h6{
+  text-transform: none;
+}</style>
 {{/text}}

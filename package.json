@@ -7,7 +7,7 @@
     "run-all": "yarn run wsrun",
     "doc": "yarn run wsrun doc",
     "test": "echo \"No tests here yet, it's fine\" && exit 0",
-    "clean": "yarn run-all clean; rm -rf node_modules build docs"
+    "clean": "yarn run-all clean; rm -rf node_modules"
   },
   "keywords": [
     "typedoc",
