@@ -11,13 +11,13 @@ JavaScript (and its family) has no standard tool for documentation and there are
 
 Demonstrate best practices for documenting events, after some failures, I concluded that I needed a typedoc plugin for accomplish the perfect representation of events. So I implemented [as-member-of](https://github.com/cancerberoSgx/typedoc-plugins-of-mine/tree/master/plugins/typedoc-plugin-as-member-of) type-doc plugin and declaring events as separate functions. The following tutorial explains with detail:  
 
-#### [Tutorial, descriptions and code](https://cancerberosgx.github.io/javascript-documentation-examples/examples/events-001/docs/docco/src/index.html)
+#### [Tutorial, descriptions and code](https://cancerberosgx.github.io/javascript-documentation-examples/examples/events-002/docs/interfaces/vehicle.html)
 
 
 #### [Final Output](https://cancerberosgx.github.io/javascript-documentation-examples/examples/events-002/docs/interfaces/vehicle.html)
 
 
-https://cancerberosgx.github.io/javascript-documentation-examples/examples/events-002/docs/interfaces/vehicle.html
+
 
 # Failed experiments
 
