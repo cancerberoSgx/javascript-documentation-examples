@@ -5,7 +5,7 @@
   "description": "Best practices and details on how to describe events that a subclass of EventEmitter triggers with tutorial using typescript and typedoc",
   "main": "index.js",
   "scripts": {
-    "doc": "yarn run typedoc --mode modules --out out --plugin typedoc-plugin-as-member-of src"
+    "doc": "yarn run typedoc --mode modules --out out --plugin typedoc-plugin-as-member-of --name events-standard-vs-asmember-of --readme ./README.md src"
   },
   "keywords": [
     "typedoc",

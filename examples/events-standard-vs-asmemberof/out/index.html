@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>events-standard-vs-asmemberof</title>
+	<title>events-standard-vs-asmember-of</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="assets/css/main.css">
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="index.html" class="title">events-standard-vs-asmemberof</a>
+					<a href="index.html" class="title">events-standard-vs-asmember-of</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -56,7 +56,7 @@
 					<a href="globals.html">Globals</a>
 				</li>
 			</ul>
-			<h1> events-standard-vs-asmemberof</h1>
+			<h1> events-standard-vs-asmember-of</h1>
 		</div>
 	</div>
 </header>
@@ -65,11 +65,30 @@
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
 				<h1 id="documenting-events">Documenting events</h1>
-				<p>(Part of <a href="https://github.com/cancerberoSgx/javascript-documentation-examples">Sebastian&#39;s javascript-documentation-examples project</a>)</p>
-				<p>This is the best way I found to describe events using typescript and typedoc</p>
-				<h3 id="final-typedoc-output"><a href="https://cancerberosgx.github.io/javascript-documentation-examples/examples/events-002/docs/interfaces/vehicle.html">final typedoc output</a></h3>
-				<h3 id="tutorial-along-in-the-code"><a href="https://cancerberosgx.github.io/javascript-documentation-examples/examples/events-002/docs/docco/src/index.html">tutorial along in the code</a></h3>
-				<p>This is part of <a href="https://github.com/cancerberoSgx/javascript-documentation-examples">Sebastian&#39;s javascript-documentation-examples project</a></p>
+				<p>another demonstration about why TypeDoc @event tag with the standard way of documenting events is confusing versus using @asMemberOf which IMO gives the optimal description for the @event concept. </p>
+				<p>Why typedoc proposal is confusing: </p>
+				<ul>
+					<li>events names are hidden </li>
+					<li>events are stacked inside the listener name</li>
+					<li>addListener method dissapear ! now is an event. Are events callable ? </li>
+					<li>if there are alias to <code>addListener</code> method (like in node.js EventEmitter), then it gets more confusing - now more methods &quot;disappear&quot;,  and more events with strange names appear</li>
+					<li>I would say that not using @event at all generates less confusing descriptions. TODO: link to Emitter3</li>
+				</ul>
+				<p>From discussion : <a href="https://github.com/TypeStrong/typedoc/issues/136">https://github.com/TypeStrong/typedoc/issues/136</a> in TypeDoc: </p>
+				<p>&quot;
+				@event param is intended to be used additionally to any other doc tags, something like this:</p>
+				<pre><code class="lang-ts"><span class="hljs-comment">/**
+ * Subscribe for a general event by name.
+ * @param event The name of the event to subscribe for.
+ * @param The handler called when the event occurs.
+ * @event
+ */</span>
+on(event: <span class="hljs-built_in">string</span>, handler: <span class="hljs-function">(<span class="hljs-params">e: observable.EventData</span>) =&gt;</span> <span class="hljs-built_in">void</span>): <span class="hljs-built_in">void</span>;
+</code></pre>
+				<p>As events are not part of the TypeScript language the @event tag should just give a slightly hint in the documentation. It can be used in conjunction with any code element, e.g. in TypeDoc we use the @event tag with static variables.
+				&quot;</p>
+				<p>This is example standardEventTag</p>
+				<p>asMemberOfEventTag is similar, but: the listener types are renamed to match the event name and the @event and @asMemberOf tags are added to them not to the method addListener. </p>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
@@ -83,6 +102,9 @@
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="modules/_standardeventtag_.html">"standard<wbr>Event<wbr>Tag"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_standardnoeventtag_.html">"standard<wbr>NoEvent<wbr>Tag"</a>
 					</li>
 				</ul>
 			</nav>
