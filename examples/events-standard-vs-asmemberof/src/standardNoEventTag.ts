@@ -3,7 +3,7 @@ import { EventEmitter } from 'events';
 type BeforeExitListener3 = (code: number) => void;
 type DisconnectListener3 = () => void;
 
-export interface MyEmitter3 extends EventEmitter {
+export interface Emitter3 extends EventEmitter {
 
   addListener(event: 'beforeExit', listener: BeforeExitListener3): this;  
   
