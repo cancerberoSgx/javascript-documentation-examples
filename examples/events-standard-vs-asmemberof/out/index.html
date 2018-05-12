@@ -74,21 +74,6 @@
 					<li>if there are alias to <code>addListener</code> method (like in node.js EventEmitter), then it gets more confusing - now more methods &quot;disappear&quot;,  and more events with strange names appear</li>
 					<li>I would say that not using @event at all generates less confusing descriptions. TODO: link to Emitter3</li>
 				</ul>
-				<p>From discussion : <a href="https://github.com/TypeStrong/typedoc/issues/136">https://github.com/TypeStrong/typedoc/issues/136</a> in TypeDoc: </p>
-				<p>&quot;
-				@event param is intended to be used additionally to any other doc tags, something like this:</p>
-				<pre><code class="lang-ts"><span class="hljs-comment">/**
- * Subscribe for a general event by name.
- * @param event The name of the event to subscribe for.
- * @param The handler called when the event occurs.
- * @event
- */</span>
-on(event: <span class="hljs-built_in">string</span>, handler: <span class="hljs-function">(<span class="hljs-params">e: observable.EventData</span>) =&gt;</span> <span class="hljs-built_in">void</span>): <span class="hljs-built_in">void</span>;
-</code></pre>
-				<p>As events are not part of the TypeScript language the @event tag should just give a slightly hint in the documentation. It can be used in conjunction with any code element, e.g. in TypeDoc we use the @event tag with static variables.
-				&quot;</p>
-				<p>This is example standardEventTag</p>
-				<p>asMemberOfEventTag is similar, but: the listener types are renamed to match the event name and the @event and @asMemberOf tags are added to them not to the method addListener. </p>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
@@ -97,19 +82,31 @@ on(event: <span class="hljs-built_in">string</span>, handler: <span class="hljs-
 					<li class="globals  ">
 						<a href="globals.html"><em>Globals</em></a>
 					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_asmemberofeventtag_.html">"as<wbr>Member<wbr>OfEvent<wbr>Tag"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_standardeventtag_.html">"standard<wbr>Event<wbr>Tag"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_standardnoeventtag_.html">"standard<wbr>NoEvent<wbr>Tag"</a>
-					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/emitter2.html" class="tsd-kind-icon">Emitter2</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/myemitter1.html" class="tsd-kind-icon">My<wbr>Emitter1</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/myemitter3.html" class="tsd-kind-icon">My<wbr>Emitter3</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-is-not-exported">
+						<a href="globals.html#beforeexitlistener1" class="tsd-kind-icon">Before<wbr>Exit<wbr>Listener1</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-is-not-exported">
+						<a href="globals.html#beforeexitlistener3" class="tsd-kind-icon">Before<wbr>Exit<wbr>Listener3</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-is-not-exported">
+						<a href="globals.html#disconnectlistener1" class="tsd-kind-icon">Disconnect<wbr>Listener1</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-is-not-exported">
+						<a href="globals.html#disconnectlistener3" class="tsd-kind-icon">Disconnect<wbr>Listener3</a>
+					</li>
 				</ul>
 			</nav>
 		</div>
