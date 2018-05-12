@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Shape | TypeDoc Tutorial</title>
+	<title>Game | TypeDoc Tutorial</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,48 +54,22 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="shape.html">Shape</a>
+					<a href="game.html">Game</a>
 				</li>
 			</ul>
-			<h1>Interface Shape&lt;U&gt;</h1>
+			<h1>Class Game</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>A shape is the form of an object or its external boundary, outline</p>
-					</div>
-				</div>
-			</section>
-			<section class="tsd-panel tsd-type-parameters">
-				<h3>Type parameters</h3>
-				<ul class="tsd-type-parameters">
-					<li>
-						<h4>U<span class="tsd-signature-symbol">: </span><a href="unit.html" class="tsd-signature-type">Unit</a></h4>
-						<div class="tsd-comment tsd-typography">
-							<div class="lead">
-								<p>The unit used to measure the properties of this type of shape</p>
-							</div>
-						</div>
-					</li>
-				</ul>
-			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">Shape</span>
+						<span class="target">Game</span>
 					</li>
-				</ul>
-			</section>
-			<section class="tsd-panel">
-				<h3>Implemented by</h3>
-				<ul class="tsd-hierarchy">
-					<li><a href="../classes/mycustomrectangle.html" class="tsd-signature-type">MyCustomRectangle</a></li>
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -103,32 +77,41 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section tsd-is-not-exported">
-							<h3>Methods</h3>
+							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported"><a href="shape.html#area" class="tsd-kind-icon">area</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-not-exported"><a href="game.html#config" class="tsd-kind-icon">config</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-not-exported"><a href="game.html#state" class="tsd-kind-icon">state</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
-				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
-					<a name="area" class="tsd-anchor"></a>
-					<h3>area</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">area<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/cancerberoSgx/javascript-documentation-examples/blob/2761188/examples/typedoc-tutorial-basic/src/index.ts#L128">index.ts:128</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
-						</li>
-					</ul>
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-not-exported">
+					<a name="config" class="tsd-anchor"></a>
+					<h3>config</h3>
+					<div class="tsd-signature tsd-kind-icon">config<span class="tsd-signature-symbol">:</span> <a href="../globals.html#gameconfiguration" class="tsd-signature-type">GameConfiguration</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/cancerberoSgx/javascript-documentation-examples/blob/2761188/examples/typedoc-tutorial-basic/src/index.ts#L191">index.ts:191</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-not-exported">
+					<a name="state" class="tsd-anchor"></a>
+					<h3>state</h3>
+					<div class="tsd-signature tsd-kind-icon">state<span class="tsd-signature-symbol">:</span> <a href="../enums/gamestate.html" class="tsd-signature-type">GameState</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/cancerberoSgx/javascript-documentation-examples/blob/2761188/examples/typedoc-tutorial-basic/src/index.ts#L190">index.ts:190</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>State of the game at this moment</p>
+						</div>
+					</div>
 				</section>
 			</section>
 		</div>
@@ -146,58 +129,61 @@
 						<a href="../enums/gamestate.html" class="tsd-kind-icon">Game<wbr>State</a>
 					</li>
 					<li class=" tsd-kind-class tsd-is-not-exported">
-						<a href="../classes/file.html" class="tsd-kind-icon">File</a>
+						<a href="file.html" class="tsd-kind-icon">File</a>
 					</li>
 					<li class=" tsd-kind-class tsd-is-not-exported">
-						<a href="../classes/fruit.html" class="tsd-kind-icon">Fruit</a>
-					</li>
-					<li class=" tsd-kind-class tsd-is-not-exported">
-						<a href="../classes/game.html" class="tsd-kind-icon">Game</a>
-					</li>
-					<li class=" tsd-kind-class tsd-is-not-exported">
-						<a href="../classes/mycustomrectangle.html" class="tsd-kind-icon">My<wbr>Custom<wbr>Rectangle</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-is-not-exported">
-						<a href="car.html" class="tsd-kind-icon">Car</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-is-not-exported">
-						<a href="centimeter.html" class="tsd-kind-icon">Centimeter</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-is-not-exported">
-						<a href="engine.html" class="tsd-kind-icon">Engine</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-is-not-exported">
-						<a href="fooapplication.html" class="tsd-kind-icon">Foo<wbr>Application</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-is-not-exported">
-						<a href="foooptions.html" class="tsd-kind-icon">Foo<wbr>Options</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-is-not-exported">
-						<a href="gameunit.html" class="tsd-kind-icon">Game<wbr>Unit</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-is-not-exported">
-						<a href="route.html" class="tsd-kind-icon">Route</a>
+						<a href="fruit.html" class="tsd-kind-icon">Fruit</a>
 					</li>
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-interface tsd-has-type-parameter tsd-is-not-exported">
-						<a href="shape.html" class="tsd-kind-icon">Shape</a>
+					<li class="current tsd-kind-class tsd-is-not-exported">
+						<a href="game.html" class="tsd-kind-icon">Game</a>
 						<ul>
-							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
-								<a href="shape.html#area" class="tsd-kind-icon">area</a>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-not-exported">
+								<a href="game.html#config" class="tsd-kind-icon">config</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-not-exported">
+								<a href="game.html#state" class="tsd-kind-icon">state</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-interface tsd-is-not-exported">
-						<a href="somethingsareignored.html" class="tsd-kind-icon">Some<wbr>Things<wbr>Are<wbr>Ignored</a>
+					<li class=" tsd-kind-class tsd-is-not-exported">
+						<a href="mycustomrectangle.html" class="tsd-kind-icon">My<wbr>Custom<wbr>Rectangle</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-is-not-exported">
-						<a href="unit.html" class="tsd-kind-icon">Unit</a>
+						<a href="../interfaces/car.html" class="tsd-kind-icon">Car</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-is-not-exported">
-						<a href="_dummy_.html" class="tsd-kind-icon">_<wbr>Dummy_</a>
+						<a href="../interfaces/centimeter.html" class="tsd-kind-icon">Centimeter</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-is-not-exported">
+						<a href="../interfaces/engine.html" class="tsd-kind-icon">Engine</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-is-not-exported">
+						<a href="../interfaces/fooapplication.html" class="tsd-kind-icon">Foo<wbr>Application</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-is-not-exported">
+						<a href="../interfaces/foooptions.html" class="tsd-kind-icon">Foo<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-is-not-exported">
+						<a href="../interfaces/gameunit.html" class="tsd-kind-icon">Game<wbr>Unit</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-is-not-exported">
+						<a href="../interfaces/route.html" class="tsd-kind-icon">Route</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter tsd-is-not-exported">
+						<a href="../interfaces/shape.html" class="tsd-kind-icon">Shape</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-is-not-exported">
+						<a href="../interfaces/somethingsareignored.html" class="tsd-kind-icon">Some<wbr>Things<wbr>Are<wbr>Ignored</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-is-not-exported">
+						<a href="../interfaces/unit.html" class="tsd-kind-icon">Unit</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-is-not-exported">
+						<a href="../interfaces/_dummy_.html" class="tsd-kind-icon">_<wbr>Dummy_</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-is-not-exported">
 						<a href="../globals.html#gameconfiguration" class="tsd-kind-icon">Game<wbr>Configuration</a>

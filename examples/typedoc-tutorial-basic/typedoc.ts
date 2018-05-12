@@ -10,8 +10,8 @@ module.exports = {
   excludeProtected: true,
   excludeExternals: true,
   readme: 'README.md',
-  name: 'javascript-documentation-examples-events-001',
+  name: 'TypeDoc Tutorial',
   ignoreCompilerErrors: true,
-  plugin: 'typedoc-plugin-respect-name-tag',
+  // plugin: 'none',
   listInvalidSymbolLinks: true,
 };

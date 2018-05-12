@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Shape | TypeDoc Tutorial</title>
+	<title>GameUnit | TypeDoc Tutorial</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,48 +54,22 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="shape.html">Shape</a>
+					<a href="gameunit.html">GameUnit</a>
 				</li>
 			</ul>
-			<h1>Interface Shape&lt;U&gt;</h1>
+			<h1>Interface GameUnit</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>A shape is the form of an object or its external boundary, outline</p>
-					</div>
-				</div>
-			</section>
-			<section class="tsd-panel tsd-type-parameters">
-				<h3>Type parameters</h3>
-				<ul class="tsd-type-parameters">
-					<li>
-						<h4>U<span class="tsd-signature-symbol">: </span><a href="unit.html" class="tsd-signature-type">Unit</a></h4>
-						<div class="tsd-comment tsd-typography">
-							<div class="lead">
-								<p>The unit used to measure the properties of this type of shape</p>
-							</div>
-						</div>
-					</li>
-				</ul>
-			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">Shape</span>
+						<span class="target">GameUnit</span>
 					</li>
-				</ul>
-			</section>
-			<section class="tsd-panel">
-				<h3>Implemented by</h3>
-				<ul class="tsd-hierarchy">
-					<li><a href="../classes/mycustomrectangle.html" class="tsd-signature-type">MyCustomRectangle</a></li>
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -103,32 +77,67 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section tsd-is-not-exported">
-							<h3>Methods</h3>
+							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported"><a href="shape.html#area" class="tsd-kind-icon">area</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="gameunit.html#id" class="tsd-kind-icon">id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="gameunit.html#status" class="tsd-kind-icon">status</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
-				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
-					<a name="area" class="tsd-anchor"></a>
-					<h3>area</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">area<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/cancerberoSgx/javascript-documentation-examples/blob/2761188/examples/typedoc-tutorial-basic/src/index.ts#L128">index.ts:128</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
-						</li>
-					</ul>
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
+					<a name="id" class="tsd-anchor"></a>
+					<h3>id</h3>
+					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/cancerberoSgx/javascript-documentation-examples/blob/2761188/examples/typedoc-tutorial-basic/src/index.ts#L174">index.ts:174</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>unique id of this unit in the board</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
+					<a name="status" class="tsd-anchor"></a>
+					<h3>status</h3>
+					<div class="tsd-signature tsd-kind-icon">status<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/cancerberoSgx/javascript-documentation-examples/blob/2761188/examples/typedoc-tutorial-basic/src/index.ts#L179">index.ts:179</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Status of this unit in the board</p>
+						</div>
+					</div>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter">
+								<h5>health<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>must be between 0 and 1</p>
+									</div>
+								</div>
+							</li>
+							<li class="tsd-parameter">
+								<h5>kills<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>the ids of units killed by this unit</p>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
 				</section>
 			</section>
 		</div>
@@ -172,24 +181,27 @@
 					<li class=" tsd-kind-interface tsd-is-not-exported">
 						<a href="foooptions.html" class="tsd-kind-icon">Foo<wbr>Options</a>
 					</li>
-					<li class=" tsd-kind-interface tsd-is-not-exported">
-						<a href="gameunit.html" class="tsd-kind-icon">Game<wbr>Unit</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-is-not-exported">
-						<a href="route.html" class="tsd-kind-icon">Route</a>
-					</li>
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-interface tsd-has-type-parameter tsd-is-not-exported">
-						<a href="shape.html" class="tsd-kind-icon">Shape</a>
+					<li class="current tsd-kind-interface tsd-is-not-exported">
+						<a href="gameunit.html" class="tsd-kind-icon">Game<wbr>Unit</a>
 						<ul>
-							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
-								<a href="shape.html#area" class="tsd-kind-icon">area</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
+								<a href="gameunit.html#id" class="tsd-kind-icon">id</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
+								<a href="gameunit.html#status" class="tsd-kind-icon">status</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-interface tsd-is-not-exported">
+						<a href="route.html" class="tsd-kind-icon">Route</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter tsd-is-not-exported">
+						<a href="shape.html" class="tsd-kind-icon">Shape</a>
+					</li>
 					<li class=" tsd-kind-interface tsd-is-not-exported">
 						<a href="somethingsareignored.html" class="tsd-kind-icon">Some<wbr>Things<wbr>Are<wbr>Ignored</a>
 					</li>

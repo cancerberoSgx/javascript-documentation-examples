@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>javascript-documentation-examples-events-001</title>
+	<title>TypeDoc Tutorial</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="assets/css/main.css">
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="index.html" class="title">javascript-documentation-examples-events-001</a>
+					<a href="index.html" class="title">TypeDoc Tutorial</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -54,7 +54,7 @@
 					<a href="globals.html">Globals</a>
 				</li>
 			</ul>
-			<h1> javascript-documentation-examples-events-001</h1>
+			<h1> TypeDoc Tutorial</h1>
 		</div>
 	</div>
 </header>
@@ -68,8 +68,10 @@
 					<li><a href="https://cancerberosgx.github.io/javascript-documentation-examples/examples/typedoc-tutorial-basic/docs/tutorial.md">Tutorial markdown output</a></li>
 					<li>The api docs generated from the <a href="https://cancerberosgx.github.io/javascript-documentation-examples/examples/typedoc-tutorial-basic/docs/tutorial.md">typedoc-tutorial-basic</a></li>
 				</ul>
-				<h1 id="todo-">TODO:</h1>
-				<p>markdown template : This works fine and is active: <a href="https://github.com/tgreyjs/typedoc-plugin-markdown">https://github.com/tgreyjs/typedoc-plugin-markdown</a></p>
+				<h1 id="build">Build</h1>
+				<pre><code class="lang-sh">yarn install
+yarn run doc
+</code></pre>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
@@ -82,11 +84,17 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-enum tsd-is-not-exported">
+						<a href="enums/gamestate.html" class="tsd-kind-icon">Game<wbr>State</a>
+					</li>
 					<li class=" tsd-kind-class tsd-is-not-exported">
 						<a href="classes/file.html" class="tsd-kind-icon">File</a>
 					</li>
 					<li class=" tsd-kind-class tsd-is-not-exported">
 						<a href="classes/fruit.html" class="tsd-kind-icon">Fruit</a>
+					</li>
+					<li class=" tsd-kind-class tsd-is-not-exported">
+						<a href="classes/game.html" class="tsd-kind-icon">Game</a>
 					</li>
 					<li class=" tsd-kind-class tsd-is-not-exported">
 						<a href="classes/mycustomrectangle.html" class="tsd-kind-icon">My<wbr>Custom<wbr>Rectangle</a>
@@ -101,6 +109,15 @@
 						<a href="interfaces/engine.html" class="tsd-kind-icon">Engine</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-is-not-exported">
+						<a href="interfaces/fooapplication.html" class="tsd-kind-icon">Foo<wbr>Application</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-is-not-exported">
+						<a href="interfaces/foooptions.html" class="tsd-kind-icon">Foo<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-is-not-exported">
+						<a href="interfaces/gameunit.html" class="tsd-kind-icon">Game<wbr>Unit</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-is-not-exported">
 						<a href="interfaces/route.html" class="tsd-kind-icon">Route</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-has-type-parameter tsd-is-not-exported">
@@ -112,11 +129,20 @@
 					<li class=" tsd-kind-interface tsd-is-not-exported">
 						<a href="interfaces/unit.html" class="tsd-kind-icon">Unit</a>
 					</li>
+					<li class=" tsd-kind-interface tsd-is-not-exported">
+						<a href="interfaces/_dummy_.html" class="tsd-kind-icon">_<wbr>Dummy_</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-is-not-exported">
+						<a href="globals.html#gameconfiguration" class="tsd-kind-icon">Game<wbr>Configuration</a>
+					</li>
 					<li class=" tsd-kind-function tsd-is-not-exported">
 						<a href="globals.html#listfiles" class="tsd-kind-icon">list<wbr>Files</a>
 					</li>
 					<li class=" tsd-kind-function tsd-is-not-exported">
 						<a href="globals.html#minify" class="tsd-kind-icon">minify</a>
+					</li>
+					<li class=" tsd-kind-function tsd-is-not-exported">
+						<a href="globals.html#startapplication" class="tsd-kind-icon">start<wbr>Application</a>
 					</li>
 				</ul>
 			</nav>

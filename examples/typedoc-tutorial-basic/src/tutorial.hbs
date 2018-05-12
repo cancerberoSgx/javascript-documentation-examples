@@ -1,8 +1,8 @@
----
+{{!-- --- uncomment this for typedoc-site project!
 layout: 'guide'
 title: 'Tutorial'
 menuOrder: 5
----
+--- --}}
 
 
 
@@ -85,27 +85,32 @@ function minify(){}
 
 
 
+
+
 {{/text}}{{#text}}
 ### Tags
 
-TypeDoc will extract the information of entities found in TypeScript source code such as classes, methods, functions, etc, and will associating the comment descriptions, if any, to each entity. But sometimes, we want to  more than one entity in one comment, or a high level concept that TypeScript language simply doesn't support and in those cases we use what we call `tags` (also known as comment annotations). 
+TypeDoc will extract the information of entities found in TypeScript source code such as classes, methods, functions, names, types, etc, and will associating the comment descriptions, if any, to each entity. But sometimes, we want to describe more than one entity in a comment, or often, a high level concept that the TypeScript language simply doesn't support as we will see. In those cases we use what we call **comment `tags`** (also known as comment annotations). 
 
-Tags are words in the comment description that start with `@`. For example, as we will see, when describing a function, we must describe its subparts like parameters and return value and for doing that in the same comment, we use @tags for identify each subpart, for example: 
+Tags are speceial words in comment descriptions that start with `@`. For example, when describing a function, we must describe its subparts like parameters and return value and for doing that in the same comment, we use tags for identify each subpart, for example: 
 
-{{/text}}{{#code}}{{#code link="globals.html#startApplication"}}
+{{/text}}{{#code link="globals.html#startapplication"}}
 /**
  * Starts the application with given options
  * @param options options to start the application with
  * @param app the application to start
  * @returns a promise resolved true when the application is ready
  */
-function startApplication(app: FooApplication, options: FooOptions): Promise<boolean>{
-  return Promise.resolve();
-}
+declare function startApplication(app: FooApplication, options: FooOptions): Promise<boolean>
 {{/code}}{{#text}}
 
 
 As you can see, we described the entire method declaration in a single comment, starting with the method description, its parameters and last the return value. We needed to use tags `@param` and `@returns` to indicate which part of the method each description is documenting. 
+
+Here is the complete [list of tags](http://typedoc.org/guides/doccomments/) supported by TypeDoc.
+
+
+
 
 
 
@@ -153,18 +158,8 @@ If you are working with interfaces (hiding implementation details from your user
 
 Document classes only to give details about the implementation, if that's what you want, but **make sure you don't repeat information that's already in the interface**
 
-Otherwise, if you don't work with interfaces, you can instruct typescript with the following options in `tsconfig.json` so it automatically generates .d.ts files with interfaces and the typedoc comments from the classes in your `.ts` files:
 
-```json
-  "compilerOptions": {
-    ...
-    "declaration": true,
-    "removeComments": true,
-    ...
-  }
-```
 
-After that you configure typedoc tool to extract documentation from generated `.d.ts` files as shown [in the configuration section](#configuration)
 
 
 
@@ -173,6 +168,61 @@ After that you configure typedoc tool to extract documentation from generated `.
 {{/text}}{{#text}}
 ## Properties
 
+You can describe properties of classes, interfaces, objects, enums, etc by adding a `/**` comment just before the property declaration. In the following example we document properties of several entities, including interface, class, enum, and type declarations:
+
+{{/text}}{{#code}}
+interface GameUnit {
+  /** unique id of this unit in the board */
+  id: string
+  /** 
+   * Status of this unit in the board 
+   * 
+   */
+  status: {
+    /** must be between 0 and 1 */
+    health: number, 
+    /** the ids of units killed by this unit */
+    kills: number[]
+  }
+}
+class Game {
+  /**
+   * State of the game at this moment
+   */
+  public state: GameState
+  config: GameConfiguration
+}
+enum GameState {
+  /** game started but user paused it */
+  paused, 
+  /** victory condition reached */
+  ended, 
+  /** game is being played right now */
+  playing, 
+  /** game didn't started yet - player is choosing initial race? */
+  notStarted,
+}
+declare type GameConfiguration = {
+  /** number of columns the board haves */
+  boardWith: number
+  /** number of rows the board haves */
+  boardHeight: number
+  /** board fog of war initial configuration */
+  fogOfWar?: string[]
+}
+{{/code}}{{#text}}
+
+TypeDoc Output: 
+
+ * interface Unit {{link url="interfaces/gameunit.html"}} 
+ * Class game {{link url="classes/game.html"}} 
+ * enum GameState {{link url="enums/gamestate.html"}}
+ * type declaration GameConfiguration {{link url="globals.html#gameconfiguration"}}
+
+Notes: 
+
+ * We didn't document types, names or modifiers of the properties, typedoc will do that automatically. 
+ * We even added descriptions to `Unit.status` property which type is an object literal. Is unlikely you want to document the properties of object literals like that (you probably want to define interfaces) but just in case it's supported. ee how it looks in the output: {{link url="interfaces/gameunit.html#status"}}
 
 
 
@@ -456,3 +506,9 @@ h1, h2, h3, h4, h5, h6{
   text-transform: none;
 }</style>
 {{/text}}
+
+{{#code}}
+// TypeScript types needed for some snippets - defined here to not add noise in the snippets
+interface FooApplication{}
+interface FooOptions{}
+{{/code}}
