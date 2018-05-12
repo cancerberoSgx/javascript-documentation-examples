@@ -81,6 +81,13 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-not-exported"><a href="game.html#config" class="tsd-kind-icon">config</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-not-exported"><a href="game.html#state" class="tsd-kind-icon">state</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static tsd-is-not-exported"><a href="game.html#default_state" class="tsd-kind-icon">DEFAULT_<wbr>STATE</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section tsd-is-not-exported">
+							<h3>Accessors</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-not-exported"><a href="game.html#currenttime" class="tsd-kind-icon">current<wbr>Time</a></li>
 							</ul>
 						</section>
 					</div>
@@ -94,7 +101,7 @@
 					<div class="tsd-signature tsd-kind-icon">config<span class="tsd-signature-symbol">:</span> <a href="../globals.html#gameconfiguration" class="tsd-signature-type">GameConfiguration</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cancerberoSgx/javascript-documentation-examples/blob/2761188/examples/typedoc-tutorial-basic/src/index.ts#L191">index.ts:191</a></li>
+							<li>Defined in <a href="https://github.com/cancerberoSgx/javascript-documentation-examples/blob/ccc6e87/examples/typedoc-tutorial-basic/src/index.ts#L209">index.ts:209</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -104,7 +111,7 @@
 					<div class="tsd-signature tsd-kind-icon">state<span class="tsd-signature-symbol">:</span> <a href="../enums/gamestate.html" class="tsd-signature-type">GameState</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cancerberoSgx/javascript-documentation-examples/blob/2761188/examples/typedoc-tutorial-basic/src/index.ts#L190">index.ts:190</a></li>
+							<li>Defined in <a href="https://github.com/cancerberoSgx/javascript-documentation-examples/blob/ccc6e87/examples/typedoc-tutorial-basic/src/index.ts#L208">index.ts:208</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -112,6 +119,66 @@
 							<p>State of the game at this moment</p>
 						</div>
 					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static tsd-is-not-exported">
+					<a name="default_state" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> DEFAULT_<wbr>STATE</h3>
+					<div class="tsd-signature tsd-kind-icon">DEFAULT_<wbr>STATE<span class="tsd-signature-symbol">:</span> <a href="../enums/gamestate.html" class="tsd-signature-type">GameState</a><span class="tsd-signature-symbol"> =&nbsp;GameState.notStarted</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/cancerberoSgx/javascript-documentation-examples/blob/ccc6e87/examples/typedoc-tutorial-basic/src/index.ts#L216">index.ts:216</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>default board with and height if none is provided</p>
+						</div>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
+				<h2>Accessors</h2>
+				<section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class tsd-is-not-exported">
+					<a name="currenttime" class="tsd-anchor"></a>
+					<h3>current<wbr>Time</h3>
+					<ul class="tsd-signatures tsd-kind-accessor tsd-parent-kind-class tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> currentTime<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Date</span></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> currentTime<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Date</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/cancerberoSgx/javascript-documentation-examples/blob/ccc6e87/examples/typedoc-tutorial-basic/src/index.ts#L213">index.ts:213</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>the actual current time elapsed since this game was started not counting when it was paused</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Date</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/cancerberoSgx/javascript-documentation-examples/blob/ccc6e87/examples/typedoc-tutorial-basic/src/index.ts#L214">index.ts:214</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>the actual current time elapsed since this game was started not counting when it was paused</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>value: <span class="tsd-signature-type">Date</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
 				</section>
 			</section>
 		</div>
@@ -128,7 +195,7 @@
 					<li class=" tsd-kind-enum tsd-is-not-exported">
 						<a href="../enums/gamestate.html" class="tsd-kind-icon">Game<wbr>State</a>
 					</li>
-					<li class=" tsd-kind-class tsd-is-not-exported">
+					<li class=" tsd-kind-class tsd-has-type-parameter tsd-is-not-exported">
 						<a href="file.html" class="tsd-kind-icon">File</a>
 					</li>
 					<li class=" tsd-kind-class tsd-is-not-exported">
@@ -145,12 +212,24 @@
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-not-exported">
 								<a href="game.html#state" class="tsd-kind-icon">state</a>
 							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static tsd-is-not-exported">
+								<a href="game.html#default_state" class="tsd-kind-icon">DEFAULT_<wbr>STATE</a>
+							</li>
+							<li class=" tsd-kind-accessor tsd-parent-kind-class tsd-is-not-exported">
+								<a href="game.html#currenttime" class="tsd-kind-icon">current<wbr>Time</a>
+							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
 					<li class=" tsd-kind-class tsd-is-not-exported">
+						<a href="gamecontainer.html" class="tsd-kind-icon">Game<wbr>Container</a>
+					</li>
+					<li class=" tsd-kind-class tsd-is-not-exported">
 						<a href="mycustomrectangle.html" class="tsd-kind-icon">My<wbr>Custom<wbr>Rectangle</a>
+					</li>
+					<li class=" tsd-kind-class tsd-is-not-exported">
+						<a href="readable2.html" class="tsd-kind-icon">Readable2</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-is-not-exported">
 						<a href="../interfaces/car.html" class="tsd-kind-icon">Car</a>
@@ -162,6 +241,12 @@
 						<a href="../interfaces/engine.html" class="tsd-kind-icon">Engine</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-is-not-exported">
+						<a href="../interfaces/fileaccess.html" class="tsd-kind-icon">File<wbr>Access</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter tsd-is-not-exported">
+						<a href="../interfaces/fileemitter.html" class="tsd-kind-icon">File<wbr>Emitter</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-is-not-exported">
 						<a href="../interfaces/fooapplication.html" class="tsd-kind-icon">Foo<wbr>Application</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-is-not-exported">
@@ -169,6 +254,15 @@
 					</li>
 					<li class=" tsd-kind-interface tsd-is-not-exported">
 						<a href="../interfaces/gameunit.html" class="tsd-kind-icon">Game<wbr>Unit</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-is-not-exported">
+						<a href="../interfaces/readable0.html" class="tsd-kind-icon">Readable0</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-is-not-exported">
+						<a href="../interfaces/readable1.html" class="tsd-kind-icon">Readable1</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-is-not-exported">
+						<a href="../interfaces/readable3.html" class="tsd-kind-icon">Readable3</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-is-not-exported">
 						<a href="../interfaces/route.html" class="tsd-kind-icon">Route</a>
@@ -182,13 +276,13 @@
 					<li class=" tsd-kind-interface tsd-is-not-exported">
 						<a href="../interfaces/unit.html" class="tsd-kind-icon">Unit</a>
 					</li>
-					<li class=" tsd-kind-interface tsd-is-not-exported">
-						<a href="../interfaces/_dummy_.html" class="tsd-kind-icon">_<wbr>Dummy_</a>
-					</li>
 					<li class=" tsd-kind-type-alias tsd-is-not-exported">
 						<a href="../globals.html#gameconfiguration" class="tsd-kind-icon">Game<wbr>Configuration</a>
 					</li>
-					<li class=" tsd-kind-function tsd-is-not-exported">
+					<li class=" tsd-kind-variable">
+						<a href="../globals.html#gamecontainer" class="tsd-kind-icon">game<wbr>Container</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
 						<a href="../globals.html#listfiles" class="tsd-kind-icon">list<wbr>Files</a>
 					</li>
 					<li class=" tsd-kind-function tsd-is-not-exported">

@@ -12,6 +12,6 @@ module.exports = {
   readme: 'README.md',
   name: 'TypeDoc Tutorial',
   ignoreCompilerErrors: true,
-  // plugin: 'none',
+  plugin: 'typedoc-plugin-as-member-of',
   listInvalidSymbolLinks: true,
 };

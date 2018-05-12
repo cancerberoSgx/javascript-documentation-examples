@@ -1,5 +1,16 @@
 
 
+// <span class="invisible">
+import { Stream } from 'stream';
+import { EventEmitter } from 'events';
+interface FooApplication{}
+interface FooOptions{}
+class GameContainer{}
+interface FileAccess{}
+
+// </span>
+
+
 
 
 // # TypeDoc Tutorial
@@ -22,10 +33,10 @@
 
 // ## TypeDoc Introduction
 
-// This section is oriented to those with no experience with any jsdoc-like technology. If you are familiar with jsdoc, javadoc or related technology, skip it and proceed to [next section](#classes-and-interfaces). 
+// This section is oriented to those with no experience with any JsDoc-like technology. If you are familiar with JsDoc, javadoc or related technology, skip it and proceed to [next section](#classes-and-interfaces). 
 
 // TypeDoc is an API documentation generator for TypeScript projects, similar 
-// to [jsdoc](http://usejsdoc.org/) or [javadoc](https://en.wikipedia.org/wiki/Javadoc).
+// to [JsDoc](http://usejsdoc.org/) or [javadoc](https://en.wikipedia.org/wiki/Javadoc).
 
 // Basically, you add documentation comments directly to your source code, right alongside the code itself. The TypeDoc tool will scan your source code and generate an HTML documentation website for you.
 
@@ -33,7 +44,7 @@
 
 // Although configurable, TypeDoc will generate documentation of everything in your source, even things that are not documented like their names, types and relationships. 
 
-// Unlike JsDoc, with TypeDoc you only take care of descriptions and you never document types, names or member modifiers: that information is already in the TypeScript code!
+// Unlike JsDoc, with TypeDoc you only take care of descriptions and you never document types, names member modifiers or any other data that is already expressed in the TypeScript code: that work is automatically performed by the TypeDoc tool. 
 
 
 
@@ -88,7 +99,7 @@ function minify(){}
 
 // TypeDoc will extract the information of entities found in TypeScript source code such as classes, methods, functions, names, types, etc, and will associating the comment descriptions, if any, to each entity. But sometimes, we want to describe more than one entity in a comment, or often, a high level concept that the TypeScript language simply doesn't support as we will see. In those cases we use what we call **comment `tags`** (also known as comment annotations). 
 
-// Tags are speceial words in comment descriptions that start with `@`. For example, when describing a function, we must describe its subparts like parameters and return value and for doing that in the same comment, we use tags for identify each subpart, for example: 
+// Tags are special words in comment descriptions that start with `@`. For example, when describing a function, we must describe its subparts like parameters and return value and for doing that in the same comment, we use tags for identify each subpart, for example: 
 
 
 /**
@@ -104,7 +115,7 @@ declare function startApplication(app: FooApplication, options: FooOptions): Pro
 
 // As you can see, we described the entire method declaration in a single comment, starting with the method description, its parameters and last the return value. We needed to use tags `@param` and `@returns` to indicate which part of the method each description is documenting. 
 
-// Here is the complete [list of tags](http://typedoc.org/guides/doccomments/) supported by TypeDoc.
+// The complete list of tags supported by TypeDoc is here: [list of tags](http://typedoc.org/guides/doccomments/). 
 
 
 
@@ -147,14 +158,9 @@ class MyCustomRectangle implements Shape<Centimeter> {
 
 //  * We used the double star comment (`/**`) just before the interface declaration
 //  * The first line of the comment is the interface description
-//  * We documented the interface's generic type `U` using the expression `@param U` followed by its description. 
+//  * We documented the interface's generic type `U` using the tag `@param` then the name of the type parameter `U` followed by its description. 
 
-
-// ### Classes vs interfaces in documentation
-
-// If you are working with interfaces (hiding implementation details from your users), then you should **only document interfaces instead of classes**. 
-
-// Document classes only to give details about the implementation, if that's what you want, but **make sure you don't repeat information that's already in the interface**
+// **TIP: classes vs interfaces in documentation** . If you are working with interfaces (hiding implementation details from your users), then you should **only document interfaces instead of classes**. Document classes only to give details about the implementation, if that's what you want, but **make sure you don't repeat information that's already in the interface**
 
 
 
@@ -164,9 +170,11 @@ class MyCustomRectangle implements Shape<Centimeter> {
 
 
 
-// ## Properties
+// ## Properties and Variables
 
-// You can describe properties of classes, interfaces, objects, enums, etc by adding a `/**` comment just before the property declaration. In the following example we document properties of several entities, including interface, class, enum, and type declarations:
+// You can describe properties of classes, interfaces, objects, enums, etc by adding a `/**` comment just before the property declaration. The same for variables declared with `var`, `const` or `let`. 
+
+// In the following example we document properties of several entities, including `interface`, `class`, `enum`, `type` and variable declarations:
 
 
 interface GameUnit {
@@ -183,13 +191,6 @@ interface GameUnit {
     kills: number[]
   }
 }
-class Game {
-  /**
-   * State of the game at this moment
-   */
-  public state: GameState
-  config: GameConfiguration
-}
 enum GameState {
   /** game started but user paused it */
   paused, 
@@ -200,14 +201,31 @@ enum GameState {
   /** game didn't started yet - player is choosing initial race? */
   notStarted,
 }
+class Game {
+  /**
+   * State of the game at this moment
+   */
+  state: GameState
+  config: GameConfiguration
+
+  private _currentTime: Date
+  /** the actual current time elapsed since this game was started not counting when it was paused */
+  get currentTime():Date { return this._currentTime; }
+  set currentTime(value:Date) { this._currentTime = value; }
+  /** default board with and height if none is provided */
+  static DEFAULT_STATE = GameState.notStarted
+
+}
 declare type GameConfiguration = {
   /** number of columns the board haves */
-  boardWith: number
+  boardWith?: number
   /** number of rows the board haves */
-  boardHeight: number
+  boardHeight?: number
   /** board fog of war initial configuration */
   fogOfWar?: string[]
 }
+/** the global game singleton */
+export const gameContainer = new GameContainer()
 
 
 
@@ -222,6 +240,9 @@ declare type GameConfiguration = {
 
 //  * We didn't document types, names or modifiers of the properties, typedoc will do that automatically. 
 //  * We even added descriptions to `Unit.status` property which type is an object literal. Is unlikely you want to document the properties of object literals like that (you probably want to define interfaces) but just in case it's supported. ee how it looks in the output: [interfaces/gameunit.html#status](../../interfaces/gameunit.html#status)
+//  * Property accessors are documented like a property and is not necessary to document both the setter and the getter, is enough to document only one of them: [classes/game.html#currenttime](../../classes/game.html#currenttime) 
+//  * At the end of the example we documented a global variable, although is unlikely to document variables, it's also possible : [globals.html#gamecontainer](../../globals.html#gamecontainer) . 
+
 
 
 
@@ -238,22 +259,22 @@ declare type GameConfiguration = {
 
 // The syntax of a method or function TypeDoc comment is as follows: first the method description and then the rest. The order of parameters is not important.
 
-// **Tip**: As everything in TypeDoc, parameters and return value descriptions are optional - for example if you dont document one parameter its documentation will be still generated with its name and type. This is very useful specially when you use types and give meaningful names so their meaning so obvious than a description is not necessary. 
-
 // Let's go straight to an example that shows a lot of combinations regarding this:
 
 
-import { Stream } from 'stream';
-class File {
+/**
+ * @param T the type of access this file has on IO
+ */
+class File<T extends FileAccess> {
   public constructor(fs:number) {} // constructor, no docs
   /**
    * Creates a new file in given path and given content
    * @param path absolute path of the file to create
    * @param content content of the new file or empty file if nothing given
-   * @param T Exercitation enim qui id dolore eiusmod consectetur ex dolore.
-   * @return Velit labore nostrud qui sint pariatur aute deserunt laboris tempor ex amet.
+   * @param T the type of access created file will have on IO
+   * @return a new description of the access type the new file has
    */
-  public static create<T>(path: string, content?: string | Stream, 
+  public static create<T extends FileAccess>(path: string, content?: string | Stream, 
     permissions: string = '666'): T {
     return null;
   }
@@ -262,19 +283,23 @@ class File {
    * @param interval how often file is read in the polling
    * @param predicate polling will end when true
    */
-  private poll(interval:number, predicate: () => boolean):void {}
+  private poll(interval:number, predicate: (t: T) => boolean):void {}
 }
-
+interface FileEmitter<T> extends EventEmitter {
+  /** registers the listener to be notified **before** a file is about to change. The change will be hold until all listeners returned promises are resolved. If any listener reject the promise the file modification action will be canceled. */
+  on(event: 'before-file-modification', listener: (f: File<T>) => Promise<boolean>): this
+  on(event: 'after-file-modification', listener: (f: File<T>, previousContent: Buffer) => void): this
+}
 /**
  * List children of given folder
+ * @param FAT target files access type 
  * @param options.force force read operation  even if files are busy
  * @param options.recursive list all files recursively
  * @return if given path points to a folder returns a list of direct children Files,. Returns null otherwise
  */
-function listFiles(path: String, 
-  options?: {force:boolean, recursive:boolean}):File[] {
-  return null;
-} 
+function listFiles<FAT extends FileAccess>(path: string, 
+  options?: {force: boolean, recursive: boolean})
+  : File<FAT>[] | undefined { return [] } 
 
 
 
@@ -282,22 +307,30 @@ function listFiles(path: String,
 
 //  * The class `File` defines a constructor which is not documented but the output still is generated: [classes/file.html#constructor](../../classes/file.html#constructor)
 //  * The static method `create` that is generic and has a parameter `permissions` with a default value. Notice how we document the generic type `T` using `@param` : [classes/file.html#create](../../classes/file.html#create)
-//  * And last but not least, the function `listFiles` which shows how to document the complex parameter object `options`: [globals.html#listfiles](../../globals.html#listfiles)
+//  * And last but not least, the function `listFiles` which shows how to document the complex parameter object `options` and has a generic parameter `FT`: [globals.html#listfiles](../../globals.html#listfiles) 
 
-// **Important** As you can see, we have static and private methods and also mandatory, optional and default parameters. We don't document any of this information since is already defined in TypeScript and TypeDoc will automatically generate it.
-
-
-// TODO
-//  * overrides
+// **Important**: Again, as with anynthing in TypeDoc we never describe information already defined in the TypeScript code, like names, types and modifiers like if a parameter is optional, default parameter values, if a method is private or static, etc. 
 
 
 
+// ### Parameters and Return Type
+
+// As with anything in TypeDoc documenting parameters is optional. For describing a parameter we use the syntax `@param PARAMETER_NAME` where `PARAMETER_NAME``must match with one of the names of the parameters in the method or function signature. 
+
+// Unfortunately the TypeScript compiler won't validate this so we must careful when renaming parameters. 
+
+// TIP: if you use the "Rename" refactor tool of typescript for renaming a parameter, the @param will be also renamed so make sure you always use that tool instead of renaming manually. 
+
+// For return values, you can use `@return` or `@returns` and then the description of what is returned when the method or function is invoked. 
+
+// **TIP**: Make sure `@param` and `@returns` descriptions add value. Don't write them just because of the sake of writing. If you choose well your methods and parameter names descriptions often arenot needed. If you omit documenting a parameter or return type, its documentation will be still generated by TypeDoc (even if its type is `void` or `any`)
+
+// ### Overrides
+
+// In the previous example, the interface `FileEmitter` overrides the method `on()` of its parent interface and declare two signatures. Take moment to see how TypeDoc generates the output for this case: [interfaces/fileemitter.html#on](../../interfaces/fileemitter.html#on)
 
 
 
-// ## Properties
-
-// **TODO**
 
 
 
@@ -313,11 +346,120 @@ function listFiles(path: String,
 
 // ## Events
 
-// **WIP**
+// TL;DR : Three techniques to represent and document events with TypeDoc are presented in this section, each of them with its own pros and cons. If you want to play safe and do what the majority of TypeScript developers are doing, then use technique 1. If you want to represent your events optimally then go technique 3. 
 
-// JavaScript or TypeScript languages doesn't support the concept of events, nevertheless, events usually are are important part of APIs so many technologies oriented to documention, like TypeDoc, jsdoc, yuidoc, esdoc, support the concept of events using 
+// First of all sorry for the long section, but really I don't think there is A way of declaring and documenting events today so I needed to be detailed here. 
 
-// TypeScript devel
+// JavaScript and TypeScript programming languages don't support the concept of events. Nevertheless, events usually they are an important part of APIs. This is why many technologies oriented to documentation, like TypeDoc, JsDoc, YuiDoc, EsDoc, support the concept of events using tags like `@event`, `@trigger`, `@emit`, `@listen`, etc.
+
+// One common pattern to semantically define events in these technologies, is treating **events as methods**, where then the event is a member of the emitter, the event name is nwo the method name name and the event listener signature is the method signature. But again, this is not written in stone and there are several ways of represent events, depending on the scenario and the technology, as we will see. 
+
+// Let's agree on the objective. The tags `@event`, `@emit` or `@listen` are, BTW missleading. What we really want to declare and document when we talk about "events" is the relationship that exists between an **event name**, an **emitter** and the protocol used to emit: the **listener signature**. The objectvie is to document the relationship that exists between those three things (not just an event name).
+
+// We will present three different ways of accomplish this, trying to describe objects that emit two events `'open'` and '`data'` and extends node.js `EventEmitter` (Our example is a simplified fragment of the [official node.js type declaration](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/node/v8/index.d.ts#L5292) : 
+
+
+interface Readable0 extends EventEmitter {
+  addListener(event: 'data', listener: (chunk: Buffer | string) => void): this;
+  addListener(event: 'error', listener: (error: Error) => void): this;
+}
+
+
+
+
+// ### Technique 1: add @event to method descriptions
+
+// This technique is just adding the `@event` tag to each `addListener` signature: 
+
+
+interface Readable1 extends EventEmitter {
+  /** 
+   * Emitted whenever the stream is relinquishing ownership of a chunk of data to a consumer.
+   * @event
+   */
+  addListener(event: 'data', listener: (chunk: Buffer | string) => void): this;
+  /** 
+   * Typically, this may occur if the underlying stream is unable to generate data due to an underlying internal failure
+   * @event
+   */
+  addListener(event: 'error', listener: (error: Error) => void): this;
+}
+
+
+
+// This is the output [interfaces/readable1.html](../../interfaces/readable1.html) . As you can see our interface shows now, instead of a method, an event.
+
+// It's relevant to note that this technique takes advantage of explicit method overloading done by TypeScript developers, to ensure method calls match signatures exactly. Since there is a signature for each event name (with a parameter default value being the event name) this more or less describe the event names and corresponding listener signatures. The `@event` tag just mark the methods visually so we know those signatures contain information about events. 
+
+
+// ### Technique 2: add @event to event name static properties
+
+
+class Readable2 extends EventEmitter { 
+  /** 
+   * Emitted whenever the stream is relinquishing ownership of a chunk of data to a consumer.
+   * @event
+   */
+  static EVENT_DATA:'data' = 'data';
+  /** 
+   * Typically, this may occur if the underlying stream is unable to generate data due to an underlying internal failure
+   * @event
+   */
+  static EVENT_ERROR:'error' = 'error';
+  addListener(event: typeof Readable2.EVENT_DATA, listener: (chunk: Buffer | string) => void): this;
+  addListener(event: typeof Readable2.EVENT_ERROR, listener: (error: Error) => void): this;
+  addListener(event: string , listener: any): this {return this; }
+}
+
+
+
+// This is the output [classes/readable2.html](../../classes/readable2.html).
+
+// Declare event names as constants static properties. Add the `@event` tag to them. We keep overloading the `addListener` method to force typechecking when calling it and the trick for it to work declare the type of the constants and parameters as a string literal: this `static EVENT_DATA:'data' = 'data';` together with this: `event: typeof Readable2.EVENT_DATA`.
+
+// Events are still encapsulated as member of the class and the relationship between event names and listener signatures is sill maintained and visible. 
+
+// [TypeDoc documentation](http://typedoc.org/api/classes/converter.html) uses a technique similar to this one. 
+
+
+// ### Technique 3: add @event to listener signature's types
+
+// This technique is my favorite IMO represnts events optimally in typeoc output, but also it could be a little bit hard to accomplish. Is simlar to technique 1 but we don't add the @event tag to methods (which is confusing) but to listenre type declarations that are outside the class. 
+
+
+
+/** 
+ * Emitted whenever the stream is relinquishing ownership of a chunk of data to a consumer.
+ * @asMemberOf Readable3
+ * @event
+ */
+declare function data (chunk: Buffer | string): void; 
+/** 
+ * Typically, this may occur if the underlying stream is unable to generate data due to an underlying internal failure
+ * @asMemberOf Readable3
+ * @event
+ */
+declare function error (error: Error): void; 
+interface Readable3 extends EventEmitter {
+  addListener(event: 'data', listener: typeof data): this;
+  addListener(event: 'error', listener: typeof error): this;
+}
+
+
+
+// See the output: This is the output [interfaces/readable3.html](../../interfaces/readable3.html).
+
+// ### Comparison
+
+// Why do I consider 3 better than 1 and 2: 
+
+//  * It doesn't pollute (or force me to) the members of the class/interface. Technique 1 transform the method `addListener` to an event. The method disappear and the event named `addListener doesn't make any sense. Technique 2 force me to create event name static properties
+//  * But most important I think, 1 and 2 fail because relationship between event names and listener signature is hidden inside a method method overriding.The event names appear all stacked, as parameter types, all stacked below sommething called "addListener" which is very confusing. This 3rd technique outputs individual events with their correct names together with the listener signature all in an individual event member desattached from `addListener` 
+//  * Also it allows me to declare all this information using interfaces. I've also  realized also that encapsulating  listener type in a declaration is a good idea to enforce typecheking when there are lots of events with complex different listener signatures
+
+// I will briefly explain it. The objectives are not contimate our classes with artificial entities ,maintain the relationship between event names and listener signatures and enforce types on addListener call
+
+// Unfortunately it requires the TypeDoc plugin [as-member-of](https://github.com/cancerberoSgx/typedoc-plugins-of-mine/tree/master/plugins/typedoc-plugin-as-member-of). Basically what we are doing is declaring the listener signature outside the class as a function type and then instructing the plugin to move as a member of the interface. Because it has the @event tag it will be converted to an event member of the interface. More details in the plugin page. 
 
 
 
@@ -507,14 +649,8 @@ export class ClassTotallyIgnored {
 // <style>
 // h1, h2, h3, h4, h5, h6{
 //   text-transform: none;
-// }</style>
-
-// TypeScript types needed for some snippets - defined here to not add noise in the snippets
-interface FooApplication{}
-interface FooOptions{}
-// and also dummy references so typedoc create ids (so links work)
-/**
- * [ [ startApplication ] ]
- */
-interface _Dummy_{}
-
+// }
+// .invisible {
+//   display: none;
+// }
+// </style>

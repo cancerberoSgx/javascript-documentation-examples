@@ -808,6 +808,10 @@ typedoc-plugin-as-member-of@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/typedoc-plugin-as-member-of/-/typedoc-plugin-as-member-of-1.0.1.tgz#532f6302c0526a2edf50b1786ed692f540b57d33"
 
+typedoc-plugin-as-member-of@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/typedoc-plugin-as-member-of/-/typedoc-plugin-as-member-of-1.0.2.tgz#9fe37130318e384f5ab5d151b25b6eb71e8cc78f"
+
 typedoc-plugin-respect-name-tag@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/typedoc-plugin-respect-name-tag/-/typedoc-plugin-respect-name-tag-1.0.0.tgz#686bb1f8aab4032cf0f000d7e5f4f3f89f4d6d31"
