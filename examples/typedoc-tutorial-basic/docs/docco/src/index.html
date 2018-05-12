@@ -16,8 +16,6 @@
           
           
           
-            <div class='highlight'><pre><span class="hljs-keyword">import</span> { Stream } <span class="hljs-keyword">from</span> <span class="hljs-string">'stream'</span>;</pre></div>
-          
         
 
         
@@ -145,11 +143,6 @@ to <a href="http://usejsdoc.org/">jsdoc</a> or <a href="https://en.wikipedia.org
         
       
         
-        <p>First of all, if you are working with interfaces and you intention is that your users work with them and hide the implementation details, then you <strong>should only document</strong> interfaces and never worry about documenting classes. Document classes only to give details about the implementation, if that’s what you want, but make sure don’t repeat information that’s already in the interface.</p>
-
-        
-      
-        
         <p>In the following example we focus only on classes and interfaces, later we will see <a href="#properties">properties</a> and <a href="#methods-and-functions">methods</a> documentation in detail. It declares an interface which is <a href="https://www.typescriptlang.org/docs/handbook/generics.html">generic</a> and a class implementing it.</p>
 
         
@@ -181,7 +174,7 @@ to <a href="http://usejsdoc.org/">jsdoc</a> or <a href="https://en.wikipedia.org
         
       
         
-        <p>Let’s take two notes here: </p>
+        <p>Some details about what we just did:</p>
 
         
       
@@ -191,6 +184,42 @@ to <a href="http://usejsdoc.org/">jsdoc</a> or <a href="https://en.wikipedia.org
 <li>The first line of the comment is the interface description</li>
 <li>We documented the interface’s generic type <code>U</code> using the expression <code>@param U</code> followed by its description. </li>
 </ul>
+
+        
+      
+        
+        <h3 id="classes-vs-interfaces-in-documentation">Classes vs interfaces in documentation</h3>
+
+        
+      
+        
+        <p>If you are working with interfaces (hiding implementation details from your users), then you should <strong>only document interfaces instead of classes</strong>. </p>
+
+        
+      
+        
+        <p>Document classes only to give details about the implementation, if that’s what you want, but <strong>make sure you don’t repeat information that’s already in the interface</strong></p>
+
+        
+      
+        
+        <p>Otherwise, if you don’t work with interfaces, you can instruct typescript with the following options in <code>tsconfig.json</code> so it automatically generates .d.ts files with interfaces and the typedoc comments from the classes in your <code>.ts</code> files:</p>
+
+        
+      
+        
+        <pre><code class="lang-json">  &quot;compilerOptions&quot;: {
+    ...
+    &quot;declaration&quot;: true,
+    &quot;removeComments&quot;: true,
+    ...
+  }
+</code></pre>
+
+        
+      
+        
+        <p>After that you configure typedoc tool to extract documentation from generated <code>.d.ts</code> files as shown <a href="#configuration">in the configuration section</a></p>
 
         
       
@@ -230,6 +259,7 @@ to <a href="http://usejsdoc.org/">jsdoc</a> or <a href="https://en.wikipedia.org
         
           <div class='highlight'><pre>
 
+<span class="hljs-keyword">import</span> { Stream } <span class="hljs-keyword">from</span> <span class="hljs-string">'stream'</span>;
 <span class="hljs-keyword">class</span> File {
   <span class="hljs-keyword">public</span> <span class="hljs-keyword">constructor</span>(<span class="hljs-params">fs:<span class="hljs-built_in">number</span></span>) {} <span class="hljs-comment">// constructor, no docs</span>
   <span class="hljs-comment">/**
@@ -239,7 +269,7 @@ to <a href="http://usejsdoc.org/">jsdoc</a> or <a href="https://en.wikipedia.org
    * @param T Exercitation enim qui id dolore eiusmod consectetur ex dolore.
    * @return Velit labore nostrud qui sint pariatur aute deserunt laboris tempor ex amet.
    */</span>
-  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> create&lt;T&gt;(path: <span class="hljs-built_in">string</span>, content?: <span class="hljs-built_in">string</span>|Stream, 
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> create&lt;T&gt;(path: <span class="hljs-built_in">string</span>, content?: <span class="hljs-built_in">string</span> | Stream, 
     permissions: <span class="hljs-built_in">string</span> = <span class="hljs-string">'666'</span>): T {
     <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
   }
@@ -461,19 +491,29 @@ to <a href="http://usejsdoc.org/">jsdoc</a> or <a href="https://en.wikipedia.org
  --excludeNotExported      Prevent symbols that are not exported <span class="hljs-keyword">from</span> being documented.
  --excludePrivate          Ignores <span class="hljs-keyword">private</span> variables and methods
  --excludeProtected
-</code></pre><p>More details <a href="#configuring-typedoc-tool">in the configuration section</a></p>
+</code></pre><p>More details <a href="#configuration">in the configuration section</a>. </p>
 
         
       
         
-        <h2 id="configuring-typedoc-tool">Configuring TypeDoc tool</h2>
+        <h2 id="configuration">Configuration</h2>
 
         
       
         
         <ul>
-<li>all options should be <a href="http://typedoc.org/guides/usage/">http://typedoc.org/guides/usage/</a></li>
+<li>all options should be in <a href="http://typedoc.org/guides/usage/">http://typedoc.org/guides/usage/</a></li>
 </ul>
+
+        
+      
+        
+        <h3 id="configuration-files">Configuration files</h3>
+
+        
+      
+        
+        <p>Instead of passing all configuration as command line arguments, you can create a <code>typedocconfig.js</code> or <code>typedocconfig.ts</code> file (the name is not important) with the configuration properties in it and then call <code>typedoc -- TODO</code>. Example of config.ts file</p>
 
         
       

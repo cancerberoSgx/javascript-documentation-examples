@@ -8,11 +8,13 @@
     "lint": "tslint src/**/*.ts",
     "lint-fix": "tslint --fix src/**/*.ts",
     "build": "tsc",
-    "doc": "yarn run doc-tut ;yarn run doc-typedoc; yarn run doc-docco", 
+    "doc": "yarn run doc-tut &&yarn run doc-typedoc&& yarn run doc-docco && yarn run doc-markdown",
+    "doc-markdown": "ts-node src/build.ts --outputType markdown",
+    "doc-typedoc-site": "ts-node src/build.ts --outputType markdown --linkPrefix=../../tutorial-output",
     "doc-typedoc": "tsc && typedoc --options typedoc.ts",
     "doc-docco": "docco src/index.ts --output docs/docco --layout linear",
     "doc-tut": "ts-node src/build.ts",
-    "doc-tut-all": "yarn run doc-tut ; yarn run doc-docco",
+    "doc-tut-all": "yarn run doc-tut && yarn run doc-docco",
     "doc-tut-watch": "CMD=\"yarn run doc-tut-all\"; eval $CMD ; while true ; do  watch -g -d \"cat src/tutorial.hbs\" && eval $CMD ; done",
     "clean": "rm -rf node_modules build"
   },
@@ -35,9 +37,9 @@
     "tslint": "^5.9.1",
     "tslint-config-airbnb": "^5.8.0",
     "typedoc": "^0.11.1",
-    "typescript": "^2.8.3"
+    "typescript": "^2.8.3",
+    "minimist": "^1.2.0"
   },
   "dependencies": {
-    "docco": "^0.8.0"
   }
 }

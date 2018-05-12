@@ -1,4 +1,3 @@
-import { Stream } from 'stream';
 
 
 
@@ -82,8 +81,6 @@ function minify(){}
 
 // ## Classes and Interfaces
 
-// First of all, if you are working with interfaces and you intention is that your users work with them and hide the implementation details, then you **should only document** interfaces and never worry about documenting classes. Document classes only to give details about the implementation, if that's what you want, but make sure don't repeat information that's already in the interface.
-
 // In the following example we focus only on classes and interfaces, later we will see [properties](#properties) and [methods](#methods-and-functions) documentation in detail. It declares an interface which is [generic](https://www.typescriptlang.org/docs/handbook/generics.html) and a class implementing it.
 
 
@@ -110,13 +107,31 @@ class MyCustomRectangle implements Shape<Centimeter> {
 
 // This is the output of the interface: [interfaces/shape](../../interfaces/shape.html) and this is the output of the class: [classes/mycustomrectangle](../../classes/mycustomrectangle.html)
 
-// Let's take two notes here: 
+// Some details about what we just did:
 
 //  * We used the double star comment (`/**`) just before the interface declaration
 //  * The first line of the comment is the interface description
 //  * We documented the interface's generic type `U` using the expression `@param U` followed by its description. 
 
 
+// ### Classes vs interfaces in documentation
+
+// If you are working with interfaces (hiding implementation details from your users), then you should **only document interfaces instead of classes**. 
+
+// Document classes only to give details about the implementation, if that's what you want, but **make sure you don't repeat information that's already in the interface**
+
+// Otherwise, if you don't work with interfaces, you can instruct typescript with the following options in `tsconfig.json` so it automatically generates .d.ts files with interfaces and the typedoc comments from the classes in your `.ts` files:
+
+// ```json
+//   "compilerOptions": {
+//     ...
+//     "declaration": true,
+//     "removeComments": true,
+//     ...
+//   }
+// ```
+
+// After that you configure typedoc tool to extract documentation from generated `.d.ts` files as shown [in the configuration section](#configuration)
 
 
 
@@ -144,6 +159,7 @@ class MyCustomRectangle implements Shape<Centimeter> {
 // Let's go straight to an example that shows a lot of combinations regarding this:
 
 
+import { Stream } from 'stream';
 class File {
   public constructor(fs:number) {} // constructor, no docs
   /**
@@ -153,7 +169,7 @@ class File {
    * @param T Exercitation enim qui id dolore eiusmod consectetur ex dolore.
    * @return Velit labore nostrud qui sint pariatur aute deserunt laboris tempor ex amet.
    */
-  public static create<T>(path: string, content?: string|Stream, 
+  public static create<T>(path: string, content?: string | Stream, 
     permissions: string = '666'): T {
     return null;
   }
@@ -313,7 +329,7 @@ export class ClassTotallyIgnored {
 //  --excludePrivate          Ignores private variables and methods
 //  --excludeProtected
 // ```
-// More details [in the configuration section](#configuring-typedoc-tool)
+// More details [in the configuration section](#configuration). 
 
 
 
@@ -322,10 +338,13 @@ export class ClassTotallyIgnored {
 
 
 
-// ## Configuring TypeDoc tool
+// ## Configuration
 
-//  * all options should be http://typedoc.org/guides/usage/
+//  * all options should be in http://typedoc.org/guides/usage/
 
+// ### Configuration files
+
+// Instead of passing all configuration as command line arguments, you can create a `typedocconfig.js` or `typedocconfig.ts` file (the name is not important) with the configuration properties in it and then call `typedoc -- TODO`. Example of config.ts file
 
 
 
