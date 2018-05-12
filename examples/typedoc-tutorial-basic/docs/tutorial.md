@@ -352,7 +352,7 @@ First of all sorry for the long section, but really I don't think there is A way
 
 JavaScript and TypeScript programming languages don't support the concept of events. Nevertheless, events usually they are an important part of APIs. This is why many technologies oriented to documentation, like TypeDoc, JsDoc, YuiDoc, EsDoc, support the concept of events using tags like `@event`, `@trigger`, `@emit`, `@listen`, etc.
 
-One common pattern to semantically define events in these technologies, is treating **events as methods**, where then the event is a member of the emitter, the event name is nwo the method name name and the event listener signature is the method signature. But again, this is not written in stone and there are several ways of represent events, depending on the scenario and the technology, as we will see. 
+One common pattern to semantically define events in these technologies, is treating **events as methods**, where then the event is a member of the emitter, the event name acts as member name and the listener signature is the method signature. But again, this is not written in stone and there are several ways of represent events, depending on the scenario and the technology, as we will see. 
 
 Let's agree on the objective. The tags `@event`, `@emit` or `@listen` are, BTW missleading. What we really want to declare and document when we talk about "events" is the relationship that exists between an **event name**, an **emitter** and the protocol used to emit: the **listener signature**. The objectvie is to document the relationship that exists between those three things (not just an event name).
 
@@ -392,7 +392,7 @@ This is the output [interfaces/readable1.html](../../interfaces/readable1.html) 
 It's relevant to note that this technique takes advantage of explicit method overloading done by TypeScript developers, to ensure method calls match signatures exactly. Since there is a signature for each event name (with a parameter default value being the event name) this more or less describe the event names and corresponding listener signatures. The `@event` tag just mark the methods visually so we know those signatures contain information about events. 
 
 
-### Technique 2: add @event to event name static properties
+### Technique 2: add @event to static properties
 
 ```ts
 class Readable2 extends EventEmitter { 
@@ -422,9 +422,9 @@ Events are still encapsulated as member of the class and the relationship betwee
 [TypeDoc documentation](http://typedoc.org/api/classes/converter.html) uses a technique similar to this one. 
 
 
-### Technique 3: add @event to listener signature's types
+### Technique 3: add @event to listener signatures
 
-This technique is my favorite IMO represnts events optimally in typeoc output, but also it could be a little bit hard to accomplish. Is simlar to technique 1 but we don't add the @event tag to methods (which is confusing) but to listenre type declarations that are outside the class. 
+This technique is my favorite IMO represents events optimally in typedoc output, but also it could be a little bit hard to accomplish. Is similar to technique 1 but we don't add the @event tag to methods (which is confusing) but to listener type declarations that are outside the class. 
 
 
 ```ts

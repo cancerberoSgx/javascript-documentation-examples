@@ -511,7 +511,7 @@ to <a href="http://usejsdoc.org/">JsDoc</a> or <a href="https://en.wikipedia.org
         
       
         
-        <p>One common pattern to semantically define events in these technologies, is treating <strong>events as methods</strong>, where then the event is a member of the emitter, the event name is nwo the method name name and the event listener signature is the method signature. But again, this is not written in stone and there are several ways of represent events, depending on the scenario and the technology, as we will see. </p>
+        <p>One common pattern to semantically define events in these technologies, is treating <strong>events as methods</strong>, where then the event is a member of the emitter, the event name acts as member name and the listener signature is the method signature. But again, this is not written in stone and there are several ways of represent events, depending on the scenario and the technology, as we will see. </p>
 
         
       
@@ -568,7 +568,7 @@ to <a href="http://usejsdoc.org/">JsDoc</a> or <a href="https://en.wikipedia.org
         
       
         
-        <h3 id="technique-2-add-event-to-event-name-static-properties">Technique 2: add @event to event name static properties</h3>
+        <h3 id="technique-2-add-event-to-static-properties">Technique 2: add @event to static properties</h3>
 
         
           <div class='highlight'><pre>
@@ -611,12 +611,12 @@ to <a href="http://usejsdoc.org/">JsDoc</a> or <a href="https://en.wikipedia.org
         
       
         
-        <h3 id="technique-3-add-event-to-listener-signature-s-types">Technique 3: add @event to listener signature’s types</h3>
+        <h3 id="technique-3-add-event-to-listener-signatures">Technique 3: add @event to listener signatures</h3>
 
         
       
         
-        <p>This technique is my favorite IMO represnts events optimally in typeoc output, but also it could be a little bit hard to accomplish. Is simlar to technique 1 but we don’t add the @event tag to methods (which is confusing) but to listenre type declarations that are outside the class. </p>
+        <p>This technique is my favorite IMO represents events optimally in typedoc output, but also it could be a little bit hard to accomplish. Is similar to technique 1 but we don’t add the @event tag to methods (which is confusing) but to listener type declarations that are outside the class. </p>
 
         
           <div class='highlight'><pre>
